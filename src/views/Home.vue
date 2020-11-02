@@ -1,15 +1,23 @@
 <template>
 <div>
-    <formApp/>
+  <AppHeader/>
+    <Product/>
+    <AppFooter/>
+    
 </div>
 </template>
 <script>
-import formApp from "../components/formApp";
+import Product from "../components/Product";
+import AppHeader from "../components/Layout/AppHeader";
+import AppFooter from "../components/Layout/AppFooter";
+
 
 export default {
     name:"Home",
     components: {
-    formApp
+    Product,
+    AppHeader,
+    AppFooter
   },
 }
 </script>

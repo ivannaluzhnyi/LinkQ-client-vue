@@ -12,16 +12,16 @@ export default new Router({
     linkExactActiveClass: "active",
     root: "/",
     routes: [{
-            path: "/",
-            name: "components",
-            component: () => import("./views/Home")
-        },
-        { path: "*", redirect: "/" }
+        path: "/",
+        name: "components",
+        component: () => import("@/core/Pages/Home")
+    },
+        {path: "*", redirect: "/"}
     ],
     scrollBehavior: to => {
         if (to.hash) {
-            return { selector: to.hash };
+            return {selector: to.hash};
         }
-        return { x: 0, y: 0 };
+        return {x: 0, y: 0};
     }
 });

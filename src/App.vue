@@ -3,9 +3,7 @@
     <Navbar />
 
     <v-main>
-      <v-container>
         <router-view />
-      </v-container>
     </v-main>
 
     <Footer />
@@ -15,6 +13,7 @@
 <script>
 import Footer from "@/core/Components/Footer/Footer";
 import Navbar from "@/core/Components/Navbar/Navbar";
+require("@/assets/styles/forms.css");
 
 export default {
   components: {Navbar, Footer}

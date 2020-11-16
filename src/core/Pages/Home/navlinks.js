@@ -1,7 +1,7 @@
 export const navlinks = [
     {
         text: "Find your flat",
-        href: "#find"
+        href: "#search"
     },
     {
         text: "Featured",

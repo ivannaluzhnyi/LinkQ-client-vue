@@ -13,7 +13,7 @@ export default new Router({
     root: "/",
     routes: [{
         path: "/",
-        name: "components",
+        name: "Home",
         component: () => import("@/core/Pages/Home/Home")
     },
         {path: "*", redirect: "/"}

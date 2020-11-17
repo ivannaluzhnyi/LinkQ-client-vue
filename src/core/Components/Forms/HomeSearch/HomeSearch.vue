@@ -1,102 +1,133 @@
 <template>
-  <Vuemik>
-    <template v-slot:default>
-      <v-container>
-        <div class="wrapper">
-          <form id="form" class="form">
-            <v-row>
-              <v-col
-              cols="12"
-              md="12"
-              >
-                <div class="form-control">
-                  <label for="fn">First name</label>
-                  <input type="text" id="fn">
-                </div>
-              </v-col>
-            </v-row>
-           <v-row>
-             <v-col
-             cols="12"
-             md="4"
-             >
-               <div class="form-control">
-                 <label for="ln">Last name</label>
-                 <input type="text" id="ln">
-               </div>
-               <div class="form-control">
-                 <label for="mail">Email address</label>
-                 <input type="email" id="mail">
-               </div>
-               <div class="form-control">
-                 <label>Country / Region</label>
-                 <select class="select">
-                   <option value="united states">United States</option>
-                   <option value="australia">Australia</option>
-                   <option value="europe">Europe</option>
-                   <option value="asia">Asia</option>
-                 </select>
-               </div>
-             </v-col>
+  <v-container fluid>
+    <Vuemik>
+      <!-- first row -->
+      <v-row>
+        <!-- area inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon>mdi-arrow-decision-outline</v-icon>
+            Total area
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="area_from"
+                  id="input__area_from"
+                  placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field :component="'vuemik-text'" name="area_to" placeholder="to"/>
+            </v-col>
+          </v-row>
+        </v-col>
 
-           </v-row>
+        <!-- floors inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon>mdi-floor-plan</v-icon>
+            Floors
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="floors_from"
+                  id="input__floors_from"
+                  placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="floors_to"
+                  id="input__floors_to"
+                  placeholder="to"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
 
-            <div class="form-control">
-              <label for="street">Street address</label>
-              <input type="text" id="street">
-            </div>
-            <div class="form-control">
-              <label for="ct">City</label>
-              <input type="text" id="ct">
-            </div>
-            <div class="form-control">
-              <label for="st">State / Province</label>
-              <input type="text" id="st">
-            </div>
-            <div class="form-control">
-              <label for="zp">ZIP / Postal</label>
-              <input type="text" id="zp">
-            </div>
-            <footer class="form__footer">
-              <button class="submit__btn">Save</button>
-            </footer>
-          </form>
+      <!-- second row -->
 
-        </div>
-      </v-container>
-      <!--      <v-container>-->
-      <!--        <v-row>-->
-      <!--          <v-col-->
-      <!--              cols="12"-->
-      <!--              md="4"-->
-      <!--          >-->
-      <!--            <Field :component="'vuemik-text'" name="LAWLS"/>-->
-      <!--          </v-col>-->
-
-      <!--          <v-col-->
-      <!--              cols="12"-->
-      <!--              md="4"-->
-      <!--          >-->
-      <!--            <Field :component="'vuemik-text'" name="LAWLS"/>-->
-      <!--          </v-col>-->
-      <!--          <v-col-->
-      <!--              cols="12"-->
-      <!--              md="4"-->
-      <!--          >-->
-      <!--            <Field :component="'vuemik-select'" name="LAWLS" :options="selectData"/>-->
-      <!--          </v-col>-->
-      <!--        </v-row>-->
-      <!--      </v-container>-->
-    </template>
-  </Vuemik>
+      <v-row>
+        <!-- bedrooms inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon>mdi-bed</v-icon>
+            Number of bedrooms
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="bedrooms_from"
+                  id="input__bedrooms_from"
+                  placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="bedrooms_to"
+                  id="input__bedrooms_to"
+                  placeholder="to"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- bathrooms inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon>mdi-bed</v-icon>
+            Number of bathrooms
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="bathrooms_from"
+                  id="input__bathrooms_from"
+                  placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                  :component="'vuemik-text'"
+                  name="bathrooms_to"
+                  id="input__bathrooms_to"
+                  placeholder="to"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-spacer/>
+      <v-btn x-large
+          color="success"
+          class="mr-4"
+      >
+        <v-icon
+          color="white"
+        >
+          mdi-home-search
+        </v-icon>
+        SEARCH
+      </v-btn>
+    </Vuemik>
+  </v-container>
 </template>
 
 <script>
+import Field from "@/core/Components/Vuemik/Field";
 import Vuemik from "@/core/Components/Vuemik/Vuemik";
 
 export default {
   name: "HomeSearch",
-  components: {Vuemik},
+  components: {Vuemik, Field},
   data: () => {
     return {
       selectData: [

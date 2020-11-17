@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="search-background"></div>
-    <v-container>
+    <v-container fluid>
       <section id="search">
         <div id="search-container">
           <v-card>
@@ -33,7 +33,7 @@
                     color="basil"
                     flat
                 >
-                  <home-search/>
+                  <home-search />
                 </v-card>
               </v-tab-item>
             </v-tabs-items>

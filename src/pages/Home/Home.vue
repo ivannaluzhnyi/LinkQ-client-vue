@@ -45,8 +45,8 @@
 </template>
 <script>
 import {EventBus} from "@/core/utils/eventBus";
-import {navlinks} from "@/core/Pages/Home/navlinks";
-import HomeSearch from "@/core/Components/Forms/HomeSearch/HomeSearch";
+import {navlinks} from "@/modules/Home/Utils/navlinks";
+import HomeSearch from "@/modules/Home/Components/HomeSearch";
 
 export default {
   name: "Home",
@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 #search-background {
-  background-image: url("../../../assets/search-bg.jpg");
+  background-image: url("../../assets/search-bg.jpg");
   height: 100vh;
   margin-top: -3vh;
 }

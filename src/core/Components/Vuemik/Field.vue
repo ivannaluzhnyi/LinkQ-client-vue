@@ -3,9 +3,8 @@
     <component
         :is="component"
         :name="name"
-        :options="options"
-        :placeholder="placeholder"
     >
+      <slot></slot>
     </component>
   </div>
 </template>
@@ -20,8 +19,6 @@ export default {
   props: {
     component: {type: String, required: true},
     name: {type: String, required: true},
-    options: {type: Array, required: false},
-    placeholder: {type: String, required: false}
   },
 }
 </script>

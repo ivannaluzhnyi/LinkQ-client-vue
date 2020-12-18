@@ -12,7 +12,7 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                  :component="'vuemik-text'"
+                  component="vuemik-text"
                   name="area_from"
                   id="input__area_from"
                   placeholder="from"

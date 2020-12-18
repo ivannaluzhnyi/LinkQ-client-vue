@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import homeRoutes from '@/modules/Home/Routes/routes';
 
 Vue.use(Router);
 
@@ -11,11 +12,8 @@ export default new Router({
     base: "/",
     linkExactActiveClass: "active",
     root: "/",
-    routes: [{
-        path: "/",
-        name: "Home",
-        component: () => import("@/core/Pages/Home/Home")
-    },
+    routes: [
+        ...homeRoutes,
         {path: "*", redirect: "/"}
     ],
     scrollBehavior: to => {

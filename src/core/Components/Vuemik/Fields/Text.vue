@@ -6,7 +6,7 @@
 export default {
   name: "vuemik-text",
   props: {
-    placeholder: {type: String, required: true}
+    placeholder: {type: String, required: false}
   }
 }
 </script>

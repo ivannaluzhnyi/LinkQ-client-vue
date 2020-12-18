@@ -1,15 +1,15 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <slot></slot>
-  </form>
+  <div>
+    <slot :handleSubmit="handleSubmit"></slot>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Vuemik",
   /*data: () => ({
-    initialValues: JSON.parse(JSON.stringify(this.initialValues))
-  }),
+    values: {...this.initialValues}
+  }),*/
   provide() {
     return {
       vuemik: {
@@ -17,9 +17,14 @@ export default {
       }
     };
   },
+  methods: {
+    handleSubmit() {
+      this.onSubmit(this.$data.values)
+    }
+  },
   props: {
-    handleSubmit: { type: Function, required: true },
-    initialValues: { type: Object, required: true }
-  },*/
+    onSubmit: { type: Function, required: false },
+    initialValues: { type: Object, required: false }
+  }
 }
 </script>

@@ -29,7 +29,7 @@
               color="basil"
               flat
           >
-            <home-search />
+            <search-form />
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -38,10 +38,10 @@
 </template>
 
 <script>
-  import HomeSearch from "@/modules/Home/Components/Forms/Search";
+  import SearchForm from "@/modules/Home/Components/Forms/SearchForm";
   export default {
     name: "SearchSection",
-    components: {HomeSearch},
+    components: {SearchForm},
     data: () => {
       return {
         tab: null,

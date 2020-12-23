@@ -126,7 +126,7 @@ import Field from "@/core/Components/Vuemik/Field";
 import Vuemik from "@/core/Components/Vuemik/Vuemik";
 
 export default {
-  name: "HomeSearch",
+  name: "SearchForm",
   components: {Vuemik, Field},
   data: () => {
     return {

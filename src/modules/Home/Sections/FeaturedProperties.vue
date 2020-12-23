@@ -11,8 +11,7 @@
             :key="index"
         >
           <v-card
-              class="mx-auto"
-              max-width="344"
+              class="mx-auto featured--card"
           >
             <v-img
                 :src="property.first_picture"
@@ -69,3 +68,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.featured--card {
+  min-width: 75%;
+  max-width: 90%;
+}
+</style>

@@ -63,7 +63,7 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                  :component="'vuemik-text'"
+                  component="vuemik-text"
                   name="bedrooms_from"
                   id="input__bedrooms_from"
                   placeholder="from"
@@ -71,7 +71,7 @@
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                  :component="'vuemik-text'"
+                  component="vuemik-text"
                   name="bedrooms_to"
                   id="input__bedrooms_to"
                   placeholder="to"
@@ -88,7 +88,7 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                  :component="'vuemik-text'"
+                  component="vuemik-text"
                   name="bathrooms_from"
                   id="input__bathrooms_from"
                   placeholder="from"
@@ -96,7 +96,7 @@
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                  :component="'vuemik-text'"
+                  component="vuemik-text"
                   name="bathrooms_to"
                   id="input__bathrooms_to"
                   placeholder="to"
@@ -107,11 +107,11 @@
       </v-row>
       <v-spacer/>
       <v-btn x-large
-          color="success"
-          class="mr-4"
+             color="success"
+             class="mr-4"
       >
         <v-icon
-          color="white"
+            color="white"
         >
           mdi-home-search
         </v-icon>

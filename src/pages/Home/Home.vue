@@ -3,42 +3,11 @@
     <div id="search-background"></div>
     <v-container fluid>
       <section id="search">
-        <div id="search-container">
-          <v-card>
-            <v-card-title class="text-center justify-center py-6">
-              <h1 class="font-weight-bold display-3 basil--text">
-                LYGEEMO
-              </h1>
-            </v-card-title>
-            <v-tabs
-                v-model="tab"
-                background-color="transparent"
-                color="basil"
-                grow
-            >
-              <v-tab
-                  v-for="item in searchTabitems"
-                  :key="item"
-              >
-                {{ item }}
-              </v-tab>
-            </v-tabs>
+        <search />
+      </section>
 
-            <v-tabs-items v-model="tab">
-              <v-tab-item
-                  v-for="item in searchTabitems"
-                  :key="item"
-              >
-                <v-card
-                    color="basil"
-                    flat
-                >
-                  <home-search />
-                </v-card>
-              </v-tab-item>
-            </v-tabs-items>
-          </v-card>
-        </div>
+      <section id="featured">
+        <featured-properties />
       </section>
     </v-container>
   </div>
@@ -46,20 +15,18 @@
 <script>
 import {EventBus} from "@/core/utils/eventBus";
 import {navlinks} from "@/modules/Home/Utils/navlinks";
-import HomeSearch from "@/modules/Home/Components/HomeSearch";
+import FeaturedProperties from "@/modules/Home/Sections/FeaturedProperties";
+import Search from "@/modules/Home/Sections/Search";
 
 export default {
   name: "Home",
   components: {
-    HomeSearch
+    Search,
+    FeaturedProperties,
   },
   data: () => {
     return {
       navlinks: navlinks,
-      tab: null,
-      searchTabitems: [
-        'Louer', 'Acheter', 'Vendre',
-      ],
     }
   },
   created() {

@@ -22,7 +22,7 @@
         <v-tab-item>
           <v-card class="px-4">
             <v-card-text>
-              <sign-in/>
+              <sign-in-form/>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -30,7 +30,7 @@
         <v-tab-item>
           <v-card class="px-4">
             <v-card-text>
-              <sign-up/>
+              <sign-up-form/>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import SignIn from "@/modules/Auth/Components/Forms/SignIn";
-import SignUp from "@/modules/Auth/Components/Forms/SignUp";
+import SignUpForm from "@/modules/Auth/Components/Forms/SignUp";
+import SignInForm from "@/modules/Auth/Components/Forms/SignIn";
 export default {
   name: "AuthDialog",
-  components: {SignUp, SignIn},
+  components: {SignInForm, SignUpForm},
   data: () => ({
     authDialog: false,
     tab: 0,

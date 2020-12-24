@@ -37,7 +37,7 @@
 import Vuemik from "@/core/Components/Vuemik/Vuemik";
 import Field from "@/core/Components/Vuemik/Field";
 export default {
-  name: "SignIn",
+  name: "SignInForm",
   components: {Field, Vuemik}
 }
 </script>

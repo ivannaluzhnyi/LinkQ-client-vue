@@ -1,6 +1,6 @@
 export default [{
-  path: "/",
-  name: "Home",
-  component: () => import("@/pages/Home/Home")
-  }
+    path: "/",
+    name: "Home",
+    component: () => import("@/pages/Home/Home")
+}
 ]

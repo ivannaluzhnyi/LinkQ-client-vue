@@ -8,7 +8,7 @@
         color="white">
 
       <v-toolbar-items class="hidden-sm-and-down" id="module-nav-links">
-        <v-btn text small v-for="(navlink, index) in navlinks" :key="index">
+        <v-btn text small v-for="(navlink, index) in navlinks" :key="index" :href="navlink.href">
           {{ navlink.text }}
         </v-btn>
       </v-toolbar-items>
@@ -16,10 +16,7 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
-        <v-btn text small>
-          <v-icon>mdi-account</v-icon>
-          My Account
-        </v-btn>
+        <auth-dialog id="auth-dialog-activator"/>
       </v-toolbar-items>
 
     </v-app-bar>
@@ -29,9 +26,11 @@
 
 <script>
 import {EventBus} from "@/core/utils/eventBus";
+import AuthDialog from "@/modules/Auth/Components/AuthDialog";
 
 export default {
   name: "Navbar",
+  components: {AuthDialog},
   data: () => {
     return {
       navlinks: []

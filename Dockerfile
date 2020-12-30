@@ -1,13 +1,10 @@
-FROM node
+FROM node:12.2.0-alpine
 
-ENV APP_ROOT /src
+EXPOSE 8080
 
-RUN mkdir ${APP_ROOT}
-WORKDIR ${APP_ROOT}
-ADD . ${APP_ROOT}
+WORKDIR /app
+COPY package.json /app/package.json
+RUN npm install
+RUN npm install @vue/cli -g
 
-RUN npm i -g @vue/cli
-RUN npm ci
-RUN npm run build
-
-ENV HOST 0.0.0.0
+CMD ["npm", "run", "serve"]

@@ -1,13 +1,10 @@
 <template>
-  <input :placeholder="placeholder">
+  <input>
 </template>
 
 <script>
 export default {
   name: "vuemik-text",
-  props: {
-    placeholder: {type: String, required: false}
-  }
 }
 </script>
 

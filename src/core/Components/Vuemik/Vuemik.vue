@@ -20,11 +20,11 @@ export default {
   methods: {
     handleSubmit() {
       this.onSubmit(this.$data.values)
-    }
+    },
   },
   props: {
-    onSubmit: { type: Function, required: false },
-    initialValues: { type: Object, required: false }
-  }
+    onSubmit: { type: Function, required: true },
+    initialValues: { type: Object, required: true }
+  },
 }
 </script>

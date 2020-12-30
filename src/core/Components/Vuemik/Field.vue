@@ -3,6 +3,7 @@
     <component
         :is="component"
         :name="name"
+        :value="value"
     >
       <slot></slot>
     </component>
@@ -20,5 +21,19 @@ export default {
     component: {type: String, required: true},
     name: {type: String, required: true},
   },
+  data: () => ({
+    value: null
+  }),
+  inject: ["vuemik"],
+  created() {
+    this.setInitialValue()
+  },
+  methods: {
+    setInitialValue() {
+      if (this.vuemik.initialValues[this.name] !== undefined) {
+        this.value = this.vuemik.initialValues[this.name]
+      }
+    }
+  }
 }
 </script>

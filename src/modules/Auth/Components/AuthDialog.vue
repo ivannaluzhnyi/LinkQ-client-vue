@@ -58,6 +58,6 @@ export default {
 
 <style scoped>
 #auth-dialog-activator-button {
-  margin-top: 14px;
+  margin-top: 17px;
 }
 </style>

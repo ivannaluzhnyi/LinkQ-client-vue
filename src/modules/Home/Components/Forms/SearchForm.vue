@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <Vuemik>
+    <Vuemik :initial-values="initialValues" :on-submit="() => null">
       <!-- first row -->
       <v-row>
         <!-- area inputs -->
@@ -19,7 +19,7 @@
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
-              <Field :component="'vuemik-text'" name="area_to" placeholder="to"/>
+              <Field component="vuemik-text" name="area_to" placeholder="to"/>
             </v-col>
           </v-row>
         </v-col>
@@ -127,16 +127,16 @@ import Vuemik from "@/core/Components/Vuemik/Vuemik";
 
 export default {
   name: "SearchForm",
-  components: {Vuemik, Field},
-  data: () => {
-    return {
-      selectData: [
-        {text: 'Un', value: 'A'},
-        {text: 'Deux', value: 'B'},
-        {text: 'Trois', value: 'C'}
-      ]
-    }
-  }
+  components: {
+    Vuemik,
+    Field
+  },
+  data: () => ({
+      initialValues: {
+        'area_from': 10,
+        'area_to': 200,
+      }
+  })
 }
 </script>
 

@@ -10,16 +10,16 @@
               <img src="http://themes.suelo.pl/chata/assets/img/objects/object-large01.jpg" alt="">
             </div>
             <div class="object-content">
-              <h5 class="object-title">Large Flat</h5>
+              <h5 class="object-title">Property Name</h5>
               <ul class="object-details list-unstyled">
-                <li><span class="text-muted">Total area:</span> 92m<sup>2</sup></li>
+                <li><span class="text-muted">Total area:</span> 42m<sup>2</sup></li>
                 <li><span class="text-muted">Bedrooms:</span> 2</li>
                 <li><span class="text-muted">Floor:</span> 1</li>
               </ul>
               <div class="row">
                 <div class="col-6">
                   <strong class="text-muted">Price:</strong>
-                  <span class="object-price text-primary text-lg">$422 200</span>
+                  <span class="object-price text-primary text-lg">$250000</span>
                 </div>
                 <div class="col-6">
                   <strong class="text-muted">Price per m<sup>2</sup>:</strong>
@@ -33,6 +33,7 @@
           <h2 class="mb-2">Make an offer!</h2>
           <p class="lead">Mauris dolor orci, sagittis ut varius in, interdum nec sapien.</p>
           <!-- Form contact -->
+          <OfferForm />
         </div>
       </div>
     </div>
@@ -40,20 +41,22 @@
 </template>
 
 <script>
+import OfferForm from "@/modules/Property/Components/OfferForm";
 export default {
-  name: "Offer"
+  name: "Offer",
+  components: {OfferForm}
 }
 </script>
 
 <style scoped>
 #bg{
-  background-image: url("../../Property/asset/bg-offer.jpg");
-  height: 75vh;
+  background-image: url("../asset/bg-offer.jpg");
+  height: 100vh;
   color: white;
   position: static;
 }
 .container {
-  width: 1400px;
+  width: 1200px;
   max-width: 100%;
   top: 78%;
   right: 25%;

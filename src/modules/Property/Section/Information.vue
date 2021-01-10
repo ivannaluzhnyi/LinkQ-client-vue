@@ -26,9 +26,13 @@
         </div>
         <div class="col-lg-4 text-lg-right">
           <span class="object-price mr-4">$250000</span>
-          <a href="#make-offer" class="btn btn-primary">
+          <v-btn
+              x-large
+              color="primary"
+              class="mr-4" href="#make-offer"
+          >
             Make an offer
-          </a>
+          </v-btn>
         </div>
       </div>
     </div>

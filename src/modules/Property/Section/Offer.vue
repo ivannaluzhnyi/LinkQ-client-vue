@@ -10,20 +10,17 @@
               <img src="http://themes.suelo.pl/chata/assets/img/objects/object-large01.jpg" alt="">
             </div>
             <div class="object-content">
-              <h5 class="object-title">Property Name</h5>
+              <h5 class="object-title">{{property.title}}</h5>
               <ul class="object-details list-unstyled">
-                <li><span class="text-muted">Total area:</span> 42m<sup>2</sup></li>
-                <li><span class="text-muted">Bedrooms:</span> 2</li>
+                <li><span class="text-muted">Total area:</span> {{property.features.size}}m<sup>2</sup></li>
+                <li><span class="text-muted">Bedrooms:</span> {{property.features.bedrooms}}</li>
+                <li><span class="text-muted">Rooms:</span> {{property.features.rooms}}</li>
                 <li><span class="text-muted">Floor:</span> 1</li>
               </ul>
               <div class="row">
                 <div class="col-6">
                   <strong class="text-muted">Price:</strong>
                   <span class="object-price text-primary text-lg">$250000</span>
-                </div>
-                <div class="col-6">
-                  <strong class="text-muted">Price per m<sup>2</sup>:</strong>
-                  <span class="object-price">$3 200</span>
                 </div>
               </div>
             </div>
@@ -44,7 +41,8 @@
 import OfferForm from "@/modules/Property/Components/OfferForm";
 export default {
   name: "Offer",
-  components: {OfferForm}
+  components: {OfferForm},
+  props: ['property'],
 }
 </script>
 
@@ -58,7 +56,7 @@ export default {
 .container {
   width: 1200px;
   max-width: 100%;
-  top: 78%;
+  top: 75%;
   right: 25%;
   left: 25%;
   position: absolute;

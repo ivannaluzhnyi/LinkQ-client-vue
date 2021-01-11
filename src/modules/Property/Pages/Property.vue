@@ -3,19 +3,19 @@
     <div id="background"></div>
     <div fluid>
       <section id="information">
-        <Information/>
+        <Information v-bind:property="property"/>
       </section>
 
       <section id="details-plan">
-        <Details/>
+        <Details v-bind:property="property"/>
       </section>
 
       <section id="features">
-        <Features />
+        <Features v-bind:property="property"/>
       </section>
 
       <section id="make-offer">
-        <Offer />
+        <Offer v-bind:property="property"/>
       </section>
     </div>
   </div>
@@ -40,11 +40,28 @@ export default {
   data: () => {
     return {
       navlinks: navlinks,
+      property: null,
     }
   },
   created() {
     EventBus.$emit('page-change-navlinks', this.navlinks)
-  }
+    this.getProperty()
+  },
+  methods: {
+    getProperty() {
+      fetch(`http://localhost:8080/properties/${this.$route.params.idProperty}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json'
+        }
+      }).then(response => response.json())
+          .then(data => {
+            this.property = data;
+            console.log(data);
+          })
+    }
+  },
 }
 </script>
 
@@ -59,11 +76,12 @@ export default {
   color: white;
 }
 
-#information  {
+#information {
   position: absolute;
   width: 100%;
   top: 0;
 }
+
 #information > #information-container {
   color: black;
 }

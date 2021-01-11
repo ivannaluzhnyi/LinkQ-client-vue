@@ -4,19 +4,19 @@
       <div class="row align-items-center">
         <div class="col-lg-8">
           <h1 class="mb-0">
-            <span class="mr-3">Property name</span>
+            <span class="mr-3">{{ property.title}}</span>
           </h1>
           <ul class="list-inline lead">
             <li class="list-inline-item">
               <span class="text-muted">Total area:</span>
               <strong>
-                "42m"
+                "{{property.features.size}}m"
                 <sup>2</sup>
               </strong>
             </li>
             <li class="list-inline-item">
               <span class="text-muted">Number of rooms:</span>
-              <strong>5</strong>
+              <strong>{{property.features.rooms}}</strong>
             </li>
             <li class="list-inline-item">
               <span class="text-muted">Floor:</span>
@@ -41,7 +41,8 @@
 
 <script>
 export default {
-  name: "Information"
+  name: "Information",
+  props: ['property'],
 }
 </script>
 

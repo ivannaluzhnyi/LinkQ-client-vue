@@ -3,8 +3,7 @@
     <div class="row align-items-center" data-local-scroll="">
       <div class="col-lg-4 push-lg-2 pr-5">
         <h2>Description</h2>
-        <p class="lead">Mauris dolor orci, sagittis ut varius in, interdum nec sapien. Mauris rutrum lacinia orci nec
-          maximus.</p>
+        <p class="lead">{{property.description}}</p>
         <v-btn
             x-large
             color="primary"
@@ -23,7 +22,8 @@
 
 <script>
 export default {
-  name: "Features"
+  name: "Features",
+  props: ['property'],
 }
 </script>
 

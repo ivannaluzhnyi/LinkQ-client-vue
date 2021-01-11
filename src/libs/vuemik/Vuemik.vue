@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { isSelect, isInput, isCheckbox } from "./helper";
+import { isSelect, isInput, isCheckbox, observerToJson } from "./helper";
 
 export default {
   name: "Vuemik",
@@ -13,7 +13,10 @@ export default {
     onSubmit: { type: Function, required: true },
     initialValues: { type: Object, required: true },
   },
-  data: () => ({ values: JSON.parse(JSON.stringify(this.initialValues)) }),
+  data() {
+    return { values: observerToJson(this.initialValues) };
+  },
+
   provide() {
     return {
       vuemik: {
@@ -50,7 +53,7 @@ export default {
       });
     },
     handleSubmit() {
-      this.onSubmit(this.values);
+      this.onSubmit(observerToJson(this.values));
     },
   },
 };

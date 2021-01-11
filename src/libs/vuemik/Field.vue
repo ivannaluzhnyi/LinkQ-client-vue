@@ -1,6 +1,6 @@
 <template>
   <component
-    v-bind:is="component"
+    :is="component"
     :name="name"
     @input="vuemik.change"
     :value="vuemik.values[name]"

@@ -14,6 +14,10 @@
         <Features v-bind:property="property"/>
       </section>
 
+      <section id="pictures">
+        <Carousel v-bind:property="property"/>
+      </section>
+
       <section id="make-offer">
         <Offer v-bind:property="property"/>
       </section>
@@ -28,6 +32,7 @@ import Information from "@/modules/Property/Section/Information";
 import Details from "@/modules/Property/Section/Details";
 import Features from "@/modules/Property/Section/Features";
 import Offer from "@/modules/Property/Section/Offer";
+import Carousel from "@/modules/Property/Section/Carousel";
 
 export default {
   name: "Info",
@@ -35,7 +40,8 @@ export default {
     Details,
     Information,
     Features,
-    Offer
+    Offer,
+    Carousel
   },
   data: () => {
     return {

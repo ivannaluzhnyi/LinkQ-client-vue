@@ -12,8 +12,12 @@ export const navlinks = [
         href: "#details-plan"
     },
     {
-        text: "features",
+        text: "Features",
         href: "#features"
+    },
+    {
+        text: "Pictures",
+        href: "#pictures"
     },
     {
         text: "Make Offer",

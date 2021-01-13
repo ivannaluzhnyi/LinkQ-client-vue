@@ -7,7 +7,7 @@ import {
     AUTH_LOGOUT,
 } from "./mutation-actions";
 
-function login({ dispatch, commit }, { username, password }) {
+function login({ commit }, { username, password }) {
     commit(AUTH_LOGIN_REQUEST, { username });
 
     authService.login(username, password).then(

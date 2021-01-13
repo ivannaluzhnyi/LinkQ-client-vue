@@ -8,11 +8,9 @@ const initialState = {
     loggedIn: !!user,
 };
 
-const auth = {
+export default {
     namespaced: true,
     state: initialState,
     actions,
     mutations,
 };
-
-export default auth;

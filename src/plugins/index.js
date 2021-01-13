@@ -1,4 +1,4 @@
 import vuetify from "./vuetify";
-import vuex from "./vuex";
+import store from "./vuex";
 
-export default { vuetify, vuex };
+export default { vuetify, store };

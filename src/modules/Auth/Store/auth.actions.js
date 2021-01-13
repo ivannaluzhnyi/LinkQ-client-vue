@@ -7,17 +7,18 @@ import {
     AUTH_LOGOUT,
 } from "./mutation-actions";
 
-function login({ commit }, { username, password }) {
-    commit(AUTH_LOGIN_REQUEST, { username });
+function login({ commit }, { email, password }) {
+    commit(AUTH_LOGIN_REQUEST, { email });
 
-    authService.login(username, password).then(
-        (response) => {
+    authService
+        .login(email, password)
+        .then((response) => {
             commit(AUTH_LOGIN_SUCCESS, response);
-        },
-        (error) => {
+        })
+        .catch((error) => {
+            console.log("error > ", error);
             commit(AUTH_LOGIN_FAILURE, error);
-        }
-    );
+        });
 }
 
 function logout({ commit }) {

@@ -8,10 +8,10 @@
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_from">
             <v-icon>mdi-arrow-decision-outline</v-icon>
-            Surface du terrain
+            Surface habitable
           </label>
 
-          <v-card flat color="transparent">
+          <!-- <v-card flat color="transparent">
             <v-card-text>
               <v-row>
                 <v-col class="px-4">
@@ -49,7 +49,7 @@
                 </v-col>
               </v-row>
             </v-card-text>
-          </v-card>
+          </v-card> -->
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
@@ -69,7 +69,7 @@
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_from">
             <v-icon>mdi-floor-plan</v-icon>
-            Surface habitable
+            Nombre d'étages
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
@@ -98,7 +98,7 @@
         <!-- bedrooms inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_from">
-            <v-icon>mdi-bed</v-icon>
+            <v-icon>mdi-view-dashboard-outline</v-icon>
             Nombre de pièces
           </label>
           <v-row>
@@ -140,6 +140,83 @@
                 component="vuemik-text"
                 name="bathrooms_to"
                 id="input__bathrooms_to"
+                placeholder="to"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+      <v-row>
+        <!-- bedrooms inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon>mdi-garage-open-variant</v-icon>
+            Nombre de garage
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="vuemik-text"
+                name="garage_from"
+                id="input__garage_from"
+                placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="vuemik-text"
+                name="garage_to"
+                id="input__garage_to"
+                placeholder="to"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- bathrooms inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon> mdi-shower</v-icon>
+            Nombre de salle de bain
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="vuemik-text"
+                name="bathrooms_from"
+                id="input__bathrooms_from"
+                placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="vuemik-text"
+                name="bathrooms_to"
+                id="input__bathrooms_to"
+                placeholder="to"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+        <!-- price inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_from">
+            <v-icon>mdi-cash</v-icon>
+            Prix
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="vuemik-text"
+                name="price_from"
+                id="input__price_from"
+                placeholder="from"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="vuemik-text"
+                name="price_to"
+                id="input__price_to"
                 placeholder="to"
               />
             </v-col>

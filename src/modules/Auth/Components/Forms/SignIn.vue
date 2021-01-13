@@ -9,31 +9,23 @@
   >
     <v-row>
       <v-col cols="12">
-        <label for="input__signin_email" class="col-12"> Email </label>
+        <label for="input__signin_email" class="col-12">Email</label>
         <Field component="input" name="email" id="input__signin_email" />
       </v-col>
       <v-col cols="12">
-        <label for="input__signin_passwd" class="col-12"> Password </label>
-        <Field
-          component="input"
-          type="password"
-          name="password"
-          id="input__signin_passwd"
-        />
+        <label for="input__signin_passwd" class="col-12">Password</label>
+        <Field component="input" type="password" name="password" id="input__signin_passwd" />
       </v-col>
-      <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
+      <v-col class="d-flex" cols="12" sm="6" xsm="12"></v-col>
       <v-spacer></v-spacer>
     </v-row>
     <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-      <v-btn @click="handleSubmit" x-large block color="success"> Login</v-btn>
+      <v-btn @click="handleSubmit" x-large block color="success">Login</v-btn>
     </v-col>
   </Vuemik>
 </template>
 
 <script>
-// import Vuemik from "@/core/Components/Vuemik/Vuemik";
-// import Field from "@/core/Components/Vuemik/Field";
-
 import { Vuemik, Field } from "@/libs/vuemik";
 
 export default {
@@ -42,11 +34,10 @@ export default {
     Field,
     Vuemik,
   },
-  created() {
-    // this.signIn();
-  },
+
   methods: {
     signIn(props) {
+      // TODO AUTH
       console.log("send form ==> ", props);
       //     fetch("https://localhost:8443/authentication_token", {
       //       method: "POST",

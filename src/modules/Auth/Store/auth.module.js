@@ -1,7 +1,9 @@
 import { actions } from "./auth.actions";
 import { mutations } from "./auth.mutations";
 
-const user = JSON.parse(localStorage.getItem("user"));
+import authService from "../Services/auth.service";
+
+const user = authService.isAuth();
 
 const initialState = {
     user: user,

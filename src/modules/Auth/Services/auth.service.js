@@ -1,4 +1,5 @@
-import httpClient from "../../../core/utils/http-client";
+import httpClient from "@/core/utils/http-client";
+import { decodeToken } from "@/core/utils/jwt";
 
 /**
  *
@@ -6,32 +7,43 @@ import httpClient from "../../../core/utils/http-client";
  * @param {String} password
  */
 function login(email, password) {
-    console.log("email, pass => ", email, password);
     const client = httpClient();
-
-    console.log("client :> ", client);
 
     return client
         .post("authentication_token", { email, password })
-        .then((data) => {
-            console.log("data ==> ", data);
-        });
+        .then((response) => {
+            const { data } = response;
 
-    // return fetch(`/users/authenticate`, requestOptions)
-    //     .then((res) => res.json())
-    //     .then((response) => {
-    //         console.log(response);
-    //         // login successful if there's a jwt token in the response
-    //         // if (user.token) {
-    //         //     // store user details and jwt token in local storage to keep user logged in between page refreshes
-    //         //     localStorage.setItem("user", JSON.stringify(user));
-    //         // }
-    //         // return user;
-    //     });
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+
+                const { roles, username } = decodeToken(response.data.token);
+                const userData = {
+                    roles,
+                    username,
+                };
+                localStorage.setItem("user", JSON.stringify(userData));
+
+                return userData;
+            }
+
+            throw new Error("Token missing");
+        });
 }
 
 function logout() {
-    //TODO remove from local storage
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
 }
 
-export default { login, logout };
+/**
+ * @returns {object|null}
+ */
+function isAuth() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
+    return !!user && !!token ? user : null;
+}
+
+export default { login, logout, isAuth };

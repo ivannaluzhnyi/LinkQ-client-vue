@@ -129,6 +129,7 @@ export class HttpClient {
  */
 export default function httpClient(config = {}) {
     const defaultConfig = {
+        //TODO: pass to ENV (docker-compose)
         baseURL: "http://localhost:8080/",
         headers: {
             Accept: "application/json",

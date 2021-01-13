@@ -15,12 +15,11 @@
                 <li><span class="text-muted">Total area:</span> {{property.features.size}}m<sup>2</sup></li>
                 <li><span class="text-muted">Bedrooms:</span> {{property.features.bedrooms}}</li>
                 <li><span class="text-muted">Rooms:</span> {{property.features.rooms}}</li>
-                <li><span class="text-muted">Floor:</span> 1</li>
               </ul>
               <div class="row">
                 <div class="col-6">
                   <strong class="text-muted">Price:</strong>
-                  <span class="object-price text-primary text-lg">$250000</span>
+                  <span class="object-price text-primary text-lg">${{property.price}}</span>
                 </div>
               </div>
             </div>
@@ -56,7 +55,7 @@ export default {
 .container {
   width: 1200px;
   max-width: 100%;
-  top: 75%;
+  top: 78%;
   right: 25%;
   left: 25%;
   position: absolute;

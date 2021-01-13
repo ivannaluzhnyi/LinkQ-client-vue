@@ -11,14 +11,12 @@
               <dd class="col-sm-6">{{ property.features.size }}m<sup>2</sup></dd>
               <dt class="col-sm-6">Garages:</dt>
               <dd class="col-sm-6">{{ property.features.garages }}</dd>
-              <dt class="col-sm-6">Floor:</dt>
-              <dd class="col-sm-6">2</dd>
+              <dt class="col-sm-6">Bedrooms:</dt>
+              <dd class="col-sm-6">{{ property.features.bedrooms }}</dd>
             </dl>
           </div>
           <div class="col-md-6">
             <dl class="row">
-              <dt class="col-sm-6">Bedrooms:</dt>
-              <dd class="col-sm-6">{{ property.features.bedrooms }}</dd>
               <dt class="col-sm-6">Bathrooms</dt>
               <dd class="col-sm-6">{{ property.features.bathrooms }}</dd>
               <dt class="col-sm-6">Total rooms:</dt>
@@ -35,7 +33,7 @@
             <div class="col">
               <dl class="row">
                 <dt class="col-sm-6">Street:</dt>
-                <dd class="cos-sm-6">{{ property.address.street }}</dd>
+                <dd class="col-sm-6">{{ property.address.street }}</dd>
                 <dt class="col-sm-6">City</dt>
                 <dd class="col-sm-6">{{ property.address.city }} {{ property.address.zipcode }}</dd>
                 <dt class="col-sm-6">Country:</dt>

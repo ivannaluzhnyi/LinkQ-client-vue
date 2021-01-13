@@ -18,14 +18,10 @@
               <span class="text-muted">Number of rooms:</span>
               <strong>{{property.features.rooms}}</strong>
             </li>
-            <li class="list-inline-item">
-              <span class="text-muted">Floor:</span>
-              <strong>2</strong>
-            </li>
           </ul>
         </div>
         <div class="col-lg-4 text-lg-right">
-          <span class="object-price mr-4">$250000</span>
+          <span class="object-price mr-4">${{property.price}}</span>
           <v-btn
               x-large
               color="primary"

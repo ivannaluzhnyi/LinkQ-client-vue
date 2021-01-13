@@ -4,7 +4,8 @@ import {
     AUTH_LOGIN_FAILURE,
     AUTH_LOGIN_REQUEST,
     AUTH_LOGIN_SUCCESS,
-} from "./actionTypes";
+    AUTH_LOGOUT,
+} from "./mutation-actions";
 
 function login({ dispatch, commit }, { username, password }) {
     commit(AUTH_LOGIN_REQUEST, { username });
@@ -21,6 +22,6 @@ function login({ dispatch, commit }, { username, password }) {
 
 function logout({ commit }) {
     authService.logout();
-    commit("logout");
+    commit(AUTH_LOGOUT);
 }
-export { login, logout };
+export const actions = { login, logout };

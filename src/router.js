@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import homeRoutes from '@/modules/Home/Routes/routes';
+import propertyRoutes from '@/modules/Property/Routes/routes';
 
 Vue.use(Router);
 
@@ -14,6 +15,7 @@ export default new Router({
     root: "/",
     routes: [
         ...homeRoutes,
+        ...propertyRoutes,
         {path: "*", redirect: "/"}
     ],
     scrollBehavior: to => {

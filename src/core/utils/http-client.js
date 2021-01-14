@@ -48,7 +48,6 @@ export class HttpClient {
      * @returns {Promise<Object>}
      */
     post(url, data = {}, additionalHeaders = {}) {
-        console.log("htpp > =", this);
         return this.client.post(url, data, { headers: additionalHeaders });
     }
 

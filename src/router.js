@@ -5,6 +5,9 @@ import propertyRoutes from "@/modules/Property/Routes/routes";
 
 import authService from "@/modules/Auth/Services/auth.service";
 
+import Layout from "@/core/layouts/Layout";
+import Admin from "@/core/layouts/Admin";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -17,17 +20,17 @@ const router = new Router({
     root: "/",
 
     routes: [
-        ...homeRoutes,
-        ...propertyRoutes,
+        {
+            path: "/",
+            component: Layout,
+            children: [...homeRoutes, ...propertyRoutes],
+        },
 
         {
             path: "/admin",
             name: "admin",
-            component: Vue.component(
-                "Admin",
-                require("./core/layouts/Admin.vue")
-            ),
-            // beforeEnter: requireAuth,
+            component: Admin,
+            children: [],
         },
         { path: "*", redirect: "/" },
     ],

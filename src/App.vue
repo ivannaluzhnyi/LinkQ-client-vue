@@ -3,7 +3,7 @@
     <Navbar />
 
     <v-main>
-        <router-view />
+      <router-view />
     </v-main>
 
     <Footer />
@@ -13,9 +13,16 @@
 <script>
 import Footer from "@/core/Components/Footer/Footer";
 import Navbar from "@/core/Components/Navbar/Navbar";
+import { mapGetters } from "vuex";
 require("@/assets/styles/forms.css");
 
 export default {
-  components: {Navbar, Footer}
+  components: { Navbar, Footer },
+
+  methods: {
+    ...mapGetters({
+      // is
+    }),
+  },
 };
 </script>

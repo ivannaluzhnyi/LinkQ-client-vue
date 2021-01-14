@@ -38,7 +38,7 @@
           <v-container>
         <v-img 
           height="300"
-          src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+          :src="'http://localhost:8080' + property.property.medium[0].uri"
         ></v-img>
           </v-container>
       </v-col>

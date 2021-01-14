@@ -19,10 +19,13 @@ require("@/assets/styles/forms.css");
 export default {
   components: { Navbar, Footer },
 
-  methods: {
+  created() {},
+  computed: {
     ...mapGetters({
-      // is
+      isAuthenticated: "auth/isAuthenticated",
     }),
   },
+
+  methods: {},
 };
 </script>

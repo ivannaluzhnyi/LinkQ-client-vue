@@ -1,4 +1,8 @@
 export const getters = {
-    IsAuthenticated: (state) => state.loggedIn,
-    IsAuthenticatedGraphql: (state) => state.graphql.loggedIn,
+    isAuthenticated: (state) => {
+        return state.loggedIn;
+    },
+    isAuthenticatedGraphql: (state) => {
+        return state.graphql.loggedIn;
+    },
 };

@@ -54,7 +54,7 @@ export default {
     }
   },
   created() {
-    EventBus.$emit('page-change-navlinks', this.navlinks),
+    EventBus.$emit('page-change-navlinks', this.navlinks)
     this.$store.dispatch('loadProperty', 1)
   },
 }

@@ -21,7 +21,9 @@ export default {
         {
             const client = httpClient();
             return client
-                .get("properties", {idProperty})
+                .get("properties", {
+                    id: idProperty
+                })
                 .then((response) => {
                     console.log(response);
                     commit('setProperty', response);
@@ -30,4 +32,4 @@ export default {
                 });
         }
     }
-}
+};

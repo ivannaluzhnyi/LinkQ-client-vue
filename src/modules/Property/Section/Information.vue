@@ -10,7 +10,7 @@
             <li class="list-inline-item">
               <span class="text-muted">Total area:</span>
               <strong>
-                "{{property.features.size}}m"
+                {{property.features.size}}m
                 <sup>2</sup>
               </strong>
             </li>

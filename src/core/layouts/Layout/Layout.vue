@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Footer from "@/core/Components/Footer/Footer";
-import Navbar from "@/core/Components/Navbar/Navbar";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 export default {
   name: "Layout",
   components: { Navbar, Footer },

@@ -1,13 +1,11 @@
 <template>
   <v-app id="app">
-    <v-main>
-      <router-view />
-    </v-main>
+    <router-view />
   </v-app>
 </template>
 
 <script>
-require("@/assets/styles/forms.css");
+import("@/assets/styles/forms.css");
 
 export default {
   name: "App",

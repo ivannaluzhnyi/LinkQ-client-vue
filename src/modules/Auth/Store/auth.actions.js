@@ -1,5 +1,7 @@
 import authService from "../Services/auth.service";
 
+import router from "@/router";
+
 import {
     AUTH_LOGIN_API_PLAT_FAILURE,
     AUTH_LOGIN_API_PLAT_REQUEST,
@@ -14,6 +16,7 @@ function login({ commit }, { email, password }) {
         .login(email, password)
         .then((response) => {
             commit(AUTH_LOGIN_API_PLAT_SUCCESS, response);
+            router.push("/admin");
         })
         .catch((error) => {
             commit(AUTH_LOGIN_API_PLAT_FAILURE, error);

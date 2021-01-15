@@ -33,6 +33,7 @@ import Details from "@/modules/Property/Section/Details";
 import Features from "@/modules/Property/Section/Features";
 import Offer from "@/modules/Property/Section/Offer";
 import Carousel from "@/modules/Property/Section/Carousel";
+import { mapActions } from "vuex";
 
 export default {
   name: "Info",
@@ -43,19 +44,27 @@ export default {
     Offer,
     Carousel
   },
-  data: () => {
+  data: function () {
     return {
       navlinks: navlinks,
+      id: this.$route.params.idProperty,
     }
   },
   computed: {
     property () {
-      return this.$store.state.property;
+      return this.$store.state.property.property;
     }
   },
   created() {
     EventBus.$emit('page-change-navlinks', this.navlinks)
-    this.$store.dispatch('loadProperty', 1)
+    this.load(this.id)
+  },
+  methods: {
+    ...mapActions({ loadProperty: 'property/loadProperty' }),
+
+    load(props) {
+      this.loadProperty(props)
+    },
   },
 }
 </script>

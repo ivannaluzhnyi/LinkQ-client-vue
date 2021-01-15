@@ -17,18 +17,16 @@ export default {
         }
     },
     actions: {
-        loadProperty({commit}, idProperty)
+        loadProperty({commit},idProperty)
         {
             const client = httpClient();
             return client
-                .get("properties", {
-                    id: idProperty
-                })
+                .get(`properties/${idProperty}`)
                 .then((response) => {
-                    console.log(response);
-                    commit('setProperty', response);
-                }).catch(error => {
-                    throw new Error(`API ${error}`);
+                    console.log(response.data);
+                    commit('setProperty', response.data);
+                }).catch((error) => {
+                    console.log(error);
                 });
         }
     }

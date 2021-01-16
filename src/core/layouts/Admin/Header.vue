@@ -51,7 +51,6 @@ export default {
       switch (type) {
         case "logout":
           return this.logout();
-        // break;
 
         default:
           break;

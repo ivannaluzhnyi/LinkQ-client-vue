@@ -1,8 +1,11 @@
 <template>
   <v-container fluid>
-    <Vuemik 
-    :initial-values="initialValues" :on-submit="searchProperties" >
-      <!-- first row -->
+    <Vuemik
+      :initial-values="initialValues"
+      :onSubmit="searchProperties"
+      v-slot="{ handleSubmit }"
+      >
+
       <v-row>
         <!-- area inputs -->
         <v-col cols="12" md="6" xs="12">
@@ -52,15 +55,10 @@
           </v-card> -->
           <v-row>
             <v-col cols="12" md="6" xs="3">
-              <Field
-                component="vuemik-text"
-                name="area_from"
-                id="input__area_from"
-                placeholder="from"
-              />
+              <Field component="input" name="area_from" id="input__area_from" placeholder="Minimun" />
             </v-col>
             <v-col cols="12" md="6" xs="3">
-              <Field component="vuemik-text" name="area_to" placeholder="to" />
+              <Field component="input" name="area_to" placeholder="Maximun" />
             </v-col>
           </v-row>
         </v-col>
@@ -74,18 +72,18 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                :component="'vuemik-text'"
+                component="input"
                 name="floors_from"
                 id="input__floors_from"
-                placeholder="from"
+                placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                :component="'vuemik-text'"
+                component="input"
                 name="floors_to"
                 id="input__floors_to"
-                placeholder="to"
+                placeholder="Maximun"
               />
             </v-col>
           </v-row>
@@ -104,18 +102,18 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="bedrooms_from"
                 id="input__bedrooms_from"
-                placeholder="from"
+                placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="bedrooms_to"
                 id="input__bedrooms_to"
-                placeholder="to"
+                placeholder="Maximun"
               />
             </v-col>
           </v-row>
@@ -129,18 +127,18 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="bathrooms_from"
                 id="input__bathrooms_from"
-                placeholder="from"
+                placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="bathrooms_to"
                 id="input__bathrooms_to"
-                placeholder="to"
+                placeholder="Maximun"
               />
             </v-col>
           </v-row>
@@ -156,18 +154,18 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="garage_from"
                 id="input__garage_from"
-                placeholder="from"
+                placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="garage_to"
                 id="input__garage_to"
-                placeholder="to"
+                placeholder="Maximun"
               />
             </v-col>
           </v-row>
@@ -181,18 +179,18 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="bathrooms_from"
                 id="input__bathrooms_from"
-                placeholder="from"
+                placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="bathrooms_to"
                 id="input__bathrooms_to"
-                placeholder="to"
+                placeholder="Maximun"
               />
             </v-col>
           </v-row>
@@ -206,25 +204,25 @@
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="price_from"
                 id="input__price_from"
-                placeholder="from"
+                placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
-                component="vuemik-text"
+                component="input"
                 name="price_to"
                 id="input__price_to"
-                placeholder="to"
+                placeholder="Maximun"
               />
             </v-col>
           </v-row>
         </v-col>
       </v-row>
       <v-spacer />
-      <v-btn x-large color="success" class="mr-4">
+      <v-btn @click="handleSubmit" x-large color="success" class="mr-4">
         <v-icon color="white"> mdi-home-search </v-icon>
         Chercher
       </v-btn>
@@ -233,8 +231,7 @@
 </template>
 
 <script>
-import Field from "@/core/Components/Vuemik/Field";
-import Vuemik from "@/core/Components/Vuemik/Vuemik";
+import { Vuemik, Field } from "@/libs/vuemik";
 
 export default {
   name: "SearchForm",
@@ -244,22 +241,19 @@ export default {
   },
   data: () => ({
     initialValues: {
-      area_from: 10,
-      area_to: 200,
+
     },
     min: 1,
     max: 10000,
     range: [-20, 70],
   }),
-  created() {
-    this.searchProperties()
-  },
+  
   methods: {
-    searchProperties() {
-      console.log("tester")
-    }
-  }
-
+    searchProperties(props) {
+      console.log('props :>> ', props);
+      // this.$router.push("/propertySearch?test");
+    },
+  },
 };
 </script>
 

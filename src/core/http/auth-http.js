@@ -7,5 +7,5 @@ export default httpClient({
         Authorization: token,
         Accept: "application/json",
     },
-    baseUrl: config.baseUrl,
+    baseURL: config.baseURL,
 });

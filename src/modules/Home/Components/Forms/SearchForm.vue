@@ -7,9 +7,9 @@
       >
 
       <v-row>
-        <!-- area inputs -->
+        <!-- size inputs -->
         <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
+          <label for="input__size_min">
             <v-icon>mdi-arrow-decision-outline</v-icon>
             Surface habitable
           </label>
@@ -55,34 +55,34 @@
           </v-card> -->
           <v-row>
             <v-col cols="12" md="6" xs="3">
-              <Field component="input" name="area_from" id="input__area_from" placeholder="Minimun" />
+              <Field component="input" name="size_min" id="input__size_min" placeholder="Minimun" nu />
             </v-col>
             <v-col cols="12" md="6" xs="3">
-              <Field component="input" name="area_to" placeholder="Maximun" />
+              <Field component="input" name="size_max" placeholder="Maximun" />
             </v-col>
           </v-row>
         </v-col>
 
-        <!-- floors inputs -->
+        <!-- rooms inputs -->
         <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
-            <v-icon>mdi-floor-plan</v-icon>
-            Nombre d'étages
+          <label for="input__rooms_min">
+            <v-icon>mdi-rooms-plan</v-icon>
+            Nombre de pièces
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="floors_from"
-                id="input__floors_from"
+                name="rooms_min"
+                id="input__rooms_min"
                 placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="floors_to"
-                id="input__floors_to"
+                name="rooms_max"
+                id="input__rooms_max"
                 placeholder="Maximun"
               />
             </v-col>
@@ -93,34 +93,10 @@
       <!-- second row -->
 
       <v-row>
+        <!-- rooms inputs -->
         <!-- bedrooms inputs -->
         <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
-            <v-icon>mdi-view-dashboard-outline</v-icon>
-            Nombre de pièces
-          </label>
-          <v-row>
-            <v-col cols="12" md="6" xs="3">
-              <Field
-                component="input"
-                name="bedrooms_from"
-                id="input__bedrooms_from"
-                placeholder="Minimun"
-              />
-            </v-col>
-            <v-col cols="12" md="6" xs="3">
-              <Field
-                component="input"
-                name="bedrooms_to"
-                id="input__bedrooms_to"
-                placeholder="Maximun"
-              />
-            </v-col>
-          </v-row>
-        </v-col>
-        <!-- bathrooms inputs -->
-        <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
+          <label for="input__area_min">
             <v-icon>mdi-bed</v-icon>
             Nombres de chambres
           </label>
@@ -128,51 +104,24 @@
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="bathrooms_from"
-                id="input__bathrooms_from"
+                name="bedrooms_min"
+                id="input__bedrooms_min"
                 placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="bathrooms_to"
-                id="input__bathrooms_to"
+                name="bedrooms_max"
+                id="input__bedrooms_max"
                 placeholder="Maximun"
               />
             </v-col>
           </v-row>
         </v-col>
-      </v-row>
-      <v-row>
-        <!-- bedrooms inputs -->
+        <!-- bathrooms_min inputs -->
         <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
-            <v-icon>mdi-garage-open-variant</v-icon>
-            Nombre de garage
-          </label>
-          <v-row>
-            <v-col cols="12" md="6" xs="3">
-              <Field
-                component="input"
-                name="garage_from"
-                id="input__garage_from"
-                placeholder="Minimun"
-              />
-            </v-col>
-            <v-col cols="12" md="6" xs="3">
-              <Field
-                component="input"
-                name="garage_to"
-                id="input__garage_to"
-                placeholder="Maximun"
-              />
-            </v-col>
-          </v-row>
-        </v-col>
-        <!-- bathrooms inputs -->
-        <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
+          <label for="input__area_min">
             <v-icon> mdi-shower</v-icon>
             Nombre de salle de bain
           </label>
@@ -180,24 +129,52 @@
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="bathrooms_from"
-                id="input__bathrooms_from"
+                name="bathrooms_min"
+                id="input__bathrooms_min"
                 placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="bathrooms_to"
-                id="input__bathrooms_to"
+                name="bathrooms_max"
+                id="input__bathrooms_max"
                 placeholder="Maximun"
               />
             </v-col>
           </v-row>
         </v-col>
+      </v-row>
+      <v-row>
+        <!-- garages inputs -->
+        <v-col cols="12" md="6" xs="12">
+          <label for="input__area_min">
+            <v-icon>mdi-garage-open-variant</v-icon>
+            Nombre de garages
+          </label>
+          <v-row>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="input"
+                name="garages_min"
+                id="input__garages_min"
+                placeholder="Minimun"
+              />
+            </v-col>
+            <v-col cols="12" md="6" xs="3">
+              <Field
+                component="input"
+                name="garages_max"
+                id="input__garages_max"
+                placeholder="Maximun"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+        
         <!-- price inputs -->
         <v-col cols="12" md="6" xs="12">
-          <label for="input__area_from">
+          <label for="input__area_min">
             <v-icon>mdi-cash</v-icon>
             Prix
           </label>
@@ -205,16 +182,16 @@
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="price_from"
-                id="input__price_from"
+                name="price_min"
+                id="input__price_min"
                 placeholder="Minimun"
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field
                 component="input"
-                name="price_to"
-                id="input__price_to"
+                name="price_max"
+                id="input__price_max"
                 placeholder="Maximun"
               />
             </v-col>
@@ -232,6 +209,7 @@
 
 <script>
 import { Vuemik, Field } from "@/libs/vuemik";
+import { convertToSearchUrl } from "@/core/utils/convertSearchUrl";
 
 export default {
   name: "SearchForm",
@@ -250,8 +228,10 @@ export default {
   
   methods: {
     searchProperties(props) {
-      console.log('props :>> ', props);
-      // this.$router.push("/propertySearch?test");
+      const myprop = convertToSearchUrl(props)
+      console.log('myprop :>> ', myprop);
+      this.$router.replace({name:'ListProperty', params:{myprop}});
+
     },
   },
 };

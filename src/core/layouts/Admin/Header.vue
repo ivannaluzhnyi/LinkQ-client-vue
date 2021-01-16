@@ -29,7 +29,7 @@
 </template>
 <script>
 // Utilities
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   name: "Header",
 
@@ -60,7 +60,9 @@ export default {
   }),
 
   computed: {
-    ...mapState(["Sidebar_drawer"]),
+    Sidebar_drawer() {
+      return this.$store.state.adminSettings.Sidebar_drawer;
+    },
   },
 
   methods: {

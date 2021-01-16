@@ -13,10 +13,12 @@ export const mutations = {
     [AUTH_LOGIN_API_PLAT_SUCCESS](state, user) {
         state.loggedIn = true;
         state.user = user;
+        state.loading = false;
     },
     [AUTH_LOGIN_API_PLAT_FAILURE](state) {
         state.loggedIn = false;
         state.user = null;
+        state.loading = false;
     },
     [AUTH_LOGOUT](state) {
         state.loggedIn = false;

@@ -5,4 +5,6 @@ export const getters = {
     isAuthenticatedGraphql: (state) => {
         return state.graphql.loggedIn;
     },
+
+    isLoading: (state) => state.loading,
 };

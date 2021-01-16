@@ -20,7 +20,7 @@
       <v-spacer></v-spacer>
     </v-row>
     <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
-      <v-btn @click="handleSubmit" x-large block color="success">Login</v-btn>
+      <v-btn :loading="loading" @click="handleSubmit" x-large block color="success">Login</v-btn>
     </v-col>
   </Vuemik>
 </template>
@@ -28,13 +28,19 @@
 <script>
 import { Vuemik, Field } from "@/libs/vuemik";
 
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "SignInForm",
   components: {
     Field,
     Vuemik,
+  },
+
+  computed: {
+    ...mapGetters({
+      loading: "auth/isLoading",
+    }),
   },
 
   methods: {

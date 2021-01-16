@@ -14,6 +14,8 @@ const initialState = {
         user: null,
         loggedIn: false,
     },
+
+    loading: false,
 };
 
 export default {

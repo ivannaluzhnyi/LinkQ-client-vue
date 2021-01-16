@@ -13,11 +13,6 @@ export class HttpClient {
                 const { data, method, url } = config;
                 console.log(`Request: ${method.toUpperCase()} | /${url}`, data);
 
-                // if (config.auth) {
-                //     const token = JSON.parse(localStorage.getItem("token"));
-                //     defaultConfig.headers.Authorization = `${token}`;
-                // }
-
                 return config;
             },
             rejected: (error) => Promise.reject(error),

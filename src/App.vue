@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" :class="`${!$vuetify.breakpoint.smAndDown ? 'full-sidebar' : 'mini-sidebar'}`">
     <router-view />
   </v-app>
 </template>

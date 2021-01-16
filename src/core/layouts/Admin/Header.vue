@@ -2,7 +2,7 @@
   <v-app-bar app clipped-left clipped-right color="primary" dark>
     <v-toolbar-title class="align-center d-flex">
       <span class="logo-text ml-2">
-        <h4>LEGGEMO ADMIN</h4>
+        <h4>LEGEEMO ADMIN</h4>
       </span>
     </v-toolbar-title>
     <v-app-bar-nav-icon

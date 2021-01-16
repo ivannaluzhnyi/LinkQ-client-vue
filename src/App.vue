@@ -9,9 +9,6 @@ import("@/assets/styles/forms.css");
 
 export default {
   name: "App",
-  created() {
-    console.log("this => ", this);
-  },
 };
 </script>
  

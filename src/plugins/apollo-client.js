@@ -11,6 +11,7 @@ import config from "@/config/apollo-client";
 const httpLink = createHttpLink({
     uri: config.serverUri,
 });
+
 const middlewareLink = new ApolloLink((operation, forward) => {
     const token = localStorage.getItem("apollo-token");
     operation.setContext({

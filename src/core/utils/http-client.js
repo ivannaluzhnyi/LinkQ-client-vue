@@ -10,7 +10,6 @@ export class HttpClient {
     defaultRequestInterceptors = [
         {
             fulfilled: (config) => {
-                console.log("config => ", config);
                 const { data, method, url } = config;
                 console.log(`Request: ${method.toUpperCase()} | /${url}`, data);
 

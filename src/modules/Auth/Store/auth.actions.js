@@ -26,6 +26,7 @@ function login({ commit }, { email, password }) {
 function logout({ commit }) {
     authService.logout();
     commit(AUTH_LOGOUT);
+    router.push("/");
 }
 
 export const actions = { login, logout };

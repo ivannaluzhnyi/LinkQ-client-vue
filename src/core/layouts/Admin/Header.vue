@@ -20,7 +20,7 @@
       </template>
 
       <v-list>
-        <v-list-item v-for="(item, i) in userprofile" :key="i" @click="href">
+        <v-list-item v-for="(item, i) in userprofile" :key="i" @click="href(item)">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -29,7 +29,7 @@
 </template>
 <script>
 // Utilities
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   name: "Header",
 
@@ -43,11 +43,19 @@ export default {
   },
   data: () => ({
     userprofile: [
-      { title: "My Profile" },
-      { title: "Account Setting" },
-      { title: "Logout" },
+      { title: "My Profile", type: "profile" },
+      { title: "Account Setting", type: "account_settings" },
+      { title: "Logout", type: "logout" },
     ],
-    href() {
+    href({ type }) {
+      switch (type) {
+        case "logout":
+          return this.logout();
+        // break;
+
+        default:
+          break;
+      }
       return undefined;
     },
   }),
@@ -59,6 +67,9 @@ export default {
   methods: {
     ...mapMutations({
       setSidebarDrawer: "adminSettings/SET_SIDEBAR_DRAWER",
+    }),
+    ...mapActions({
+      logout: "auth/logout",
     }),
   },
 };

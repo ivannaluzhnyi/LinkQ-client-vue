@@ -1,4 +1,4 @@
-import httpClient from "@/core/utils/http-client";
+import { http } from "@/core/http";
 import { decodeToken } from "@/core/utils/jwt";
 
 /**
@@ -7,9 +7,7 @@ import { decodeToken } from "@/core/utils/jwt";
  * @param {String} password
  */
 function login(email, password) {
-    const client = httpClient();
-
-    return client
+    return http
         .post("authentication_token", { email, password })
         .then((response) => {
             const { data } = response;

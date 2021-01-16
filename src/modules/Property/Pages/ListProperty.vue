@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h3>Listes des propriétés disponible</h3>
-    <div>
+    <div v-if="showProperties">
       <div v-for="property in properties" :key="property.id">
         <Card v-bind:property="property" />
       </div>
@@ -20,11 +20,10 @@ import { mapActions } from "vuex";
 export default {
   components: { Card },
   name: "ListProperty",
-  props:['myprop'],
+  props: ["myprop"],
   data: () => {
     return {
       navlinks: navlinks,
-
     };
   },
 
@@ -36,12 +35,16 @@ export default {
     properties() {
       return this.$store.state.property.properties;
     },
+
+    showProperties() {
+      return this.properties.length !== 0;
+    },
   },
   methods: {
     ...mapActions({ getProperty: "property/getProperty" }),
-   
+
     load() {
-      console.log('this.mypropss :>> ', this.myprop);
+      console.log("this.mypropss :>> ", this.myprop);
       this.getProperty(this.myprop);
     },
   },

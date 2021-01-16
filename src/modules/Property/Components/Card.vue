@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="6" md="6" xs="6">
         <v-container>
-          <v-card-title>{{ property.property.title}}</v-card-title>
+          <v-card-title>{{ property ? property.title : ''}}</v-card-title>
           <v-card-text>
             <h4>Détails</h4>
             <div class="row lead">

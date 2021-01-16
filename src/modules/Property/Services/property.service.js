@@ -10,10 +10,10 @@ const getProperty = (searchInformation) => {
         .then((response) => {
             const { data } = response;
             if (data) {
-                return data
+                return data;
             }
             throw new Error("Token missing");
         });
-}
+};
 
 export default { getProperty };

@@ -1,16 +1,11 @@
 <template>
   <v-container fluid>
-    <Vuemik
-      :initial-values="initialValues"
-      :onSubmit="searchProperties"
-      v-slot="{ handleSubmit }"
-    >
+    <Vuemik :initial-values="initialValues" :onSubmit="searchProperties" v-slot="{ handleSubmit }">
       <v-row>
         <!-- size inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__size_min">
-            <v-icon>mdi-arrow-decision-outline</v-icon>
-            Surface habitable
+            <v-icon>mdi-arrow-decision-outline</v-icon>Surface habitable
           </label>
 
           <!-- <v-card flat color="transparent">
@@ -51,7 +46,7 @@
                 </v-col>
               </v-row>
             </v-card-text>
-          </v-card> -->
+          </v-card>-->
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
@@ -71,8 +66,7 @@
         <!-- rooms inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__rooms_min">
-            <v-icon>mdi-rooms-plan</v-icon>
-            Nombre de pièces
+            <v-icon>mdi-rooms-plan</v-icon>Nombre de pièces
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
@@ -102,8 +96,7 @@
         <!-- bedrooms inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_min">
-            <v-icon>mdi-bed</v-icon>
-            Nombres de chambres
+            <v-icon>mdi-bed</v-icon>Nombres de chambres
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
@@ -127,8 +120,7 @@
         <!-- bathrooms_min inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_min">
-            <v-icon> mdi-shower</v-icon>
-            Nombre de salle de bain
+            <v-icon>mdi-shower</v-icon>Nombre de salle de bain
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
@@ -154,8 +146,7 @@
         <!-- garages inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_min">
-            <v-icon>mdi-garage-open-variant</v-icon>
-            Nombre de garages
+            <v-icon>mdi-garage-open-variant</v-icon>Nombre de garages
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
@@ -180,8 +171,7 @@
         <!-- price inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_min">
-            <v-icon>mdi-cash</v-icon>
-            Prix
+            <v-icon>mdi-cash</v-icon>Prix
           </label>
           <v-row>
             <v-col cols="12" md="6" xs="3">
@@ -205,8 +195,7 @@
       </v-row>
       <v-spacer />
       <v-btn @click="handleSubmit" x-large color="success" class="mr-4">
-        <v-icon color="white"> mdi-home-search </v-icon>
-        Chercher
+        <v-icon color="white">mdi-home-search</v-icon>Chercher
       </v-btn>
     </Vuemik>
   </v-container>

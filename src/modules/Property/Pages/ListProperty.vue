@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h3>Listes des propriétés disponible</h3>
-    <div>
+    <div v-if="showProperties">
       <div v-for="property in properties" :key="property.id">
         <Card v-bind:property="property" />
       </div>
@@ -35,10 +35,14 @@ export default {
     properties() {
       return this.$store.state.property.properties;
     },
+
+    showProperties() {
+      return this.properties.length !== 0;
+    },
   },
   methods: {
     ...mapActions({ getProperty: "property/getProperty" }),
-   
+
     load() {
       this.getProperty(this.searchUrl);
     },

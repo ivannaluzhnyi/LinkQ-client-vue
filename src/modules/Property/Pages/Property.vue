@@ -64,7 +64,6 @@ export default {
       }).then(response => response.json())
           .then(data => {
             this.property = data;
-            console.log(data);
           })
     }
   },

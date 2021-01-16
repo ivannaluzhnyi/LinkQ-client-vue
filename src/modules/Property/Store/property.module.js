@@ -4,6 +4,8 @@ import { getters } from "./property.getters";
 
 
 const initialState = {
+    properties: {}
+
 };
 
 export default {

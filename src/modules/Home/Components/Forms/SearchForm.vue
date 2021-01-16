@@ -4,8 +4,7 @@
       :initial-values="initialValues"
       :onSubmit="searchProperties"
       v-slot="{ handleSubmit }"
-      >
-
+    >
       <v-row>
         <!-- size inputs -->
         <v-col cols="12" md="6" xs="12">
@@ -55,7 +54,13 @@
           </v-card> -->
           <v-row>
             <v-col cols="12" md="6" xs="3">
-              <Field component="input" name="size_min" id="input__size_min" placeholder="Minimun" nu />
+              <Field
+                component="input"
+                name="size_min"
+                id="input__size_min"
+                placeholder="Minimun"
+                nu
+              />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field component="input" name="size_max" placeholder="Maximun" />
@@ -171,7 +176,7 @@
             </v-col>
           </v-row>
         </v-col>
-        
+
         <!-- price inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__area_min">
@@ -218,20 +223,16 @@ export default {
     Field,
   },
   data: () => ({
-    initialValues: {
-
-    },
+    initialValues: {},
     min: 1,
     max: 10000,
     range: [-20, 70],
   }),
-  
+
   methods: {
     searchProperties(props) {
-      const myprop = convertToSearchUrl(props)
-      console.log('myprop :>> ', myprop);
-      this.$router.replace({name:'ListProperty', params:{myprop}});
-
+      const searchUrl = convertToSearchUrl(props);
+      this.$router.replace({ name: "ListProperty", params: { searchUrl } });
     },
   },
 };

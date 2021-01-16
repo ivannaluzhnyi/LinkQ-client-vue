@@ -20,11 +20,10 @@ import { mapActions } from "vuex";
 export default {
   components: { Card },
   name: "ListProperty",
-  props:['myprop'],
+  props:['searchUrl'],
   data: () => {
     return {
       navlinks: navlinks,
-
     };
   },
 
@@ -41,8 +40,7 @@ export default {
     ...mapActions({ getProperty: "property/getProperty" }),
    
     load() {
-      console.log('this.mypropss :>> ', this.myprop);
-      this.getProperty(this.myprop);
+      this.getProperty(this.searchUrl);
     },
   },
 };

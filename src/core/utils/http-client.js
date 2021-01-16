@@ -184,17 +184,10 @@ export class HttpClient {
  */
 export default function httpClient(config = {}) {
     const defaultConfig = {
-        //TODO: pass to ENV (docker-compose)
-        baseURL: "http://localhost:8080/",
         headers: {
             Accept: "application/json",
         },
     };
-
-    // if (config.auth) {
-    //     const token = JSON.parse(localStorage.getItem("token"));
-    //     defaultConfig.headers.Authorization = `${token}`;
-    // }
 
     return new HttpClient({ ...defaultConfig, ...config });
 }

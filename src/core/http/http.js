@@ -1,3 +1,5 @@
 import httpClient from "../utils/http-client";
 
-export default httpClient();
+import config from "@/config/http-client";
+
+export default httpClient({ baseUrl: config.baseUrl });

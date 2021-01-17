@@ -5,7 +5,7 @@ export default [
         component: () => import("@/modules/Property/Pages/Property")
     },
     {
-        path: "/propertySearch",
+        path: "/property",
         name: "ListProperty",
         component: () => import("@/modules/Property/Pages/ListProperty"),
         props: true,

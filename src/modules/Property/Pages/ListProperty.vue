@@ -1,6 +1,9 @@
 <template>
   <v-container>
-    <h3>Listes des propriétés disponible</h3>
+    <h3>
+      Listes des propriétés disponible ({{ properties.length }})
+      <div v-if="isSearch">avec votre recherche.</div>
+    </h3>
     <div v-if="showProperties">
       <div v-for="property in properties" :key="property.id">
         <Card v-bind:property="property" />
@@ -20,7 +23,7 @@ import { mapActions } from "vuex";
 export default {
   components: { Card },
   name: "ListProperty",
-  props:['searchUrl'],
+  props: ["searchUrl"],
   data: () => {
     return {
       navlinks: navlinks,
@@ -38,6 +41,9 @@ export default {
 
     showProperties() {
       return this.properties.length !== 0;
+    },
+    isSearch() {
+      return this.searchUrl !== undefined;
     },
   },
   methods: {

@@ -60,9 +60,6 @@ export default {
         this.login(props);
       }
     },
-    debug(event) {
-      console.log(event.target.name);
-    },
   },
 };
 </script>

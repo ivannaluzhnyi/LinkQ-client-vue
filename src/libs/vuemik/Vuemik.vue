@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     computedErrors() {
-      return JSON.parse(JSON.stringify(this.$data.errors));
+      return this.$data.errors;
     },
   },
   methods: {

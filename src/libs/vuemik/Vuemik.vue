@@ -1,6 +1,6 @@
 <template>
   <div class="vuemik">
-    <slot :handleSubmit="handleSubmit"></slot>
+    <slot :handleSubmit="handleSubmit" :errors="{...computedErrors}"></slot>
   </div>
 </template>
 
@@ -12,9 +12,10 @@ export default {
   props: {
     onSubmit: { type: Function, required: true },
     initialValues: { type: Object, required: true },
+    validationSchema: { type: Object, required: false },
   },
   data() {
-    return { values: observerToJson(this.initialValues) };
+    return { values: observerToJson(this.initialValues), errors: {} };
   },
 
   provide() {
@@ -24,6 +25,11 @@ export default {
         change: this.handleChange,
       },
     };
+  },
+  computed: {
+    computedErrors() {
+      return JSON.parse(JSON.stringify(this.$data.errors));
+    },
   },
   methods: {
     eventOrValue(e) {
@@ -52,8 +58,25 @@ export default {
         this.$data.values[key] = val;
       });
     },
+
+    handleAddErros(path, errors) {
+      this.$data.errors = { [path]: errors };
+    },
+    handleResetErrors() {
+      this.$data.errors = {};
+    },
     handleSubmit() {
-      this.onSubmit(observerToJson(this.values));
+      if (this.validationSchema) {
+        this.validationSchema
+          .validate(this.values)
+          .then((validatedObject) => {
+            this.onSubmit(observerToJson(validatedObject));
+            this.handleResetErrors();
+          })
+          .catch((error) => {
+            this.handleAddErros(error.path, error.errors);
+          });
+      } else this.onSubmit(observerToJson(this.values));
     },
   },
 };

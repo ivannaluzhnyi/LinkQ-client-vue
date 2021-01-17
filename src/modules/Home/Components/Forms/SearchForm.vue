@@ -1,52 +1,15 @@
 <template>
   <v-container fluid >
-    <Vuemik :initial-values="initialValues" :onSubmit="searchProperties" v-slot="{ handleSubmit }">
+    <Vuemik :initial-values="initialValues" 
+    :onSubmit="searchProperties"
+    :validationSchema="SearchFormSchema" 
+    v-slot="{ handleSubmit, errors }">
       <v-row>
         <!-- size inputs -->
         <v-col cols="12" md="6" xs="12">
           <label for="input__size_min">
             <v-icon>mdi-arrow-decision-outline</v-icon> Surface habitable
           </label>
-
-          <!-- <v-card flat color="transparent">
-            <v-card-text>
-              <v-row>
-                <v-col class="px-4">
-                  <v-range-slider
-                    v-model="range"
-                    :max="max"
-                    :min="min"
-                    hide-details
-                    class="align-center"
-                    thumb-label
-                  >
-                    <template v-slot:prepend>
-                      <v-text-field
-                        :value="range[0]"
-                        class="mt-0 pt-0"
-                        hide-details
-                        single-line
-                        type="number"
-                        style="width: 60px"
-                        @change="$set(range, 0, $event)"
-                      ></v-text-field>
-                    </template>
-                    <template v-slot:append>
-                      <v-text-field
-                        :value="range[1]"
-                        class="mt-0 pt-0"
-                        hide-details
-                        single-line
-                        type="number"
-                        style="width: 60px"
-                        @change="$set(range, 1, $event)"
-                      ></v-text-field>
-                    </template>
-                  </v-range-slider>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>-->
           <v-row>
             <v-col cols="12" md="6" xs="3">
               <Field
@@ -54,13 +17,14 @@
                 name="size_min"
                 id="input__size_min"
                 placeholder="Minimun"
-                nu
               />
             </v-col>
             <v-col cols="12" md="6" xs="3">
               <Field component="input" type="number" name="size_max" placeholder="Maximun" />
             </v-col>
           </v-row>
+          <p v-if="errors.size_min" class="alert-error">{{errors.size_min[0]}}</p>
+          <p v-if="errors.size_max" class="alert-error">{{errors.size_max[0]}}</p>
         </v-col>
 
         <!-- rooms inputs -->
@@ -86,6 +50,8 @@
               />
             </v-col>
           </v-row>
+           <p v-if="errors.rooms_min" class="alert-error">{{errors.rooms_min[0]}}</p>
+         <p v-if="errors.rooms_max" class="alert-error">{{errors.rooms_max[0]}}</p>
         </v-col>
       </v-row>
 
@@ -116,6 +82,8 @@
               />
             </v-col>
           </v-row>
+           <p v-if="errors.bedrooms_min" class="alert-error">{{errors.bedrooms_min[0]}}</p>
+         <p v-if="errors.bedrooms_max" class="alert-error">{{errors.bedrooms_max[0]}}</p>
         </v-col>
         <!-- bathrooms_min inputs -->
         <v-col cols="12" md="6" xs="12">
@@ -140,7 +108,9 @@
               />
             </v-col>
           </v-row>
-        </v-col>
+           <p v-if="errors.bathrooms_min" class="alert-error">{{errors.bathrooms_min[0]}}</p>
+         <p v-if="errors.bathrooms_max" class="alert-error">{{errors.bathrooms_max[0]}}</p>
+        </v-col> 
       </v-row>
       <v-row>
         <!-- garages inputs -->
@@ -166,6 +136,8 @@
               />
             </v-col>
           </v-row>
+          <p v-if="errors.garages_min" class="alert-error">{{errors.garages_min[0]}}</p>
+         <p v-if="errors.garages_max" class="alert-error">{{errors.garages_max[0]}}</p>
         </v-col>
 
         <!-- price inputs -->
@@ -202,8 +174,9 @@
 </template>
 
 <script>
+import * as Yup from "yup";
 import { Vuemik, Field } from "@/libs/vuemik";
-import { convertToSearchUrl } from "@/core/utils/convertSearchUrl";
+import { convertToSearchUrl, minMaxComparaison } from "@/core/utils/convertSearchUrl";
 
 export default {
   name: "SearchForm",
@@ -213,9 +186,33 @@ export default {
   },
   data: () => ({
     initialValues: {},
-    min: 1,
-    max: 10000,
-    range: [-20, 70],
+    SearchFormSchema: Yup.object().shape({
+      size_min: Yup.number().positive().integer(),
+      size_max: Yup.number().positive().integer().test('match', 
+      'Le minimun doit être inferieur au maximun', function(size_max){
+        return minMaxComparaison(size_max, this.parent.size_min)
+      }),
+       rooms_min: Yup.number().positive().integer(),
+       rooms_max: Yup.number().positive().integer().test('match', 
+      'Le minimun doit être inferieur au maximun', function(rooms_max){
+        return minMaxComparaison(rooms_max, this.parent.rooms_min)
+      }),
+        bedrooms_min: Yup.number().positive().integer(),
+        bedrooms_max: Yup.number().positive().integer().test('match', 
+      'Le minimun doit être inferieur au maximun', function(bedrooms_max){
+        return minMaxComparaison(bedrooms_max, this.parent.bedrooms_min)
+      }),
+      bathrooms_min: Yup.number().positive().integer(),
+      bathrooms_max: Yup.number().positive().integer().test('match', 
+      'Le minimun doit être inferieur au maximun', function(bathrooms_max){
+        return minMaxComparaison(bathrooms_max, this.parent.bathrooms_max)
+      }),
+      garages_min: Yup.number().positive().integer(),
+      garages_max: Yup.number().positive().integer().test('match', 
+      'Le minimun doit être inferieur au maximun', function(garages_max){
+        return minMaxComparaison(garages_max, this.parent.garages_min)
+      })
+    })
   }),
 
   methods: {
@@ -228,5 +225,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style  scoped>
+.alert-error {
+  margin-top: 10px;
+  color: red;
+}
 </style>

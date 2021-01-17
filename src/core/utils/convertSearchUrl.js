@@ -29,4 +29,13 @@ const convertData = (data) => {
     }
     return format_data
 }
-export { convertToSearchUrl };
+const minMaxComparaison = (max_value, min_value) => {
+    console.log('max_value :>> ', max_value);
+    console.log('min_value :>> ', min_value);
+    if(min_value == undefined || max_value ==  undefined){
+        return true
+    }
+    return max_value > min_value; 
+}
+
+export { convertToSearchUrl, minMaxComparaison };

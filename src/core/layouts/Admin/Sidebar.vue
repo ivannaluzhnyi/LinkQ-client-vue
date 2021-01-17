@@ -65,9 +65,15 @@ export default {
       },
 
       {
-        title: "Profile",
-        icon: "mdi-account-circle",
-        to: "/pages/profile",
+        title: "Properties",
+        icon: "mdi-home",
+        to: "/admin/properties",
+      },
+
+      {
+        title: "Alerts",
+        icon: "mdi-alert",
+        to: "/pages/alerts",
       },
 
       {

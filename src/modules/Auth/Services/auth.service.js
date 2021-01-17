@@ -1,15 +1,16 @@
-import httpClient from "@/core/utils/http-client";
+import { http } from "@/core/http";
 import { decodeToken } from "@/core/utils/jwt";
+
+import { apolloClient } from "@/plugins/apollo-client";
+import { LOGIN_USER } from "@/graphql/mutations";
 
 /**
  *
- * @param {String} email
- * @param {String} password
+ * @param {string} email
+ * @param {string} password
  */
 function login(email, password) {
-    const client = httpClient();
-
-    return client
+    return http
         .post("authentication_token", { email, password })
         .then((response) => {
             const { data } = response;
@@ -31,9 +32,40 @@ function login(email, password) {
         });
 }
 
-function logout() {
+/**
+ *
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<Object>}
+ */
+function loginApollo(email, password) {
+    return apolloClient
+        .mutate({
+            mutation: LOGIN_USER,
+            variables: { email, password },
+        })
+        .then(async ({ data }) => {
+            if (data.login.token) {
+                localStorage.setItem("apollo-token", data.login.token);
+
+                await apolloClient.resetStore();
+                return data.login;
+            }
+
+            throw new Error("Token missing");
+        })
+        .catch(async (error) => {
+            console.error(error);
+            return error;
+        });
+}
+
+async function logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+
+    localStorage.removeItem("apollo-token");
+    await apolloClient.resetStore();
 }
 
 /**
@@ -46,4 +78,13 @@ function isAuth() {
     return !!user && !!token ? user : null;
 }
 
-export default { login, logout, isAuth };
+/**
+ * @returns {boolean}
+ */
+function isAuthApollo() {
+    const token = localStorage.getItem("apollo-token");
+
+    return Boolean(token);
+}
+
+export default { login, logout, isAuth, loginApollo, isAuthApollo };

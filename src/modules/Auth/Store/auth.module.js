@@ -10,10 +10,12 @@ const initialState = {
     user: user,
     loggedIn: !!user,
 
-    graphql: {
+    apollo: {
         user: null,
-        loggedIn: false,
+        loggedIn: authService.isAuthApollo(),
     },
+
+    loading: false,
 };
 
 export default {

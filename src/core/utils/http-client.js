@@ -4,13 +4,69 @@ import axios from "axios";
  * HTTP Client
  */
 export class HttpClient {
+    static requestInterceptors = [];
+    static responseInterceptors = [];
+
+    defaultRequestInterceptors = [
+        {
+            fulfilled: (config) => {
+                const { data, method, url } = config;
+                console.log(`Request: ${method.toUpperCase()} | /${url}`, data);
+
+                return config;
+            },
+            rejected: (error) => Promise.reject(error),
+        },
+    ];
+    defaultResponseInterceptors = [
+        {
+            fulfilled: (response) => {
+                // console.log("response => ", response);
+                const {
+                    config: { method, url },
+                    data,
+                } = response;
+                console.log(
+                    `Response: ${method.toUpperCase()} | /${url}`,
+                    data
+                );
+                return response;
+            },
+            rejected: (error) => Promise.reject(error),
+        },
+    ];
+
     constructor(config) {
         this.client = axios.create({
             baseURL: config.baseURL,
             timeout: 10000,
             headers: config.headers,
         });
+
+        [
+            ...this.defaultRequestInterceptors,
+            ...HttpClient.requestInterceptors,
+        ].forEach((interceptor) => this.addRequestInterceptor(interceptor));
+
+        [
+            ...this.defaultResponseInterceptors,
+            ...HttpClient.responseInterceptors,
+        ].forEach((interceptor) => {
+            this.addResponseInterceptor(interceptor);
+        });
     }
+
+    addRequestInterceptor = (interceptor) =>
+        this.client.interceptors.request.use(
+            interceptor.fulfilled,
+            interceptor.rejected
+        );
+
+    addResponseInterceptor = (interceptor) =>
+        this.client.interceptors.response.use(
+            interceptor.fulfilled,
+            interceptor.rejected
+        );
 
     /**
      * Perform a GET request
@@ -128,17 +184,10 @@ export class HttpClient {
  */
 export default function httpClient(config = {}) {
     const defaultConfig = {
-        //TODO: pass to ENV (docker-compose)
-        baseURL: "http://localhost:8080/",
         headers: {
             Accept: "application/json",
         },
     };
-
-    if (config.auth) {
-        const token = JSON.parse(localStorage.getItem("token"));
-        defaultConfig.headers.Authorization = `${token}`;
-    }
 
     return new HttpClient({ ...defaultConfig, ...config });
 }

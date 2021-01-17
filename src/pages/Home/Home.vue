@@ -13,8 +13,8 @@
   </div>
 </template>
 <script>
-import {EventBus} from "@/core/utils/eventBus";
-import {navlinks} from "@/modules/Home/Utils/navlinks";
+import { EventBus } from "@/core/utils/eventBus";
+import { navlinks } from "@/modules/Home/Utils/navlinks";
 import FeaturedProperties from "@/modules/Home/Sections/FeaturedProperties";
 import Search from "@/modules/Home/Sections/Search";
 
@@ -27,12 +27,12 @@ export default {
   data: () => {
     return {
       navlinks: navlinks,
-    }
+    };
   },
   created() {
-    EventBus.$emit('page-change-navlinks', this.navlinks)
-  }
-}
+    EventBus.$emit("page-change-navlinks", this.navlinks);
+  },
+};
 </script>
 
 <style scoped>
@@ -54,6 +54,5 @@ export default {
   width: 65vw;
   height: 200px;
   border-radius: 15px;
-  opacity: 75% !important;
 }
 </style>

@@ -222,7 +222,7 @@ export default {
     searchProperties(props) {
       const searchUrl = convertToSearchUrl(props);
       console.log('object :>> ', searchUrl);
-      // this.$router.replace({ name: "ListProperty", params: { searchUrl } });
+      this.$router.replace({ name: "ListProperty", params: { searchUrl } });
     },
   },
 };

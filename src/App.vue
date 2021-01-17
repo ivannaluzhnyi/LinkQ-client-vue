@@ -1,31 +1,14 @@
 <template>
-  <v-app id="app">
-    <Navbar />
-
-    <v-main>
-      <router-view />
-    </v-main>
-
-    <Footer />
+  <v-app id="app" :class="`${!$vuetify.breakpoint.smAndDown ? 'full-sidebar' : 'mini-sidebar'}`">
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import Footer from "@/core/Components/Footer/Footer";
-import Navbar from "@/core/Components/Navbar/Navbar";
-import { mapGetters } from "vuex";
-require("@/assets/styles/forms.css");
+import("@/assets/styles/forms.css");
 
 export default {
-  components: { Navbar, Footer },
-
-  created() {},
-  computed: {
-    ...mapGetters({
-      isAuthenticated: "auth/isAuthenticated",
-    }),
-  },
-
-  methods: {},
+  name: "App",
 };
 </script>
+ 

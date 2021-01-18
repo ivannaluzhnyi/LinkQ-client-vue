@@ -8,22 +8,22 @@
       <v-container>
         <Vuemik
           :initialValues="{
-            title: '',
-            description: '',
-            price: proper,
-            size: 0,
-            rooms: 0,
-            bedrooms: 0,
-            bathrooms: 0,
-            garages: 0,
-            street: '',
-            zipcode: 0,
-            city: '',
-            country: '',
-            floor: 0,
-            room: 0,
+            title: property.title,
+            description: property.description,
+            price: property.price,
+            size: property.features.size,
+            rooms: property.features.rooms,
+            bedrooms: property.features.bedrooms,
+            bathrooms: property.features.bathrooms,
+            garages: property.features.garages,
+            street: property.address.street,
+            zipcode: property.address.zipcode,
+            city: property.address.city,
+            country: property.address.country,
+            floor: property.address.floor,
+            room: property.address.room,
           }"
-          :onSubmit="createProperty"
+          :onSubmit="updateProperty"
           :validationSchema="PropertySchema"
           v-slot="{ handleSubmit, errors }"
         >
@@ -157,7 +157,7 @@ export default {
     }),
   }),
   methods: {
-    createProperty(props) {
+    updateProperty(props) {
       console.log(props);
     },
   },

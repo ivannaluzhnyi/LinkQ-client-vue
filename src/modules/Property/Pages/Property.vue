@@ -27,7 +27,7 @@
 
 <script>
 import {EventBus} from "@/core/utils/eventBus";
-import {navlinks} from "@/modules/Property/Utils/navlinks";
+import {navlinks} from "@/modules/Property/Utils/Property/navlinks";
 import Information from "@/modules/Property/Section/Information";
 import Details from "@/modules/Property/Section/Details";
 import Features from "@/modules/Property/Section/Features";

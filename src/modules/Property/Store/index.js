@@ -1,1 +1,3 @@
-import property from "./property";export { property };
+import property from "./property.module";
+
+export { property };

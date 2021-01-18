@@ -1,71 +1,65 @@
 <template>
   <v-container fluid>
-      <v-carousel
-          cycle
-          height="400"
-          hide-delimiter-background
-          show-arrows-on-hover
-      >
-        <v-carousel-item
-            v-for="(property, index) in properties"
-            :key="index"
-        >
-          <v-card
-              class="mx-auto featured--card"
-          >
-            <v-img
-                :src="property.first_picture"
-                height="200px"
-                min-width="100"
-            ></v-img>
 
-            <v-card-title>
-              {{ property.title }}
-            </v-card-title>
-            <v-card-subtitle>
-              {{ property.short_description }}
-            </v-card-subtitle>
-            <v-card-text class="orange--text">
-              {{ property.price }} €
-            </v-card-text>
-          </v-card>
-        </v-carousel-item>
-      </v-carousel>
+
+
+          <v-row>
+            <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index" >
+              <v-card
+                  class="mx-auto"
+                  max-width="344"
+                  outlined
+              >
+
+                <v-list-item three-line>
+                  <v-list-item-content>
+                    <div class="overline mb-4">
+                      {{ property.title }}
+                    </div>
+                    <v-list-item-title class="headline mb-1">
+                      {{ property.price }} €
+                    </v-list-item-title>
+                    <v-list-item-subtitle>{{ property.description }}</v-list-item-subtitle>
+                  </v-list-item-content>
+
+
+                  <v-avatar
+                      class="profile"
+                      color="grey"
+                      size="80"
+                      tile
+                  >
+                    <v-img :src="baseLink + property.medium[0].uri"></v-img>
+                  </v-avatar>
+
+                </v-list-item>
+
+                <v-card-actions>
+                  <v-btn
+                      outlined
+                      rounded
+                      text
+                  >
+                    Buy or Rent
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+
+            </v-col>
+          </v-row>
+
+
   </v-container>
 </template>
 
 <script>
 import {mapActions} from "vuex";
+import config from "@/config/http-client";
 
 export default {
-  data () {
+  data: function(){
     return {
-      caca: [
-        {
-          title: 'Pre-fab homes',
-          short_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          price: 1023,
-          first_picture: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg'
-        },
-        {
-          title: 'Beach border',
-          short_description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua!',
-          price: 780,
-          first_picture: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
-        },
-        {
-          title: 'IDK BRUH',
-          short_description: 'Voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-          price: 500,
-          first_picture: 'https://cdn.vuetifyjs.com/images/cards/road.jpg'
-        },
-        {
-          title: 'Malorum morgan',
-          short_description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa.',
-          price: 500,
-          first_picture: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg'
-        }
-      ],
+      baseLink: config.baseURL
     }
   },
   computed: {

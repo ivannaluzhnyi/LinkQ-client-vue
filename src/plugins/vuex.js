@@ -3,7 +3,6 @@ import Vuex from "vuex";
 
 import { auth } from "@/modules/Auth/Store";
 import { property } from "@/modules/Property/Store";
-import { adminProperties } from "@/modules/Admin/Properties/Store";
 import { Properties } from "@/modules/Home/Store";
 
 import { adminSettings } from "@/core/Admin/Store";
@@ -15,7 +14,6 @@ export default new Vuex.Store({
         auth,
         property,
         adminSettings,
-        adminProperties,
         Properties
     },
 });

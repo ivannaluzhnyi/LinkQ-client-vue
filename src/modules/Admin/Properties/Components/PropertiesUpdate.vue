@@ -1,12 +1,18 @@
 <template>
   <v-container>
-    <h2>Update</h2>
+    <h2>
+      Update
+      <v-btn color="primary" @click="swapComponent('propertiesAll')" type="submit">
+        Return
+      </v-btn>
+    </h2>
   </v-container>
 </template>
 
 <script>
 export default {
-  name: "PropertiesUpdate"
+  name: "PropertiesUpdate",
+  props: ['swapComponent'],
 }
 </script>
 

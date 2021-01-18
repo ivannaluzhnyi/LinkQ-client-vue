@@ -1,4 +1,4 @@
-import http from "@/core/utils/http-client";
+import { http } from "@/core/http";
 
 export default {
     namespaced: true,
@@ -19,8 +19,7 @@ export default {
     actions: {
         loadPropertiesClient({commit})
         {
-            const client = http();
-            return client
+            return http
                 .get(`properties`)
                 .then((response) => {
                     console.log(response.data);

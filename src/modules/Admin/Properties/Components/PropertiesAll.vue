@@ -59,7 +59,7 @@ export default {
   props: ['swapComponent'],
   computed: {
     propertiesClient() {
-      return this.$store.state.adminProperty.propertiesClient;
+      return this.$store.state.adminProperties.propertiesClient;
     }
   },
   created() {

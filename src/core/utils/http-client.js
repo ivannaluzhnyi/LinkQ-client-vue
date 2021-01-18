@@ -176,7 +176,7 @@ export class HttpClient {
 
 /**
  *
- * @param {Object} config
+ * @param {{baseURL}} config
  * @param {string} config.baseUrl
  * @param {Object} config.headers
  *

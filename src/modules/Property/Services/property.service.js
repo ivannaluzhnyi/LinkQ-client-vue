@@ -1,11 +1,10 @@
-import httpClient from "@/core/utils/http-client";
-const client = httpClient();
+import { http } from "@/core/http";
 /***
  * @param {String} searchInformation
  */
 const getProperty = (searchInformation) => {
 
-    return client
+    return http
         .get(`http://localhost:8080/features?${searchInformation}`)
         .then((response) => {
             const { data } = response;
@@ -17,7 +16,7 @@ const getProperty = (searchInformation) => {
 };
 
 const loadProperty = (idProperty) => {
-    return client
+    return http
         .get(`http://localhost:8080/properties/${idProperty}`)
         .then((response) => {
 

@@ -1,5 +1,5 @@
 <template>
-  <div :is="currentComponent" :swap-component="swapComponent"></div>
+  <div :is="currentComponent" :swap-component="swapComponent" :property="computedProperty"></div>
 </template>
 
 <script>
@@ -8,23 +8,30 @@ import PropertiesUpdate from "@/modules/Admin/Properties/Components/PropertiesUp
 
 export default {
   name: "Properties",
-  data: function () {
-    return {
-      currentComponent: 'propertiesAll'
-    }
-  },
   components: {
-    'propertiesAll': PropertyAll,
-    'propertiesUpdate': PropertiesUpdate
+    propertiesAll: PropertyAll,
+    propertiesUpdate: PropertiesUpdate,
   },
+  data() {
+    return {
+      currentComponent: "propertiesAll",
+      currentProperty: undefined,
+    };
+  },
+  computed: {
+    computedProperty() {
+      return this.$data.currentProperty;
+    },
+  },
+
   methods: {
-    swapComponent: function(component) {
+    swapComponent(component, property) {
       this.currentComponent = component;
-    }
-  }
-}
+      this.currentProperty = property;
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

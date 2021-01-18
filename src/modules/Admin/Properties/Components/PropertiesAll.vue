@@ -1,46 +1,29 @@
 <template>
   <v-container>
-    <h2>
-      Properties
-    </h2>
-    <br>
+    <h2>Properties</h2>
+    <br />
     <v-card class="elevation-1">
       <v-simple-table>
         <template v-slot:default>
           <thead>
-          <tr>
-            <th class="text-left">
-              Id
-            </th>
-            <th class="text-left">
-              Title
-            </th>
-            <th class="text-left">
-              Update
-            </th>
-            <th class="text-left">
-              Delete
-            </th>
-          </tr>
+            <tr>
+              <th class="text-left">Id</th>
+              <th class="text-left">Title</th>
+              <th class="text-left">Update</th>
+              <th class="text-left">Delete</th>
+            </tr>
           </thead>
           <tbody>
-          <tr
-              v-for="property in propertiesClient"
-              :key="property.id"
-          >
-            <td>{{ property.id }}</td>
-            <td>{{ property.title }}</td>
-            <td>
-              <v-btn color="primary" @click="swapComponent('propertiesUpdate')" v-bind:property="property">
-                Update
-              </v-btn>
-            </td>
-            <td>
-              <v-btn color="error">
-                Delete
-              </v-btn>
-            </td>
-          </tr>
+            <tr v-for="property in propertiesClient" :key="property.id">
+              <td>{{ property.id }}</td>
+              <td>{{ property.title }}</td>
+              <td>
+                <v-btn color="primary" @click="swapComponent('propertiesUpdate', property)">Update</v-btn>
+              </td>
+              <td>
+                <v-btn color="error">Delete</v-btn>
+              </td>
+            </tr>
           </tbody>
         </template>
       </v-simple-table>
@@ -49,30 +32,30 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "PropertyAll",
-  props: ['swapComponent'],
+  props: ["swapComponent"],
   computed: {
     propertiesClient() {
       return this.$store.state.adminProperties.propertiesClient;
-    }
-  },
-  created() {
-    this.load()
-  },
-  methods: {
-    ...mapActions({loadPropertiesClient: 'adminProperties/loadPropertiesClient'}),
-
-    load() {
-      this.loadPropertiesClient()
     },
   },
+  created() {
+    this.load();
+  },
+  methods: {
+    ...mapActions({
+      loadPropertiesClient: "adminProperties/loadPropertiesClient",
+    }),
 
-}
+    load() {
+      this.loadPropertiesClient();
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

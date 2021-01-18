@@ -42,9 +42,8 @@ export default {
     properties() {
       return this.$store.state.Properties.properties;
     },
-
     ...mapGetters({
-      // isAuth
+      isAuth: "auth/isFullAuth",
     }),
   },
   created() {

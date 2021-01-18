@@ -1,4 +1,4 @@
-import httpClient from "@/core/utils/http-client";
+import { http } from "@/core/http";
 
 export default {
     namespaced: true,
@@ -19,8 +19,7 @@ export default {
     actions: {
         loadProperty({commit},idProperty)
         {
-            const client = httpClient();
-            return client
+            return http
                 .get(`properties/${idProperty}`)
                 .then((response) => {
                     console.log(response.data);

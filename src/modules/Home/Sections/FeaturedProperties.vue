@@ -1,9 +1,10 @@
 <template>
   <v-container fluid>
 
+<h1>Nos plus belles Maisons </h1>
+    <hr/>
 
-
-          <v-row>
+    <v-row>
             <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index" >
               <v-card
                   class="mx-auto"
@@ -42,6 +43,7 @@
                   >
                     Buy or Rent
                   </v-btn>
+                  <RouterLink :to="{name: 'Property', params:{ idProperty: properties.id}}" >Test</RouterLink>
                 </v-card-actions>
               </v-card>
 

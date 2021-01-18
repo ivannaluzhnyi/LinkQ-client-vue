@@ -2,9 +2,6 @@
   <v-container>
     <h2>
       Properties
-      <v-btn color="primary" @click="swapComponent('propertiesCreate')" type="submit">
-        Add
-      </v-btn>
     </h2>
     <br>
     <v-card class="elevation-1">
@@ -34,7 +31,7 @@
             <td>{{ property.id }}</td>
             <td>{{ property.title }}</td>
             <td>
-              <v-btn color="primary" @click="swapComponent('propertiesUpdate')" type="submit">
+              <v-btn color="primary" @click="swapComponent('propertiesUpdate')" v-bind:property="property">
                 Update
               </v-btn>
             </td>

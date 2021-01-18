@@ -4,7 +4,6 @@
 
 <script>
 import PropertyAll from "@/modules/Admin/Properties/Components/PropertiesAll";
-import PropertiesCreate from "@/modules/Admin/Properties/Components/PropertiesCreate";
 import PropertiesUpdate from "@/modules/Admin/Properties/Components/PropertiesUpdate";
 
 export default {
@@ -16,7 +15,6 @@ export default {
   },
   components: {
     'propertiesAll': PropertyAll,
-    'propertiesCreate': PropertiesCreate,
     'propertiesUpdate': PropertiesUpdate
   },
   methods: {

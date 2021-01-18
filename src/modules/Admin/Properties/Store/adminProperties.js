@@ -22,7 +22,6 @@ export default {
             return http
                 .get(`properties`)
                 .then((response) => {
-                    console.log(response.data);
                     commit('setPropertiesClient', response.data);
                 }).catch((error) => {
                     console.log(error);

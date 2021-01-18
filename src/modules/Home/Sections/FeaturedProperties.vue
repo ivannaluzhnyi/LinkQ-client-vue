@@ -19,7 +19,7 @@
           </v-list-item>
 
           <v-card-actions>
-            <v-btn @click="createApplication(property)" outlined rounded text>Buy or Rent</v-btn>
+            <CreateApplication :property="{property}" />
             <RouterLink :to="{name: 'Property', params:{ idProperty: properties.id}}">Test</RouterLink>
           </v-card-actions>
         </v-card>
@@ -29,10 +29,15 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import config from "@/config/http-client";
 
+import CreateApplication from "../Components/CreateApplication";
+
 export default {
+  components: {
+    CreateApplication,
+  },
   data: function () {
     return {
       baseLink: config.baseURL,
@@ -42,9 +47,6 @@ export default {
     properties() {
       return this.$store.state.Properties.properties;
     },
-    ...mapGetters({
-      isAuth: "auth/isFullAuth",
-    }),
   },
   created() {
     this.load();
@@ -54,9 +56,6 @@ export default {
 
     load() {
       this.loadProperties();
-    },
-    createApplication(property) {
-      console.log("property ==> ", property);
     },
   },
 };

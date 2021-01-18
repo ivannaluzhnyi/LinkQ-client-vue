@@ -35,10 +35,12 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   data () {
     return {
-      properties: [
+      caca: [
         {
           title: 'Pre-fab homes',
           short_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -65,6 +67,21 @@ export default {
         }
       ],
     }
+  },
+  computed: {
+    properties() {
+      return this.$store.state.Properties.properties;
+    }
+  },
+  created() {
+    this.load()
+  },
+  methods: {
+    ...mapActions({loadProperties: 'Properties/loadProperties'}),
+
+    load() {
+      this.loadProperties()
+    },
   },
 }
 </script>

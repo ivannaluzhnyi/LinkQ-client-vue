@@ -3,17 +3,17 @@
     <h1>Nos plus belles Maisons</h1>
     <hr />
 
-    <v-row>
-      <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index">
-        <Property :property="{...property}" :createApplication="createApplication" />
-      </v-col>
-    </v-row>
-
     <CreateApplication
       :dialog="dialog"
       :property="{...selectedProperty}"
       :handleClose="handleClose"
     />
+
+    <v-row>
+      <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index">
+        <Property :property="{...property}" :createApplication="createApplication" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

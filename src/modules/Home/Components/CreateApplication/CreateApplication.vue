@@ -55,6 +55,7 @@ export default {
   computed: {
     ...mapGetters({
       isAuth: "auth/isFullAuth",
+      userId: "auth/apollo_getUserId",
     }),
   },
 
@@ -62,6 +63,8 @@ export default {
     handleCreate() {
       // const { price } = this.property;
       // applicationService.createApplication(price);
+
+      console.log("userId => ", this.userId);
     },
   },
 };

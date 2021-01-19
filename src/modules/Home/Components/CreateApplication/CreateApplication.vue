@@ -37,12 +37,6 @@ export default {
   props: ["property", "dialog", "handleClose"],
   components: { NoAuth, Property },
 
-  //   data() {
-  //     return {
-  //       property: this.property,
-  //     };
-  //   },
-
   updated() {
     console.log("this =+> ", this.property);
   },

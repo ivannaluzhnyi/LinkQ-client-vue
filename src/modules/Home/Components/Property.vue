@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="344" outlined>
+  <v-card class="mx-auto" outlined>
     <v-list-item three-line>
       <v-list-item-content>
         <div class="overline mb-4">{{ property.title }}</div>
@@ -12,9 +12,8 @@
       </v-avatar>
     </v-list-item>
 
-    <v-card-actions>
+    <v-card-actions v-if="displayActions">
       <v-btn @click="createApplication(property)" outlined rounded text>Acheter ou louer</v-btn>
-
       <RouterLink :to="{name: 'Property', params:{ idProperty: property.id}}">Test</RouterLink>
     </v-card-actions>
   </v-card>
@@ -30,6 +29,12 @@ export default {
     return {
       baseLink: config.baseURL,
     };
+  },
+
+  computed: {
+    displayActions() {
+      return this.createApplication !== undefined;
+    },
   },
 };
 </script>

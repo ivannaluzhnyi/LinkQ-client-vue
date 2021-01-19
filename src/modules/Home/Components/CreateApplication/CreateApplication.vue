@@ -10,58 +10,32 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-simple-table>
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left"></th>
-                    <th class="text-left"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{ property.title }}</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
+            <Property :property="property" />
           </v-container>
-          <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="handleClose()">Fermer</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">Continuer</v-btn>
         </v-card-actions>
       </v-card>
 
-      <v-card v-else>
-        <v-card-title>
-          <span class="headline">Création de proposition</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <h3>Veuillez vous connectez pour créer une proposition.</h3>
-            </v-row>
-          </v-container>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="handleClose()">Fermer</v-btn>
-        </v-card-actions>
-      </v-card>
+      <NoAuth v-else :handleClose="handleClose" />
     </v-dialog>
   </v-row>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
+import NoAuth from "./NoAuth";
+import Property from "../Property";
+
 export default {
   name: "CreateApplication",
 
   props: ["property", "dialog", "handleClose"],
+  components: { NoAuth, Property },
 
   //   data() {
   //     return {

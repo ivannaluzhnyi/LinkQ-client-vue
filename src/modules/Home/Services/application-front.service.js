@@ -15,7 +15,6 @@ function createApplication(offer, property_id, buyerId) {
             variables: { offer, property_id: String(property_id), buyerId },
         })
         .then(async ({ data }) => {
-            console.log("data ==> ", data);
             return data.createApplication;
         })
         .catch(async (error) => {

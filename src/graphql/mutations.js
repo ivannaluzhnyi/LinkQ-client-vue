@@ -52,7 +52,7 @@ export const CREATE_APPLICATION = gql`
         $property_id: String!
         $buyerId: Int!
     ) {
-        signup(
+        createApplication(
             data: {
                 offer: $offer
                 property_id: $property_id
@@ -65,10 +65,6 @@ export const CREATE_APPLICATION = gql`
             created
             status
             property_id
-            buyer {
-                id
-                email
-            }
         }
     }
 `;

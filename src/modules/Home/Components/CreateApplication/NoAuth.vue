@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <span class="headline">Création de proposition</span>
+      <span class="headline">Création d'une demande</span>
     </v-card-title>
     <v-card-text>
       <v-container>

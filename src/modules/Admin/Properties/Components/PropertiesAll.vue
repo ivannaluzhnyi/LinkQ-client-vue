@@ -21,7 +21,7 @@
                 <v-btn color="primary" @click="swapComponent('propertiesUpdate', property)">Update</v-btn>
               </td>
               <td>
-                <v-btn color="error">Delete</v-btn>
+                <v-btn color="error" @click="deleteProperty(property)">Delete</v-btn>
               </td>
             </tr>
           </tbody>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { http } from "@/core/http";
 import { mapActions } from "vuex";
 
 export default {
@@ -52,6 +53,15 @@ export default {
 
     load() {
       this.loadPropertiesClient();
+    },
+
+    deleteProperty(props){
+      http.delete(`properties/${props.id}`)
+          .then((response) => {
+            console.log(response);
+          }).catch((error) => {
+        console.log(error);
+      });
     },
   },
 };

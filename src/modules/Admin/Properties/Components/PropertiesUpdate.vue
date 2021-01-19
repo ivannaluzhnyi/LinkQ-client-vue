@@ -118,7 +118,7 @@
               </v-col>
               <v-col cols="12">
                 <label for="input__address_room" class="col-12">Room</label>
-                <Field class="col" component="input" name="room" id="input__address_room" />
+                <Field class="col" component="input" type="number" name="room" id="input__address_room" />
                 <p v-if="errors.room" class="alert-error">{{ errors.room[0] }}</p>
               </v-col>
             </v-col>
@@ -133,6 +133,7 @@
 </template>
 
 <script>
+import { http } from "@/core/http";
 import { Field, Vuemik } from "@/libs/vuemik";
 import * as Yup from "yup";
 
@@ -158,7 +159,61 @@ export default {
   }),
   methods: {
     updateProperty(props) {
-      console.log(props);
+      this.putProperty(props);
+      this.putFeatures(props);
+      this.putAddress(props);
+    },
+    putProperty(props){
+      const price = parseInt(props.price);
+      console.log('put 1');
+      http.put(`properties/${this.property.id}`, {
+        title: props.title,
+        description: props.description,
+        price: price
+      })
+          .then((response) => {
+            console.log(response);
+          }).catch((error) => {
+        console.log(error);
+      });
+    },
+    putFeatures(props){
+      const size = parseInt(props.size);
+      const rooms = parseInt(props.rooms);
+      const bedrooms = parseInt(props.bedrooms);
+      const bathrooms = parseInt(props.bathrooms);
+      const garages = parseInt(props.garages);
+      console.log('put 2');
+      http.put(`features/${this.property.features.id}`, {
+        size: size,
+        rooms: rooms,
+        bedrooms: bedrooms,
+        bathrooms: bathrooms,
+        garages: garages,
+      })
+          .then((response) => {
+            console.log(response);
+          }).catch((error) => {
+        console.log(error);
+      });
+    },
+    putAddress(props){
+      const floor = parseInt(props.floor);
+      const room = parseInt(props.room);
+      console.log('put 3');
+      http.put(`addresses/${this.property.address.id}`, {
+        street: props.street,
+        zipcode: props.zipcode,
+        city: props.city,
+        country: props.country,
+        floor: floor,
+        room: room,
+      })
+          .then((response) => {
+            console.log(response);
+          }).catch((error) => {
+        console.log(error);
+      });
     },
   },
 };

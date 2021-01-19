@@ -5,47 +5,41 @@
 
     <v-row>
       <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index">
-        <v-card class="mx-auto" max-width="344" outlined>
-          <v-list-item three-line>
-            <v-list-item-content>
-              <div class="overline mb-4">{{ property.title }}</div>
-              <v-list-item-title class="headline mb-1">{{ property.price }} €</v-list-item-title>
-              <v-list-item-subtitle>{{ property.description }}</v-list-item-subtitle>
-            </v-list-item-content>
-
-            <v-avatar class="profile" color="grey" size="80" tile>
-              <v-img :src="baseLink + property.medium[0].uri"></v-img>
-            </v-avatar>
-          </v-list-item>
-
-          <v-card-actions>
-            <CreateApplication :property="{property}" />
-            <RouterLink :to="{name: 'Property', params:{ idProperty: properties.id}}">Test</RouterLink>
-          </v-card-actions>
-        </v-card>
+        <Property :property="{...property}" :createApplication="createApplication" />
       </v-col>
     </v-row>
+
+    <CreateApplication
+      :dialog="dialog"
+      :property="{...selectedProperty}"
+      :handleClose="handleClose"
+    />
   </v-container>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import config from "@/config/http-client";
 
+import Property from "../Components/Property";
 import CreateApplication from "../Components/CreateApplication";
 
 export default {
   components: {
     CreateApplication,
+    Property,
   },
-  data: function () {
+  data() {
     return {
-      baseLink: config.baseURL,
+      property: undefined,
+      dialog: false,
     };
   },
   computed: {
     properties() {
       return this.$store.state.Properties.properties;
+    },
+    selectedProperty() {
+      return this.$data.property;
     },
   },
   created() {
@@ -56,6 +50,14 @@ export default {
 
     load() {
       this.loadProperties();
+    },
+    createApplication(property) {
+      this.$data.property = property;
+      this.$data.dialog = true;
+    },
+
+    handleClose() {
+      this.$data.dialog = false;
     },
   },
 };

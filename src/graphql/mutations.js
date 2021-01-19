@@ -17,6 +17,7 @@ export const LOGIN_USER = gql`
         }
     }
 `;
+
 export const REGISTER_USER = gql`
     mutation signup(
         $email: String!
@@ -40,6 +41,33 @@ export const REGISTER_USER = gql`
                 lastname
                 email
                 birthdate
+            }
+        }
+    }
+`;
+
+export const CREATE_APPLICATION = gql`
+    mutation createApplication(
+        $offer: Float!
+        $property_id: String!
+        $buyerId: Int!
+    ) {
+        signup(
+            data: {
+                offer: $offer
+                property_id: $property_id
+                status: PENDING
+                buyer: { connect: { id: $buyerId } }
+                contract: {}
+            }
+        ) {
+            id
+            created
+            status
+            property_id
+            buyer {
+                id
+                email
             }
         }
     }

@@ -1,6 +1,8 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <LoadingDialog v-if="loading" :dialog="dialog" />
+
+    <v-dialog v-else v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on" outlined rounded text>Acheter ou louer</v-btn>
       </template>
@@ -16,7 +18,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="handleClose()">Fermer</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Continuer</v-btn>
+          <v-btn color="blue darken-1" text @click="handleCreate()">Continuer</v-btn>
         </v-card-actions>
       </v-card>
 
@@ -30,12 +32,21 @@ import { mapGetters } from "vuex";
 
 import NoAuth from "./NoAuth";
 import Property from "../Property";
+import LoadingDialog from "./LoadingDialog";
+
+// import applicationService from "../../Services/application-front.service";
 
 export default {
   name: "CreateApplication",
 
   props: ["property", "dialog", "handleClose"],
-  components: { NoAuth, Property },
+  components: { NoAuth, Property, LoadingDialog },
+
+  data() {
+    return {
+      loading: false,
+    };
+  },
 
   updated() {
     console.log("this =+> ", this.property);
@@ -45,6 +56,13 @@ export default {
     ...mapGetters({
       isAuth: "auth/isFullAuth",
     }),
+  },
+
+  methods: {
+    handleCreate() {
+      // const { price } = this.property;
+      // applicationService.createApplication(price);
+    },
   },
 };
 </script>

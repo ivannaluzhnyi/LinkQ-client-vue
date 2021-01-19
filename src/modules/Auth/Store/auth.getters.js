@@ -12,4 +12,6 @@ export const getters = {
 
     getUser: (state) => state.user,
     getUserEmail: (state) => state.user.username,
+
+    "apollo/getUserId": (state) => state.apollo.user.id,
 };

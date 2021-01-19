@@ -49,7 +49,7 @@ function loginApollo(email, password) {
                 localStorage.setItem("apollo-token", data.login.token);
 
                 await apolloClient.resetStore();
-                return data.login;
+                return data.login.user;
             }
 
             throw new Error("Token missing");

@@ -34,7 +34,7 @@ import NoAuth from "./NoAuth";
 import Property from "../Property";
 import LoadingDialog from "./LoadingDialog";
 
-// import applicationService from "../../Services/application-front.service";
+import applicationService from "../../Services/application-front.service";
 
 export default {
   name: "CreateApplication",
@@ -61,10 +61,18 @@ export default {
 
   methods: {
     handleCreate() {
-      // const { price } = this.property;
-      // applicationService.createApplication(price);
+      this.$data.loading = true;
+      const { price, id } = this.property;
 
-      console.log("userId => ", this.userId);
+      applicationService
+        .createApplication(price, id, this.userId)
+        .then((response) => {
+          console.log("response ==> ", response);
+        })
+        .catch((error) => {
+          console.log("error ==> ", error);
+        })
+        .finally(() => (this.$data.loading = false));
     },
   },
 };

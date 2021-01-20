@@ -8,3 +8,30 @@ export const LOGGED_IN_USER = gql`
         }
     }
 `;
+
+export const GET_APPLICATIONS = gql`
+    query {
+        applications(skip: 0) {
+            id
+            buyer {
+                id
+                email
+                firstname
+                lastname
+                created
+                salary
+                roles
+            }
+            contract {
+                id
+                price
+                created
+            }
+            created
+            offer
+            property_id
+            updated
+            status
+        }
+    }
+`;

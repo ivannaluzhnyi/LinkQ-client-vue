@@ -60,6 +60,18 @@ function loginApollo(email, password) {
         });
 }
 
+function signUp(props){
+    return http
+        .post("users", props)
+        .then((response) => {
+            const { data } = response;
+            if(data){
+                return data
+            }
+            throw new Error("Error connexion");
+        });
+}
+
 async function logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -87,4 +99,4 @@ function isAuthApollo() {
     return Boolean(token);
 }
 
-export default { login, logout, isAuth, loginApollo, isAuthApollo };
+export default { login, logout, isAuth, loginApollo, isAuthApollo, signUp };

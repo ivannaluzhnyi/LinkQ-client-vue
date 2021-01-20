@@ -6,6 +6,8 @@ import {
     AUTH_LOGIN_APOLLO_SUCCESS,
     AUTH_LOGIN_APOLLO_FAILURE,
     AUTH_LOGOUT,
+    AUTH_REGISTER_API_PLAT_SUCCESS,
+    AUTH_REGISTER_API_PLAT_FAILURE
 } from "./mutation-actions";
 
 export const mutations = {
@@ -41,4 +43,10 @@ export const mutations = {
         state.apollo.loggedIn = false;
         state.apollo.user = null;
     },
+    [AUTH_REGISTER_API_PLAT_SUCCESS](state){
+        state.message = "Votre compte à bien été créer, vous pouvez maintenant vous connectez !"
+    },
+    [AUTH_REGISTER_API_PLAT_FAILURE](state){
+        state.message = "La création de votre compte à rencontrer un problème."
+    }
 };

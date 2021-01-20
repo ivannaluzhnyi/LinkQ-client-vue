@@ -14,7 +14,7 @@ const initialState = {
         user: null,
         loggedIn: authService.isAuthApollo(),
     },
-
+    message:"",
     loading: false,
 };
 

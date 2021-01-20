@@ -6,6 +6,8 @@ import {
     AUTH_LOGIN_API_PLAT_FAILURE,
     AUTH_LOGIN_API_PLAT_REQUEST,
     AUTH_LOGIN_API_PLAT_SUCCESS,
+    AUTH_REGISTER_API_PLAT_FAILURE,
+    AUTH_REGISTER_API_PLAT_SUCCESS,
     AUTH_LOGIN_APOLLO_REQUEST,
     AUTH_LOGIN_APOLLO_SUCCESS,
     AUTH_LOGIN_APOLLO_FAILURE,
@@ -36,10 +38,22 @@ function login({ commit }, { email, password }) {
         });
 }
 
+function signUp({ commit }, props){
+    authService
+        .signUp(props)
+        .then((response) => {
+            commit(AUTH_REGISTER_API_PLAT_SUCCESS, response);
+            return response
+        })
+        .catch((error) => {
+            commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
+        });
+}
+
 function logout({ commit }) {
     authService.logout();
     commit(AUTH_LOGOUT);
     router.push("/");
 }
 
-export const actions = { login, logout };
+export const actions = { login, logout, signUp};

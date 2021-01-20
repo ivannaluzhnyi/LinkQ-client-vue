@@ -29,7 +29,7 @@ function login({ commit }, { email, password }) {
     authService
         .loginApollo(email, password)
         .then((response) => {
-            commit(AUTH_LOGIN_APOLLO_SUCCESS, response.user);
+            commit(AUTH_LOGIN_APOLLO_SUCCESS, response);
         })
         .catch((error) => {
             commit(AUTH_LOGIN_APOLLO_FAILURE, error);

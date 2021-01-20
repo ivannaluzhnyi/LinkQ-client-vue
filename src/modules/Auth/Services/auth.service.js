@@ -48,8 +48,13 @@ function loginApollo(email, password) {
             if (data.login.token) {
                 localStorage.setItem("apollo-token", data.login.token);
 
+                localStorage.setItem(
+                    "apollo-user",
+                    JSON.stringify(data.login.user)
+                );
+
                 await apolloClient.resetStore();
-                return data.login;
+                return data.login.user;
             }
 
             throw new Error("Token missing");
@@ -65,6 +70,7 @@ async function logout() {
     localStorage.removeItem("token");
 
     localStorage.removeItem("apollo-token");
+    localStorage.removeItem("apollo-user");
     await apolloClient.resetStore();
 }
 
@@ -75,7 +81,7 @@ function isAuth() {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
 
-    return !!user && !!token ? user : null;
+    return Boolean(!!user && !!token);
 }
 
 /**
@@ -87,4 +93,21 @@ function isAuthApollo() {
     return Boolean(token);
 }
 
-export default { login, logout, isAuth, loginApollo, isAuthApollo };
+function getUsersFromStorage() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const apolloUser = JSON.parse(localStorage.getItem("apollo-user"));
+
+    return {
+        user,
+        apolloUser,
+    };
+}
+
+export default {
+    login,
+    logout,
+    isAuth,
+    loginApollo,
+    isAuthApollo,
+    getUsersFromStorage,
+};

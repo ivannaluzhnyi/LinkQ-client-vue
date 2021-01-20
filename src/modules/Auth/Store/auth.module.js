@@ -4,15 +4,15 @@ import { getters } from "./auth.getters";
 
 import authService from "../Services/auth.service";
 
-const user = authService.isAuth();
+const { user, apolloUser } = authService.getUsersFromStorage();
 
 const initialState = {
     user: user,
-    loggedIn: !!user,
+    loggedIn: Boolean(user),
 
     apollo: {
-        user: null,
-        loggedIn: authService.isAuthApollo(),
+        user: apolloUser,
+        loggedIn: Boolean(apolloUser),
     },
 
     loading: false,

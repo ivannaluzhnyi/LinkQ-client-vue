@@ -6,7 +6,7 @@ import { property } from "@/modules/Property/Store";
 import { Properties } from "@/modules/Home/Store";
 import { adminProperties } from "@/modules/Admin/Properties/Store";
 
-import { adminSettings } from "@/core/Admin/Store";
+import { adminSettings } from "@/modules/Admin/Store";
 
 Vue.use(Vuex);
 

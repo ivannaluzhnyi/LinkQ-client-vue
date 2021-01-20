@@ -22,18 +22,38 @@
       <template v-slot:item.property_id="{ item }">
         <RouterLink :to="{name: 'Property', params:{ idProperty: item.property_id}}">Voir</RouterLink>
       </template>
+
+      <template v-slot:item.property_id="{ item }">
+        <RouterLink :to="{name: 'Property', params:{ idProperty: item.property_id}}">Voir</RouterLink>
+      </template>
+
+      <template v-slot:item.actions="{ item }">
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              v-bind="attrs"
+              v-on="on"
+              small
+              class="mr-2"
+              @click="handleConfirmeAppplication(item)"
+            >mdi mdi-clipboard-check</v-icon>
+          </template>
+          <span>Confirmer</span>
+        </v-tooltip>
+      </template>
     </v-data-table>
   </div>
 </template>
 
 <script>
-import { GET_APPLICATIONS } from "@/graphql/queries";
-import { getColorByStatus } from "../../../helpers";
+import { GET_APPLICATIONS, GET_PENDING_APPLICATIONS } from "@/graphql/queries";
+import { getColorByStatus, TableType } from "../helpers";
 
 import { displayDate } from "@/core/utils/date";
 
 export default {
   name: "AllApplications",
+  props: ["type"],
 
   data() {
     return {
@@ -49,9 +69,38 @@ export default {
   },
 
   updated() {
-    console.log("this ==> ", this);
+    // console.log("this ==> ", this);
   },
+  created() {
+    console.log("this ==> ", this);
 
+    if (this.type === TableType.APPLICATIONS_TO_VALIDATE) {
+      this.$data.headers.push({
+        text: "Actions",
+        value: "actions",
+        sortable: false,
+      });
+    }
+  },
+  methods: {
+    getColorByStatus,
+    getApolloRequest() {
+      switch (this.type) {
+        case TableType.APPLICATIONS_TO_VALIDATE:
+          return { query: GET_PENDING_APPLICATIONS };
+
+        case TableType.ALL_APPLICATIONS:
+          return { query: GET_APPLICATIONS };
+
+        default:
+          return {};
+      }
+    },
+
+    handleConfirmeAppplication(app) {
+      console.log("app ==> ", app);
+    },
+  },
   apollo: {
     applications() {
       return {

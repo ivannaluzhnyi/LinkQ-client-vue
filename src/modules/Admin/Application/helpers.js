@@ -14,4 +14,10 @@ const getColorByStatus = (status) => {
     }
 };
 
-export { getColorByStatus };
+const TableType = Object.freeze({
+    USER_APPLICATIONS: "USER_APPLICATIONS",
+    ALL_APPLICATIONS: "ALL_APPLICATIONS",
+    APPLICATIONS_TO_VALIDATE: "APPLICATIONS_TO_VALIDATE",
+});
+
+export { getColorByStatus, TableType };

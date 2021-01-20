@@ -35,3 +35,30 @@ export const GET_APPLICATIONS = gql`
         }
     }
 `;
+
+export const GET_PENDING_APPLICATIONS = gql`
+    query {
+        applications(skip: 0, where: { status: PENDING }) {
+            id
+            buyer {
+                id
+                email
+                firstname
+                lastname
+                created
+                salary
+                roles
+            }
+            contract {
+                id
+                price
+                created
+            }
+            created
+            offer
+            property_id
+            updated
+            status
+        }
+    }
+`;

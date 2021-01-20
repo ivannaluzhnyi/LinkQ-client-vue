@@ -6,6 +6,7 @@ import { property } from "@/modules/Property/Store";
 import { Properties } from "@/modules/Home/Store";
 
 import { adminSettings } from "@/modules/Admin/Store";
+import { adminApplications } from "@/modules/Admin/Application/Store";
 
 Vue.use(Vuex);
 
@@ -15,5 +16,6 @@ export default new Vuex.Store({
         property,
         adminSettings,
         Properties,
+        adminApplications,
     },
 });

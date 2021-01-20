@@ -4,11 +4,24 @@
     <div v-if="$apollo.queries.applications.loading">Loading...</div>
 
     <v-data-table :headers="headers" :items="applications">
+      <template v-slot:item.buyer="{ item }">
+        <div class="buyer">
+          <p
+            v-if="item.buyer.firstname !== undefined && item.buyer.firstname !== null"
+          >{{ `${item.buyer.firstname} ${item.buyer.lastname}`}}</p>
+          <p>{{item.buyer.email}}</p>
+        </div>
+      </template>
+      <template v-slot:item.offer="{ item }">{{item.offer | displayOffer}}</template>
+
       <template v-slot:item.status="{ item }">
         <v-chip :color="getColorByStatus(item.status)" label outlined>{{item.status}}</v-chip>
       </template>
 
       <template v-slot:item.created="{ item }">{{item.created | displayDate}}</template>
+      <template v-slot:item.property_id="{ item }">
+        <RouterLink :to="{name: 'Property', params:{ idProperty: item.property_id}}">Voir</RouterLink>
+      </template>
     </v-data-table>
   </div>
 </template>
@@ -26,10 +39,11 @@ export default {
     return {
       headers: [
         { text: "ID", value: "id" },
-        { text: "Offer", value: "offer" },
-        { text: "Proposition", value: "property_id" },
+        { text: "Demendeur", value: "buyer" },
+        { text: "Offer (€)", value: "offer" },
         { text: "Statut", value: "status" },
         { text: "Création", value: "created" },
+        { text: "Proposition", value: "property_id" },
       ],
     };
   },
@@ -50,9 +64,16 @@ export default {
 
   filters: {
     displayDate,
+
+    displayOffer(offer) {
+      return `${offer}€`;
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.buyer p {
+  margin: 0;
+}
 </style>

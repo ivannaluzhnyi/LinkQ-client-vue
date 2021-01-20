@@ -1,9 +1,11 @@
 
 <template>
   <div>
-    <div v-if="$apollo.queries.applications.loading">Loading...</div>
+    <div v-if="$apollo.queries.applications.loading">
+      <v-progress-linear indeterminate color="cyan"></v-progress-linear>
+    </div>
 
-    <v-data-table :headers="headers" :items="applications">
+    <v-data-table v-else :headers="headers" :items="applications">
       <template v-slot:item.buyer="{ item }">
         <div class="buyer">
           <p
@@ -35,17 +37,33 @@
               v-on="on"
               small
               class="mr-2"
-              @click="handleConfirmeAppplication(item)"
-            >mdi mdi-clipboard-check</v-icon>
+              @click="handleAppplicationActions(item, 'accept')"
+            >mdi mdi-check-bold</v-icon>
           </template>
           <span>Confirmer</span>
         </v-tooltip>
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              v-bind="attrs"
+              v-on="on"
+              small
+              class="mr-2"
+              @click="handleAppplicationActions(item, 'reject')"
+            >mdi mdi-close</v-icon>
+          </template>
+          <span>Réfuser</span>
+        </v-tooltip>
       </template>
     </v-data-table>
+
+    <ApplicationActionsModal :dialog="dialog.open" :type="dialog.type" :close="handleCloseModal" />
   </div>
 </template>
 
 <script>
+import ApplicationActionsModal from "./ApplicationActionsModal";
+
 import { GET_APPLICATIONS, GET_PENDING_APPLICATIONS } from "@/graphql/queries";
 import { getColorByStatus, TableType } from "../helpers";
 
@@ -54,6 +72,7 @@ import { displayDate } from "@/core/utils/date";
 export default {
   name: "AllApplications",
   props: ["type"],
+  components: { ApplicationActionsModal },
 
   data() {
     return {
@@ -65,15 +84,15 @@ export default {
         { text: "Création", value: "created" },
         { text: "Proposition", value: "property_id" },
       ],
+
+      dialog: {
+        type: "",
+        open: false,
+      },
     };
   },
 
-  updated() {
-    // console.log("this ==> ", this);
-  },
   created() {
-    console.log("this ==> ", this);
-
     if (this.type === TableType.APPLICATIONS_TO_VALIDATE) {
       this.$data.headers.push({
         text: "Actions",
@@ -97,8 +116,13 @@ export default {
       }
     },
 
-    handleConfirmeAppplication(app) {
-      console.log("app ==> ", app);
+    handleAppplicationActions(app, type) {
+      this.$data.dialog.open = true;
+      this.$data.dialog.type = type;
+    },
+
+    handleCloseModal() {
+      this.$data.dialog.open = false;
     },
   },
   apollo: {

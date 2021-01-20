@@ -1,13 +1,13 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-        v-model="authDialog"
-        max-width="600px"
-    >
+    <v-dialog v-model="authDialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn id="auth-dialog-activator-button" text small v-bind="attrs" v-on="on">
+        <v-btn v-if="isAuth" @click="redirect" id="auth-dialog-activator-button" text small>
           <v-icon>mdi-account</v-icon>
-          My Account
+          {{email}}
+        </v-btn>
+        <v-btn v-else id="auth-dialog-activator-button" text small v-bind="attrs" v-on="on">
+          <v-icon>mdi-account</v-icon>Se connecter
         </v-btn>
       </template>
 
@@ -22,7 +22,7 @@
         <v-tab-item>
           <v-card class="px-4">
             <v-card-text>
-              <sign-in-form/>
+              <sign-in-form />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -30,7 +30,7 @@
         <v-tab-item>
           <v-card class="px-4">
             <v-card-text>
-              <sign-up-form/>
+              <sign-up-form />
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -42,22 +42,39 @@
 <script>
 import SignUpForm from "@/modules/Auth/Components/Forms/SignUp";
 import SignInForm from "@/modules/Auth/Components/Forms/SignIn";
+import { mapGetters } from "vuex";
+
 export default {
   name: "AuthDialog",
-  components: {SignInForm, SignUpForm},
+  components: { SignInForm, SignUpForm },
   data: () => ({
     authDialog: false,
     tab: 0,
     tabs: [
-      {name:"Login", icon:"mdi-account"},
-      {name:"Register", icon:"mdi-account-outline"}
+      { name: "Login", icon: "mdi-account" },
+      { name: "Register", icon: "mdi-account-outline" },
     ],
-  })
-}
+  }),
+
+  computed: {
+    ...mapGetters({
+      isAuth: "auth/isAuthenticated",
+      email: "auth/getUserEmail",
+    }),
+  },
+
+  methods: {
+    redirect() {
+      if (this.isAuth) {
+        this.$router.push("/admin");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
 #auth-dialog-activator-button {
-  margin-top: 17px;
+  margin-top: 27.5px;
 }
 </style>

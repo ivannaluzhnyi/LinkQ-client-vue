@@ -2,7 +2,7 @@
   <v-container>
     <h2>
       Users
-      <v-btn color="primary" type="submit">Create</v-btn>
+      <v-btn color="primary" @click="swapComponent('UsersAdd')" type="submit">Create</v-btn>
     </h2>
     <br/>
     <v-card class="elevation-1">

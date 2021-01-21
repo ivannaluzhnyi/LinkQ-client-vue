@@ -69,18 +69,16 @@ export default {
         icon: "mdi-home",
         to: "/admin/properties",
       },
-
-      {
-        title: "Alerts",
-        icon: "mdi-alert",
-        to: "/pages/alerts",
-      },
       {
         title: "Users",
         icon: "mdi-account-box",
         to: "/admin/users",
       },
-
+      {
+        title: "Alerts",
+        icon: "mdi-alert",
+        to: "/pages/alerts",
+      },
       {
         title: "Alerts",
         icon: "mdi-alert",

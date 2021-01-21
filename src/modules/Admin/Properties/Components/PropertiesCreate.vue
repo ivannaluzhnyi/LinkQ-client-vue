@@ -7,22 +7,7 @@
     <v-card class="elevation-2">
       <v-container>
         <Vuemik
-            :initialValues="{
-            title: '',
-            description: '',
-            price: 0,
-            size: 0,
-            rooms: 0,
-            bedrooms: 0,
-            bathrooms: 0,
-            garages: 0,
-            street: '',
-            zipcode: 0,
-            city: '',
-            country: '',
-            floor: 0,
-            room: 0,
-          }"
+            :initialValues="initialData"
             :onSubmit="createProperty"
             :validationSchema="PropertySchema"
             v-slot="{ handleSubmit, errors }"
@@ -145,6 +130,22 @@ export default {
   },
   props: ["swapComponent"],
   data: () => ({
+    initialData: {
+      title: '',
+      description: '',
+      price: 0,
+      size: 0,
+      rooms: 0,
+      bedrooms: 0,
+      bathrooms: 0,
+      garages: 0,
+      street: '',
+      zipcode: 0,
+      city: '',
+      country: '',
+      floor: 0,
+      room: 0,
+    },
     PropertySchema: Yup.object().shape({
       title: Yup.string().required("Title is required"),
       description: Yup.string().required("Description is required"),
@@ -180,7 +181,6 @@ export default {
         garages: garages,
       })
           .then((response) => {
-            console.log(response);
             const idFeature = response.data.id;
             http.post(`addresses`, {
               street: props.street,
@@ -191,7 +191,6 @@ export default {
               room: room,
             })
                 .then((response) => {
-                  console.log(response);
                   const idAddress = response.data.id;
                   http.post(`properties`, {
                     title: props.title,
@@ -202,19 +201,14 @@ export default {
                     userRelated: "/users/1",
                     status: true
                   }).then((response) => {
-                    console.log(response);
                     const idProperty = response.data.id;
                     http.put(`features/${idFeature}`, {
                       property: `/properties/${idProperty}`,
-                    }).then((response) => {
-                      console.log(response);
                     }).catch((error) => {
                       console.log(error);
                     });
                     http.put(`addresses/${idAddress}`, {
                       property: `/properties/${idProperty}`,
-                    }).then((response) => {
-                      console.log(response);
                     }).catch((error) => {
                       console.log(error);
                     });

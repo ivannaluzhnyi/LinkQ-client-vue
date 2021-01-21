@@ -154,7 +154,18 @@ export default {
     PropertySchema: Yup.object().shape({
       title: Yup.string().required("Title is required"),
       description: Yup.string().required("Description is required"),
-      price: Yup.string().required("Price is required"),
+      price: Yup.number().required("Price is required"),
+      size: Yup.number().required("Size is required"),
+      rooms: Yup.number().required("Rooms is required"),
+      bedrooms: Yup.number().required("Bedrooms is required"),
+      bathrooms: Yup.number().required("Bathrooms is required"),
+      garages: Yup.number().required("Garages is required"),
+      street: Yup.string().required("Street is required"),
+      zipcode: Yup.string().required("Zipcode is required"),
+      city: Yup.string().required("City is required"),
+      country: Yup.string().required("Country is required"),
+      floor: Yup.number().required("Floor is required"),
+      room: Yup.number().required("Room is required"),
     }),
   }),
   methods: {
@@ -165,15 +176,11 @@ export default {
     },
     putProperty(props){
       const price = parseInt(props.price);
-      console.log('put 1');
       http.put(`properties/${this.property.id}`, {
         title: props.title,
         description: props.description,
         price: price
-      })
-          .then((response) => {
-            console.log(response);
-          }).catch((error) => {
+      }).catch((error) => {
         console.log(error);
       });
     },
@@ -183,24 +190,19 @@ export default {
       const bedrooms = parseInt(props.bedrooms);
       const bathrooms = parseInt(props.bathrooms);
       const garages = parseInt(props.garages);
-      console.log('put 2');
       http.put(`features/${this.property.features.id}`, {
         size: size,
         rooms: rooms,
         bedrooms: bedrooms,
         bathrooms: bathrooms,
         garages: garages,
-      })
-          .then((response) => {
-            console.log(response);
-          }).catch((error) => {
+      }).catch((error) => {
         console.log(error);
       });
     },
     putAddress(props){
       const floor = parseInt(props.floor);
       const room = parseInt(props.room);
-      console.log('put 3');
       http.put(`addresses/${this.property.address.id}`, {
         street: props.street,
         zipcode: props.zipcode,
@@ -208,10 +210,7 @@ export default {
         country: props.country,
         floor: floor,
         room: room,
-      })
-          .then((response) => {
-            console.log(response);
-          }).catch((error) => {
+      }).catch((error) => {
         console.log(error);
       });
     },

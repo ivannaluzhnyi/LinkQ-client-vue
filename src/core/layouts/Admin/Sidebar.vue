@@ -75,13 +75,6 @@ export default {
         icon: "mdi-alert",
         to: "/pages/alerts",
       },
-
-      {
-        title: "Alerts",
-        icon: "mdi-alert",
-        to: "/pages/alerts",
-      },
-
       {
         title: "Icons",
         icon: "mdi-emoticon",

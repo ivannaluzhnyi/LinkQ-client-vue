@@ -76,6 +76,12 @@ export default {
         to: "/pages/alerts",
       },
       {
+        title: "Users",
+        icon: "mdi-account-box",
+        to: "/admin/users",
+      },
+
+      {
         title: "Icons",
         icon: "mdi-emoticon",
         to: "/pages/icons",

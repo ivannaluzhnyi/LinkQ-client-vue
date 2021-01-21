@@ -5,6 +5,7 @@ import { auth } from "@/modules/Auth/Store";
 import { property } from "@/modules/Property/Store";
 import { Properties } from "@/modules/Home/Store";
 import { adminProperties } from "@/modules/Admin/Properties/Store";
+import { adminUsers } from "@/modules/Admin/Users/Store";
 
 import { adminSettings } from "@/modules/Admin/Store";
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
         property,
         adminSettings,
         adminProperties,
+        adminUsers,
         Properties
     },
 });

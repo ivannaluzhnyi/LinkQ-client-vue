@@ -3,12 +3,15 @@
 </template>
 
 <script>
-import UserAll from "@/modules/Admin/Users/Components/UsersAll";
+import UsersAll from "@/modules/Admin/Users/Components/UsersAll";
+import UsersUpdate from "@/modules/Admin/Users/Components/UsersUpdate";
 
 export default {
   name: "Users",
   components: {
-    usersAll: UserAll
+    usersAll: UsersAll,
+    UsersUpdate: UsersUpdate,
+
   },
   data() {
     return {

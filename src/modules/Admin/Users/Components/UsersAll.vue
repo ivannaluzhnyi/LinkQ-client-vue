@@ -22,7 +22,7 @@
             <td>{{ user.lastname }}</td>
             <td>{{ user.email }}</td>
             <td>
-              <v-btn color="error" >Delete</v-btn>
+              <v-btn color="error" @click="desactivateUsers(user)" >Delete</v-btn>
             </td>
           </tr>
           </tbody>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import {http} from "@/core/http";
+import { http } from "@/core/http";
 import {mapActions} from "vuex";
 
 export default {
@@ -55,25 +55,12 @@ export default {
     load() {
       this.loadUsersClient();
     },
-
-    deactivateProperty(props) {
-      http.put(`users/${props.id}`, {
-        status: false,
-      })
+    desactivateUsers(props) {
+      http.delete(`users/${props.id}`)
           .then((response) => {
             console.log(response);
             this.load();
           }).catch((error) => {
-        console.log(error);
-      });
-    },
-    activateProperty(props) {
-      http.put(`users/${props.id}`, {
-        status: true,
-      }).then((response) => {
-        console.log(response);
-        this.load();
-      }).catch((error) => {
         console.log(error);
       });
     },

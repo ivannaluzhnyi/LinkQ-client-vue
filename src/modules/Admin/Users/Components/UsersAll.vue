@@ -14,6 +14,7 @@
             <th class="text-left">Name</th>
             <th class="text-left">email</th>
             <th class="text-left">Delete</th>
+            <th class="text-left">Edit</th>
           </tr>
           </thead>
           <tbody>
@@ -23,6 +24,9 @@
             <td>{{ user.email }}</td>
             <td>
               <v-btn color="error" @click="desactivateUsers(user)" >Delete</v-btn>
+            </td>
+            <td>
+              <v-btn color="warning" @click="swapComponent('UsersUpdate', user)" >Edit</v-btn>
             </td>
           </tr>
           </tbody>
@@ -37,7 +41,7 @@ import { http } from "@/core/http";
 import {mapActions} from "vuex";
 
 export default {
-  name: "UserAll",
+  name: "UsersAll",
   props: ["swapComponent"],
   computed: {
     usersClient() {

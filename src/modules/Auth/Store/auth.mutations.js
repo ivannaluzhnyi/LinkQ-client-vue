@@ -44,9 +44,9 @@ export const mutations = {
         state.apollo.user = null;
     },
     [AUTH_REGISTER_API_PLAT_SUCCESS](state){
-        state.message = "Votre compte à bien été créer, vous pouvez maintenant vous connectez !"
+        state.message_success = "Votre compte à bien été créer, vous pouvez maintenant vous connectez !"
     },
     [AUTH_REGISTER_API_PLAT_FAILURE](state){
-        state.message = "La création de votre compte à rencontrer un problème."
+        state.message_error = "La création de votre compte à rencontrer un problème."
     }
 };

@@ -48,6 +48,16 @@ function signUp({ commit }, props){
         .catch((error) => {
             commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
         });
+    console.log('authService :>> ');
+    authService
+        .signUpApollo(props)
+        .then((response) => {
+            commit(AUTH_REGISTER_API_PLAT_SUCCESS, response);
+            return response
+        })
+        .catch((error) => {
+            commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
+        });
 }
 
 function logout({ commit }) {

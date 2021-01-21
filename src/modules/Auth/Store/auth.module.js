@@ -14,7 +14,8 @@ const initialState = {
         user: apolloUser,
         loggedIn: Boolean(apolloUser),
     },
-    message:"",
+    message_success:"",
+    message_error:"",
     loading: false,
 };
 

@@ -96,8 +96,10 @@
             >Register</v-btn
           >
         </v-col>
-        <div v-if="message" class="alert-error">
-          {{ message }}
+        <div v-if="message_success" class="alert-success">
+          {{ message_success }}
+        </div><div v-if="message_error" class="alert-success">
+          {{ message_error }}
         </div>
       </v-row>
     </form>
@@ -114,7 +116,8 @@ export default {
   components: { Field, Vuemik },
   computed: {
     ...mapGetters({
-      message: "auth/getMessage",
+      message_success: "auth/getmessage_success",
+      message_error: "auth/message_error",
     }),
   },
   data: () => ({
@@ -142,6 +145,10 @@ export default {
 .alert-error {
   margin-top: 10px;
   color: red;
+}
+.alert-success{
+  margin-top: 10px;
+  color: green;
 }
 </style>
 

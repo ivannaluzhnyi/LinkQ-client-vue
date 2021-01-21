@@ -2,7 +2,7 @@ import { http } from "@/core/http";
 import { decodeToken } from "@/core/utils/jwt";
 
 import { apolloClient } from "@/plugins/apollo-client";
-import { LOGIN_USER } from "@/graphql/mutations";
+import { LOGIN_USER, REGISTER_USER } from "@/graphql/mutations";
 
 /**
  *
@@ -77,6 +77,26 @@ function signUp(props){
         });
 }
 
+function signUpApollo(props){
+    props.isActive = true
+    props.roles = {}
+    return apolloClient
+    .mutate({
+        mutation: REGISTER_USER,
+        variables: props,
+    }).then((response) => {
+        const { data } = response;
+        if(data){
+            return data
+        }
+        throw new Error("Error connexion");
+    })
+    .catch(async (error) => {
+        console.error(error);
+        return error;
+    });
+}
+
 async function logout() {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -120,6 +140,7 @@ export default {
     logout,
     isAuth,
     signUp,
+    signUpApollo,
     loginApollo,
     isAuthApollo,
     getUsersFromStorage,

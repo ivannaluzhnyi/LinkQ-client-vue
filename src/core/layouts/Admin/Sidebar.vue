@@ -75,6 +75,11 @@ export default {
         icon: "mdi-alert",
         to: "/pages/alerts",
       },
+      {
+        title: "Users",
+        icon: "mdi-account-box",
+        to: "/admin/users",
+      },
 
       {
         title: "Alerts",

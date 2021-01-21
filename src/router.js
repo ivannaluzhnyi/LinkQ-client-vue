@@ -9,9 +9,8 @@ import Layout from "@/core/layouts/Layout";
 import Admin from "@/core/layouts/Admin";
 
 import adminPropertyRoutes from "@/modules/Admin/Properties/Routes/routes";
+import adminUserRoutes from "@/modules/Admin/Users/Routes/routes";
 import dashboard from "@/modules/Admin/Dashboard/Routes/routes";
-
-
 Vue.use(Router);
 
 const router = new Router({
@@ -34,7 +33,7 @@ const router = new Router({
             path: "/admin",
             name: "admin",
             component: Admin,
-            children: [...adminPropertyRoutes, ...dashboard],
+            children: [...dashboard,...adminPropertyRoutes,...adminUserRoutes],
         },
         { path: "*", redirect: "/" },
     ],

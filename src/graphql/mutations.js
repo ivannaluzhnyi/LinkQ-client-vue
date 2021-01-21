@@ -68,3 +68,14 @@ export const CREATE_APPLICATION = gql`
         }
     }
 `;
+
+export const UPDATE_APPLICATION = gql`
+    mutation updateApplication($data: Object!, $where: Object!) {
+        updateApplication(data: $data, where: $where) {
+            id
+            created
+            status
+            property_id
+        }
+    }
+`;

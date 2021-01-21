@@ -1,34 +1,62 @@
 <template>
-  <v-dialog v-model="dialog" max-width="290">
-    <v-card>
-      <v-card-title v-if="type==='accept'" class="headline">Confirmation</v-card-title>
-      <v-card-title v-else class="headline">Refuser</v-card-title>
+  <v-row justify="center">
+    <LoadingDialog v-if="loading" :dialog="dialog" />
+    <v-dialog v-else v-model="dialog" max-width="290">
+      <ControlResponseContent>
+        <v-card>
+          <v-card-title v-if="type==='accept'" class="headline">Confirmation</v-card-title>
+          <v-card-title v-else class="headline">Refuser</v-card-title>
 
-      <v-card-text v-if="type==='accept'">Voulez-vous vraiment accepter la demande ?</v-card-text>
-      <v-card-text v-else>Voulez-vous vraiment refuser la demande</v-card-text>
+          <v-card-text v-if="type==='accept'">Voulez-vous vraiment accepter la demande ?</v-card-text>
+          <v-card-text v-else>Voulez-vous vraiment refuser la demande</v-card-text>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
+          <v-card-actions>
+            <v-spacer></v-spacer>
 
-        <v-btn color="green darken-1" text @click="close()">Annuler</v-btn>
-        <v-btn color="green darken-1" text @click="handleCall()">
-          <span v-if="type==='accept'">Confirmer</span>
-          <span v-else>Refuser</span>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+            <v-btn color="green darken-1" text @click="close()">Annuler</v-btn>
+            <v-btn color="green darken-1" text @click="handleCall()">
+              <span v-if="type==='accept'">Confirmer</span>
+              <span v-else>Refuser</span>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </ControlResponseContent>
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
+import ControlResponseContent from "@/core/Components/ControlResponseContent";
+import LoadingDialog from "@/core/Components/LoadingDialog";
 export default {
   name: "ApplicationActionsModal",
+  components: {
+    ControlResponseContent,
+    LoadingDialog,
+  },
 
-  props: ["dialog", "type", "close"],
+  props: ["dialog", "type", "close", "application"],
+
+  computed: {
+    ...mapGetters({
+      loading: "adminApplications/isLoading",
+      responseType: "adminApplications/responseType",
+    }),
+  },
 
   methods: {
+    ...mapActions({
+      acceptApplication: "adminApplications/acceptApplication",
+      refuseApplication: "adminApplications/refuseApplication",
+    }),
     handleCall() {
-      this.close();
+      console.log("this ==> ", this.application);
+
+      this.refuseApplication({ application: this.application });
+
+      // this.close();
     },
   },
 };

@@ -57,7 +57,12 @@
       </template>
     </v-data-table>
 
-    <ApplicationActionsModal :dialog="dialog.open" :type="dialog.type" :close="handleCloseModal" />
+    <ApplicationActionsModal
+      :application="dialog.currentApplication"
+      :dialog="dialog.open"
+      :type="dialog.type"
+      :close="handleCloseModal"
+    />
   </div>
 </template>
 
@@ -88,6 +93,7 @@ export default {
       dialog: {
         type: "",
         open: false,
+        currentApplication: undefined,
       },
     };
   },
@@ -119,10 +125,13 @@ export default {
     handleAppplicationActions(app, type) {
       this.$data.dialog.open = true;
       this.$data.dialog.type = type;
+      this.$data.dialog.currentApplication = app;
     },
 
     handleCloseModal() {
       this.$data.dialog.open = false;
+      this.$data.dialog.type = "";
+      this.$data.dialog.currentApplication = undefined;
     },
   },
   apollo: {

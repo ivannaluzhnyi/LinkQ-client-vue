@@ -9,3 +9,11 @@ export const GET_APPLICATIONS_TO_VALIDATE_FAILURE = "get-applications-to-validat
 export const GET_MY_APPLICATIONS_REQUEST = "get-my-applications-request";
 export const GET_MY_APPLICATIONS_SUCCESS = "get-my-applications-success";
 export const GET_MY_APPLICATIONS_FAILURE = "get-my-applications-failure";
+
+export const ACCEPT_APPLICATION_REQUEST = 'accept-application-request'
+export const ACCEPT_APPLICATION_SUCCESS = 'accept-application-success'
+export const ACCEPT_APPLICATION_FAILURE = 'accept-application-failure'
+
+export const REFUSE_APPLICATION_REQUEST = 'refuse-application-request'
+export const REFUSE_APPLICATION_SUCCESS = 'refuse-application-success'
+export const REFUSE_APPLICATION_FAILURE = 'refuse-application-failure'

@@ -82,7 +82,7 @@ export default {
     UserSchema: Yup.object().shape({
       firstname: Yup.string().required("firstname is required"),
       lastname: Yup.string().required("lastname is required"),
-      birthdate: Yup.string().required("birthdate is required"),
+      email: Yup.string().required("email is required"),
     }),
   }),
   methods: {

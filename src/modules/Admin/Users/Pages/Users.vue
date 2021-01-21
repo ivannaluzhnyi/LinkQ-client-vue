@@ -5,13 +5,14 @@
 <script>
 import UsersAll from "@/modules/Admin/Users/Components/UsersAll";
 import UsersUpdate from "@/modules/Admin/Users/Components/UsersUpdate";
+import UsersAdd from "@/modules/Admin/Users/Components/UsersAdd";
 
 export default {
   name: "Users",
   components: {
     usersAll: UsersAll,
     UsersUpdate: UsersUpdate,
-
+    UsersAdd: UsersAdd
   },
   data() {
     return {

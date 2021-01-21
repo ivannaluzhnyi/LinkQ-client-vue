@@ -8,15 +8,15 @@
       <v-container>
         <Vuemik
             :initialValues="{
-            birthdate: user.birthdate,
-            email: user.email,
-            firstname: user.firstname,
-            guarantor: user.guarantor,
-            id: user.id,
-            is_active: user.is_active,
-            lastname: user.lastname,
-            property: user.property,
-            salary: user.salary,
+            birthdate: '',
+            email: '',
+            firstname: '',
+            guarantor: '',
+            id: '',
+            is_active: true,
+            lastname: '',
+            property: '',
+            salary: 0,
           }"
             :onSubmit="updateUser"
             :validationSchema="UserSchema"
@@ -45,9 +45,14 @@
             <v-col cols="6">
               <h4>Features</h4>
               <v-col cols="12">
-                <label for="input__feature_size" class="col-12">lastname</label>
-                <Field class="col" component="input" name="lastname" id="input__feature_size" />
+                <label for="input__lastname_size" class="col-12">lastname</label>
+                <Field class="col" component="input" name="lastname" id="input__lastname_size" />
                 <p v-if="errors.lastname" class="alert-error">{{ errors.lastname[0] }}</p>
+              </v-col>
+              <v-col cols="12">
+                <label for="input__feature_size" class="col-12">birthdate</label>
+                <Field class="col" component="input" name="birthdate" id="input__feature_size" />
+                <p v-if="errors.birthdate" class="alert-error">{{ errors.birthdate[0] }}</p>
               </v-col>
             </v-col>
           </v-row>
@@ -66,7 +71,7 @@ import { Field, Vuemik } from "@/libs/vuemik";
 import * as Yup from "yup";
 
 export default {
-  name: "UsersUpdate",
+  name: "UsersAdd",
   components: {
     Field,
     Vuemik,

@@ -22,9 +22,7 @@ function changeStatusApplication(applicationId, status) {
             },
         })
         .then(async ({ data }) => {
-            console.log("dtaa ==> ", data);
-
-            return data;
+            return data.updateApplication;
         });
 }
 export default {

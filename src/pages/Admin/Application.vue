@@ -20,19 +20,18 @@
     </div>
 
     <div v-else>
-      <Table />
+      <v-card flat>
+        <v-card-text>
+          <Table :type="tableType" />
+        </v-card-text>
+      </v-card>
     </div>
   </v-card>
 </template>
 <script>
 import { mapGetters } from "vuex";
 
-// import UserTable from "@/modules/Admin/Application/Components/Table/UserTable";
-
-// import ApplicationToValidate from "@/modules/Admin/Application/Components/Table/Admin/ApplicationToValidate";
-// import AllApplications from "@/modules/Admin/Application/Components/Table/Admin/AllApplications";
 import Table from "@/modules/Admin/Application/Components/Table";
-
 import { TableType } from "@/modules/Admin/Application/helpers";
 
 export default {

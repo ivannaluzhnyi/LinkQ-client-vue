@@ -52,19 +52,10 @@ export default {
     }),
 
     successDialogMessage() {
-      console.log(
-        "success ==> ",
-        getMessageByResponseType(this.responseType, "SUCCESS")
-      );
-
       return getMessageByResponseType(this.responseType, "SUCCESS");
     },
 
     failureDialogMessage() {
-      console.log(
-        "erro ==> ",
-        getMessageByResponseType(this.responseType, "FAILURE")
-      );
       return getMessageByResponseType(this.responseType, "FAILURE");
     },
   },
@@ -76,11 +67,7 @@ export default {
       resetResponse: "adminApplications/resetApplicationActionState",
     }),
     handleCall() {
-      console.log("this ==> ", this.application);
-
       this.refuseApplication({ application: this.application });
-
-      // this.close();
     },
 
     handleClose() {

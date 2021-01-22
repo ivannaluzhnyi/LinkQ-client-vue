@@ -30,30 +30,32 @@
       </template>
 
       <template v-slot:item.actions="{ item }">
-        <v-tooltip left>
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon
-              v-bind="attrs"
-              v-on="on"
-              small
-              class="mr-2"
-              @click="handleAppplicationActions(item, 'accept')"
-            >mdi mdi-check-bold</v-icon>
-          </template>
-          <span>Confirmer</span>
-        </v-tooltip>
-        <v-tooltip left>
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon
-              v-bind="attrs"
-              v-on="on"
-              small
-              class="mr-2"
-              @click="handleAppplicationActions(item, 'reject')"
-            >mdi mdi-close</v-icon>
-          </template>
-          <span>Réfuser</span>
-        </v-tooltip>
+        <div v-if="item.status === 'PENDING'">
+          <v-tooltip left>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                v-on="on"
+                small
+                class="mr-2"
+                @click="handleAppplicationActions(item, 'accept')"
+              >mdi mdi-check-bold</v-icon>
+            </template>
+            <span>Confirmer</span>
+          </v-tooltip>
+          <v-tooltip left>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                v-on="on"
+                small
+                class="mr-2"
+                @click="handleAppplicationActions(item, 'reject')"
+              >mdi mdi-close</v-icon>
+            </template>
+            <span>Réfuser</span>
+          </v-tooltip>
+        </div>
       </template>
     </v-data-table>
 

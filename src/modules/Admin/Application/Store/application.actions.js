@@ -30,8 +30,6 @@ function acceptApplication({ commit }, { application }) {
 function refuseApplication({ commit }, { application }) {
     commit(REFUSE_APPLICATION_REQUEST, { application });
 
-    console.log("application actions ==> ", application);
-
     applicationService
         .changeStatusApplication(application.id, "REFUSED")
         .then((response) => {

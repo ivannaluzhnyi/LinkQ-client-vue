@@ -4,6 +4,8 @@ import { decodeToken } from "@/core/utils/jwt";
 import { apolloClient } from "@/plugins/apollo-client";
 import { LOGIN_USER } from "@/graphql/mutations";
 
+import isAdminByUserObject from "../Utils/isAdminByUserObject";
+
 /**
  *
  * @param {string} email
@@ -58,10 +60,6 @@ function loginApollo(email, password) {
             }
 
             throw new Error("Token missing");
-        })
-        .catch(async (error) => {
-            console.error(error);
-            return error;
         });
 }
 
@@ -75,13 +73,27 @@ async function logout() {
 }
 
 /**
- * @returns {object|null}
+ * @returns {boolean}
  */
 function isAuth() {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
 
     return Boolean(!!user && !!token);
+}
+
+/**
+ * @returns {boolean}
+ */
+function isAuthAdmin() {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+        const decodedToken = decodeToken(token);
+        return isAdminByUserObject(decodedToken);
+    }
+
+    return false;
 }
 
 /**
@@ -110,4 +122,5 @@ export default {
     loginApollo,
     isAuthApollo,
     getUsersFromStorage,
+    isAuthAdmin,
 };

@@ -13,9 +13,11 @@ export const getters = {
     isLoading: (state) => state.loading,
 
     getUser: (state) => state.user,
-    getUserEmail: (state) => state.user.username,
+    getUserEmail: (state) => (state.user ? state.user.username : ""),
 
-    apollo_getUserId: (state) => state.apollo.user.id,
+    apollo_getUserId: (state) =>
+        state.apollo.user ? state.apollo.user.id : undefined,
 
-    isAdmin: (state) => state.user.roles.includes(USER_ROLES.ROLE_ADMIN),
+    isAdmin: (state) =>
+        state.user ? state.user.roles.includes(USER_ROLES.ROLE_ADMIN) : false,
 };

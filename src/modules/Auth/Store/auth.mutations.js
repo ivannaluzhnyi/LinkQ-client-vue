@@ -9,9 +9,8 @@ import {
 } from "./mutation-actions";
 
 export const mutations = {
-    [AUTH_LOGIN_API_PLAT_REQUEST](state, user) {
+    [AUTH_LOGIN_API_PLAT_REQUEST](state) {
         state.loggedIn = false;
-        state.user = user;
     },
     [AUTH_LOGIN_API_PLAT_SUCCESS](state, user) {
         state.loggedIn = true;
@@ -30,8 +29,9 @@ export const mutations = {
         state.apollo.user = null;
     },
 
-    [AUTH_LOGIN_APOLLO_REQUEST](state, user) {
-        state.apollo.user = user;
+    [AUTH_LOGIN_APOLLO_REQUEST](state) {
+        state.apollo.loggedIn = false;
+        state.apollo.user = null;
     },
     [AUTH_LOGIN_APOLLO_SUCCESS](state, user) {
         state.apollo.user = user;

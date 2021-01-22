@@ -1,52 +1,50 @@
 <template>
   <div>
     <v-container>
-    <v-app-bar
-        app
-        fixed
-        :hide-on-scroll="isMobile"
-        color="white">
+      <v-app-bar app fixed :hide-on-scroll="isMobile" color="white">
+        <v-toolbar-items class="hidden-sm-and-down" id="module-nav-links">
+          <v-btn
+            text
+            small
+            v-for="(navlink, index) in navlinks"
+            :key="index"
+            :href="navlink.href"
+          >{{ navlink.text }}</v-btn>
+        </v-toolbar-items>
 
-      <v-toolbar-items class="hidden-sm-and-down" id="module-nav-links">
-        <v-btn text small v-for="(navlink, index) in navlinks" :key="index" :href="navlink.href">
-          {{ navlink.text }}
-        </v-btn>
-      </v-toolbar-items>
+        <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
-
-      <v-toolbar-items>
-        <auth-dialog id="auth-dialog-activator"/>
-      </v-toolbar-items>
-
-    </v-app-bar>
+        <v-toolbar-items>
+          <auth-dialog id="auth-dialog-activator" />
+        </v-toolbar-items>
+      </v-app-bar>
     </v-container>
   </div>
 </template>
 
 <script>
-import {EventBus} from "@/core/utils/eventBus";
+import { EventBus } from "@/core/utils/eventBus";
 import AuthDialog from "@/modules/Auth/Components/AuthDialog";
 
 export default {
   name: "Navbar",
-  components: {AuthDialog},
+  components: { AuthDialog },
   data: () => {
     return {
-      navlinks: []
-    }
+      navlinks: [],
+    };
   },
   created() {
-    EventBus.$on('page-change-navlinks', navlinks => {
-      this.navlinks = navlinks
-    })
+    EventBus.$on("page-change-navlinks", (navlinks) => {
+      this.navlinks = navlinks;
+    });
   },
   computed: {
     isMobile() {
       return this.$vuetify.breakpoint.xsOnly;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

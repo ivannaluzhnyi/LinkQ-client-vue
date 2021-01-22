@@ -46,7 +46,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     const authRequired = to.path.includes("/admin");
-    const loggedIn = authService.isAuth();
+    const loggedIn = authService.isAuthAdmin();
 
     if (authRequired && !loggedIn) {
         return next("/#login");

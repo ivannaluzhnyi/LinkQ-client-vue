@@ -79,8 +79,12 @@ export default {
     }),
   },
 
-  updated() {
-    console.log("ho -_> ", this);
+  watch: {
+    isAuth(next) {
+      if (next) {
+        this.$data.authDialog = false;
+      }
+    },
   },
 
   methods: {

@@ -3,7 +3,7 @@
     <v-dialog v-model="authDialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <div v-show="isAuth" id="auth-dialog-activator-button">
-          <v-btn @click="redirectProfil" text small>
+          <v-btn v-show="!isAdmin" @click="redirectProfil" text small>
             <v-icon>mdi-account</v-icon>Profil
           </v-btn>
 

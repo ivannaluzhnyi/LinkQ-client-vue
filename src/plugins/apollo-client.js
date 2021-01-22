@@ -19,7 +19,7 @@ const token = localStorage.getItem("apollo-token");
 const Authorization = token ? `Bearer ${token}` : null;
 
 const wsLink = new WebSocketLink({
-    uri: `ws://localhost:4000`,
+    uri: config.wsUsi,
     options: {
         reconnect: true,
         connectionParams: {

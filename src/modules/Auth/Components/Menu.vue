@@ -22,6 +22,17 @@
 <script>
 import { mapActions } from "vuex";
 
+// const test = {
+//   actionType: "UPDATE",
+//   application: {
+//     id: 5,
+//     offer: 1151486,
+//     status: "ACCEPTED",
+//     __typename: "Application",
+//   },
+//   __typename: "ApplicationSubscription",
+// };
+
 import { APPLICATION_SUBSCRIPTION } from "@/graphql/subscriptions";
 export default {
   data() {

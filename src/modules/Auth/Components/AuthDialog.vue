@@ -1,11 +1,19 @@
 <template>
   <v-row justify="center">
+
     <v-dialog v-model="authDialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-if="isAuth" @click="redirect" id="auth-dialog-activator-button" text small>
+        <div v-if="isAuth" id="auth-dialog-activator-button">
+        <v-btn  @click="redirect"  text small>
           <v-icon>mdi-account</v-icon>
           {{email}}
         </v-btn>
+
+          <v-btn  @click="redirect"  text small>
+            <v-icon>mdi-account</v-icon>
+              Profil
+            </v-btn>
+          </div>
         <v-btn v-else id="auth-dialog-activator-button" text small v-bind="attrs" v-on="on">
           <v-icon>mdi-account</v-icon>Se connecter
         </v-btn>

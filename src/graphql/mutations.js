@@ -68,3 +68,17 @@ export const CREATE_APPLICATION = gql`
         }
     }
 `;
+
+export const UPDATE_APPLICATION = gql`
+    mutation updateApplication(
+        $data: ApplicationUpdateInput!
+        $where: ApplicationWhereUniqueInput!
+    ) {
+        updateApplication(data: $data, where: $where) {
+            id
+            created
+            status
+            property_id
+        }
+    }
+`;

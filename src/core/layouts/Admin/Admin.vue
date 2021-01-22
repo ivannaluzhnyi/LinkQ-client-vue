@@ -4,7 +4,7 @@
     <Sidebar :expand-on-hover.sync="expandOnHover"></Sidebar>
 
     <v-main>
-      <v-container class="fill-height" fluid>
+      <v-container fluid>
         <router-view />
       </v-container>
     </v-main>

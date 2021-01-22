@@ -1,3 +1,5 @@
+import { USER_ROLES } from "@/core/constants/enums";
+
 export const getters = {
     isAuthenticated: (state) => {
         return state.loggedIn;
@@ -15,4 +17,6 @@ export const getters = {
     getUserEmail: (state) => state.user.username,
 
     apollo_getUserId: (state) => state.apollo.user.id,
+
+    isAdmin: (state) => state.user.roles.includes(USER_ROLES.ROLE_ADMIN),
 };

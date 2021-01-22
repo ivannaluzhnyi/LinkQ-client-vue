@@ -3,6 +3,8 @@ import Router from "vue-router";
 import homeRoutes from "@/modules/Home/Routes/routes";
 import propertyRoutes from "@/modules/Property/Routes/routes";
 
+import adminRoutes from "@/modules/Admin/routes";
+
 import authService from "@/modules/Auth/Services/auth.service";
 
 import Layout from "@/core/layouts/Layout";
@@ -30,7 +32,7 @@ const router = new Router({
             path: "/admin",
             name: "admin",
             component: Admin,
-            children: [],
+            children: [...adminRoutes],
         },
         { path: "*", redirect: "/" },
     ],

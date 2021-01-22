@@ -48,6 +48,8 @@
 <script>
 import { mapState } from "vuex";
 
+import sidebareItems from "./sidebareItems";
+
 export default {
   name: "Sidebar",
   props: {
@@ -57,37 +59,7 @@ export default {
     },
   },
   data: () => ({
-    items: [
-      {
-        title: "Dashboard",
-        icon: "mdi-view-dashboard",
-        to: "/dashboard/basic-dashboard",
-      },
-
-      {
-        title: "Profile",
-        icon: "mdi-account-circle",
-        to: "/pages/profile",
-      },
-
-      {
-        title: "Alerts",
-        icon: "mdi-alert",
-        to: "/pages/alerts",
-      },
-
-      {
-        title: "Icons",
-        icon: "mdi-emoticon",
-        to: "/pages/icons",
-      },
-
-      {
-        title: "Basic Table",
-        icon: "mdi-table-column-width",
-        to: "/pages/tables-simple",
-      },
-    ],
+    items: sidebareItems,
   }),
   computed: {
     ...mapState({

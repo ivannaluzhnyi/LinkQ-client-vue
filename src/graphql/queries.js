@@ -36,6 +36,24 @@ export const GET_APPLICATIONS = gql`
     }
 `;
 
+export const GET_USER_APPLICATIONS = gql`
+    query {
+        applications(skip: 0) {
+            id
+            contract {
+                id
+                price
+                created
+            }
+            created
+            offer
+            property_id
+            updated
+            status
+        }
+    }
+`;
+
 export const GET_PENDING_APPLICATIONS = gql`
     query {
         applications(skip: 0, where: { status: PENDING }) {

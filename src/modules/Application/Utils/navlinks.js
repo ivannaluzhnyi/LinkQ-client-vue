@@ -1,6 +1,6 @@
 export const navlinks = [
     {
-        text: "Return",
+        text: "Home",
         href: "/",
     },
 ];

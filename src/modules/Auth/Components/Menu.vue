@@ -40,6 +40,10 @@ export default {
         case "logout":
           return this.logout();
 
+        case "application":
+          this.$router.push("/application");
+          return;
+
         default:
           break;
       }

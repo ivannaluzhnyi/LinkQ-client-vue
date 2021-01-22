@@ -8,7 +8,7 @@
             small
             v-for="(navlink, index) in navlinks"
             :key="index"
-            :href="navlink.href"
+            @click="redirect(navlink.href)"
           >{{ navlink.text }}</v-btn>
         </v-toolbar-items>
 
@@ -42,6 +42,13 @@ export default {
   computed: {
     isMobile() {
       return this.$vuetify.breakpoint.xsOnly;
+    },
+  },
+  // :href="navlink.href"
+
+  methods: {
+    redirect(href) {
+      this.$router.push(href);
     },
   },
 };

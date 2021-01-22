@@ -116,7 +116,7 @@ export default {
   components: { Field, Vuemik },
   computed: {
     ...mapGetters({
-      message_success: "auth/getmessage_success",
+      message_success: "auth/message_success",
       message_error: "auth/message_error",
     }),
   },

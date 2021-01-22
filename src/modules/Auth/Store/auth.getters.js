@@ -9,8 +9,8 @@ export const getters = {
         return Boolean(state.apollo.loggedIn && state.loggedIn);
     },
     isLoading: (state) => state.loading,
-    getmessage_success: (state) => state.message_success,
-    getmessage_error: (state) => state.message_error,
+    message_success: (state) => state.message_success,
+    message_error: (state) => state.message_error,
     getUser: (state) => state.user,
     getUserEmail: (state) => state.user.username,
 

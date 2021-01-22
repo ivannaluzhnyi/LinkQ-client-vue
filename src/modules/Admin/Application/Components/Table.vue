@@ -28,9 +28,9 @@
       <template v-slot:item.property_id="{ item }">
         <RouterLink :to="{name: 'Property', params:{ idProperty: item.property_id}}">Voir</RouterLink>
       </template>
-
+      <!--  v-if="item.status === 'PENDING'"  -->
       <template v-slot:item.actions="{ item }">
-        <div v-if="item.status === 'PENDING'">
+        <div>
           <v-tooltip left>
             <template v-slot:activator="{ on, attrs }">
               <v-icon
@@ -138,9 +138,7 @@ export default {
   },
   apollo: {
     applications() {
-      return {
-        query: GET_APPLICATIONS,
-      };
+      return this.getApolloRequest();
     },
   },
 

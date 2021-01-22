@@ -67,7 +67,11 @@ export default {
       resetResponse: "adminApplications/resetApplicationActionState",
     }),
     handleCall() {
-      this.refuseApplication({ application: this.application });
+      if (this.type === "reject")
+        return this.refuseApplication({ application: this.application });
+
+      if (this.type === "accept")
+        return this.acceptApplication({ application: this.application });
     },
 
     handleClose() {

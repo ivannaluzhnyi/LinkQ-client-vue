@@ -5,59 +5,12 @@
       <v-progress-linear indeterminate color="cyan"></v-progress-linear>
     </div>
 
-    <v-data-table v-else :headers="headers" :items="applications">
-      <template v-slot:item.buyer="{ item }">
-        <div class="buyer">
-          <p
-            v-if="item.buyer.firstname !== undefined && item.buyer.firstname !== null"
-          >{{ `${item.buyer.firstname} ${item.buyer.lastname}`}}</p>
-          <p>{{item.buyer.email}}</p>
-        </div>
-      </template>
-      <template v-slot:item.offer="{ item }">{{item.offer | displayOffer}}</template>
-
-      <template v-slot:item.status="{ item }">
-        <v-chip :color="getColorByStatus(item.status)" label outlined>{{item.status}}</v-chip>
-      </template>
-
-      <template v-slot:item.created="{ item }">{{item.created | displayDate}}</template>
-      <template v-slot:item.property_id="{ item }">
-        <RouterLink :to="{name: 'Property', params:{ idProperty: item.property_id}}">Voir</RouterLink>
-      </template>
-
-      <template v-slot:item.property_id="{ item }">
-        <RouterLink :to="{name: 'Property', params:{ idProperty: item.property_id}}">Voir</RouterLink>
-      </template>
-      <!--  v-if="item.status === 'PENDING'"  -->
-      <template v-slot:item.actions="{ item }">
-        <div>
-          <v-tooltip left>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon
-                v-bind="attrs"
-                v-on="on"
-                small
-                class="mr-2"
-                @click="handleAppplicationActions(item, 'accept')"
-              >mdi mdi-check-bold</v-icon>
-            </template>
-            <span>Confirmer</span>
-          </v-tooltip>
-          <v-tooltip left>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon
-                v-bind="attrs"
-                v-on="on"
-                small
-                class="mr-2"
-                @click="handleAppplicationActions(item, 'reject')"
-              >mdi mdi-close</v-icon>
-            </template>
-            <span>Réfuser</span>
-          </v-tooltip>
-        </div>
-      </template>
-    </v-data-table>
+    <ApplicationTable
+      v-else
+      :applications="applications"
+      :headers="headers"
+      :handleAppplicationActions="handleAppplicationActions"
+    />
 
     <ApplicationActionsModal
       :application="dialog.currentApplication"
@@ -70,16 +23,15 @@
 
 <script>
 import ApplicationActionsModal from "./ApplicationActionsModal";
+import ApplicationTable from "@/core/Components/ApplicationTable";
 
 import { GET_APPLICATIONS, GET_PENDING_APPLICATIONS } from "@/graphql/queries";
-import { getColorByStatus, TableType } from "../helpers";
-
-import { displayDate } from "@/core/utils/date";
+import { TableType } from "../helpers";
 
 export default {
-  name: "AllApplications",
+  name: "Table",
   props: ["type"],
-  components: { ApplicationActionsModal },
+  components: { ApplicationActionsModal, ApplicationTable },
 
   data() {
     return {
@@ -110,7 +62,6 @@ export default {
     }
   },
   methods: {
-    getColorByStatus,
     getApolloRequest() {
       switch (this.type) {
         case TableType.APPLICATIONS_TO_VALIDATE:
@@ -136,17 +87,10 @@ export default {
       this.$data.dialog.currentApplication = undefined;
     },
   },
+
   apollo: {
     applications() {
       return this.getApolloRequest();
-    },
-  },
-
-  filters: {
-    displayDate,
-
-    displayOffer(offer) {
-      return `${offer}€`;
     },
   },
 };

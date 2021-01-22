@@ -96,12 +96,12 @@
             >Register</v-btn
           >
         </v-col>
+      </v-row>
         <div v-if="message_success" class="alert-success">
           {{ message_success }}
-        </div><div v-if="message_error" class="alert-success">
+        </div><div v-if="message_error" class="alert-error">
           {{ message_error }}
         </div>
-      </v-row>
     </form>
   </Vuemik>
 </template>

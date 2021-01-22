@@ -38,26 +38,36 @@ function login({ commit }, { email, password }) {
         });
 }
 
-function signUp({ commit }, props){
+function signUp({ commit }, props) {
+
     authService
-        .signUp(props)
+        .getuserByEmail(props.email)
         .then((response) => {
-            commit(AUTH_REGISTER_API_PLAT_SUCCESS, response);
-            return response
+            if (response.length == 1) {
+                commit(AUTH_REGISTER_API_PLAT_FAILURE, { message: `Le compte ${props.email} existe déjà.` });
+                return
+            }
+            authService
+                .signUp(props)
+                .then((response) => {
+                    commit(AUTH_REGISTER_API_PLAT_SUCCESS, { message: "Votre compte à bien été créer, vous pouvez maintenant vous connectez !" });
+                    return response
+                })
+                .catch((error) => {
+                    console.log('error :>> ', error);
+                    commit(AUTH_REGISTER_API_PLAT_FAILURE, { message: "Une erreur c'est produite." });
+                });
+            authService
+                .signUpApollo(props)
+                .then((response) => {
+                    commit(AUTH_REGISTER_API_PLAT_SUCCESS, response);
+                    return response
+                })
+                .catch((error) => {
+                    commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
+                });
         })
-        .catch((error) => {
-            commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
-        });
-    console.log('authService :>> ');
-    authService
-        .signUpApollo(props)
-        .then((response) => {
-            commit(AUTH_REGISTER_API_PLAT_SUCCESS, response);
-            return response
-        })
-        .catch((error) => {
-            commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
-        });
+
 }
 
 function logout({ commit }) {

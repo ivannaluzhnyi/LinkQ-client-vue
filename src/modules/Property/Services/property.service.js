@@ -5,7 +5,7 @@ import { http } from "@/core/http";
 const getProperty = (searchInformation) => {
 
     return http
-        .get(`http://localhost:8080/features?${searchInformation}`)
+        .get(`features?${searchInformation}`)
         .then((response) => {
             const { data } = response;
             if (data) {
@@ -17,7 +17,7 @@ const getProperty = (searchInformation) => {
 
 const loadProperty = (idProperty) => {
     return http
-        .get(`http://localhost:8080/properties/${idProperty}`)
+        .get(`properties/${idProperty}`)
         .then((response) => {
 
             const { data } = response;

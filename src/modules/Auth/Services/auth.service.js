@@ -134,6 +134,17 @@ function getUsersFromStorage() {
         apolloUser,
     };
 }
+const getuserByEmail = (email) => {
+    return http
+        .get(`users/?email=${email}`)
+        .then((response) => {
+            const { data } = response;
+            if (data) {
+                return data;
+            }
+            throw new Error("Error");
+        })
+}
 
 export default {
     login,
@@ -144,4 +155,5 @@ export default {
     loginApollo,
     isAuthApollo,
     getUsersFromStorage,
+    getuserByEmail
 };

@@ -1,6 +1,7 @@
 import authService from "../Services/auth.service";
-
 import router from "@/router";
+
+import isAdminByUserObject from "../Utils/isAdminByUserObject";
 
 import {
     AUTH_LOGIN_API_PLAT_FAILURE,
@@ -22,7 +23,7 @@ function login({ commit }, { email, password }) {
         .login(email, password)
         .then((response) => {
             commit(AUTH_LOGIN_API_PLAT_SUCCESS, response);
-            router.push("/admin/dashboard");
+            if (isAdminByUserObject(response)) router.push("/admin/dashboard");
         })
         .catch((error) => {
             commit(AUTH_LOGIN_API_PLAT_FAILURE, error);
@@ -73,7 +74,10 @@ function signUp({ commit }, props) {
 function logout({ commit }) {
     authService.logout();
     commit(AUTH_LOGOUT);
-    router.push("/");
+
+    if (router.history.current.path !== "/") {
+        router.push("/");
+    }
 }
 
 export const actions = { login, logout, signUp};

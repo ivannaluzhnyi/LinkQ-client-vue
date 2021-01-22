@@ -4,6 +4,8 @@ import { decodeToken } from "@/core/utils/jwt";
 import { apolloClient } from "@/plugins/apollo-client";
 import { LOGIN_USER, REGISTER_USER } from "@/graphql/mutations";
 
+import isAdminByUserObject from "../Utils/isAdminByUserObject";
+
 /**
  *
  * @param {string} email
@@ -58,43 +60,38 @@ function loginApollo(email, password) {
             }
 
             throw new Error("Token missing");
+        });
+}
+
+function signUp(props) {
+    return http.post("users", props).then((response) => {
+        const { data } = response;
+        if (data) {
+            return data;
+        }
+        throw new Error("Error connexion");
+    });
+}
+
+function signUpApollo(props) {
+    props.isActive = true;
+    props.roles = {};
+    return apolloClient
+        .mutate({
+            mutation: REGISTER_USER,
+            variables: props,
+        })
+        .then((response) => {
+            const { data } = response;
+            if (data) {
+                return data;
+            }
+            throw new Error("Error connexion");
         })
         .catch(async (error) => {
             console.error(error);
             return error;
         });
-}
-
-function signUp(props){
-    return http
-        .post("users", props)
-        .then((response) => {
-            const { data } = response;
-            if(data){
-                return data
-            }
-            throw new Error("Error connexion");
-        });
-}
-
-function signUpApollo(props){
-    props.isActive = true
-    props.roles = {}
-    return apolloClient
-    .mutate({
-        mutation: REGISTER_USER,
-        variables: props,
-    }).then((response) => {
-        const { data } = response;
-        if(data){
-            return data
-        }
-        throw new Error("Error connexion");
-    })
-    .catch(async (error) => {
-        console.error(error);
-        return error;
-    });
 }
 
 async function logout() {
@@ -107,13 +104,27 @@ async function logout() {
 }
 
 /**
- * @returns {object|null}
+ * @returns {boolean}
  */
 function isAuth() {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
 
     return Boolean(!!user && !!token);
+}
+
+/**
+ * @returns {boolean}
+ */
+function isAuthAdmin() {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+        const decodedToken = decodeToken(token);
+        return isAdminByUserObject(decodedToken);
+    }
+
+    return false;
 }
 
 /**
@@ -135,16 +146,14 @@ function getUsersFromStorage() {
     };
 }
 const getuserByEmail = (email) => {
-    return http
-        .get(`users/?email=${email}`)
-        .then((response) => {
-            const { data } = response;
-            if (data) {
-                return data;
-            }
-            throw new Error("Error");
-        })
-}
+    return http.get(`users/?email=${email}`).then((response) => {
+        const { data } = response;
+        if (data) {
+            return data;
+        }
+        throw new Error("Error");
+    });
+};
 
 export default {
     login,
@@ -155,5 +164,6 @@ export default {
     loginApollo,
     isAuthApollo,
     getUsersFromStorage,
-    getuserByEmail
+    getuserByEmail,
+    isAuthAdmin,
 };

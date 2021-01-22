@@ -20,16 +20,20 @@ const TableType = Object.freeze({
     APPLICATIONS_TO_VALIDATE: "APPLICATIONS_TO_VALIDATE",
 });
 
-const getMessageByResponseType = (responseType) => {
+const getMessageByResponseType = (responseType, dialogType) => {
+    const isSuccess = dialogType === "SUCCESS";
+    const isFailure = dialogType === "FAILURE";
     switch (responseType) {
         case "ACCEPT_SUCCESS":
-            return "Demande de propriété à été acceptée ";
+            return isSuccess
+                ? "Demande de propriété à été acceptée "
+                : undefined;
         case "ACCEPT_FAILURE":
-            return "Une erreur s'est produite";
+            return isFailure ? "Une erreur s'est produite" : undefined;
         case "REFUSE_SUCCESS":
-            return "Demande de propriété à été refusée";
+            return isSuccess ? "Demande de propriété à été refusée" : undefined;
         case "REFUSE_FAILURE":
-            return "Une erreur s'est produite";
+            return isFailure ? "Une erreur s'est produite" : undefined;
 
         default:
             break;

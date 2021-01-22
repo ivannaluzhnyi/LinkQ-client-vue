@@ -1,8 +1,12 @@
 <template>
   <v-row justify="center">
     <LoadingDialog v-if="loading" :dialog="dialog" />
-    <v-dialog v-else v-model="dialog" max-width="290">
-      <ControlResponseContent>
+    <v-dialog v-else v-model="dialog" max-width="500">
+      <ControlResponseContent
+        :handleClose="handleClose"
+        :successMessage="successDialogMessage"
+        :failureMessage="failureDialogMessage"
+      >
         <v-card>
           <v-card-title v-if="type==='accept'" class="headline">Confirmation</v-card-title>
           <v-card-title v-else class="headline">Refuser</v-card-title>
@@ -13,7 +17,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="green darken-1" text @click="close()">Annuler</v-btn>
+            <v-btn color="green darken-1" text @click="handleClose">Annuler</v-btn>
             <v-btn color="green darken-1" text @click="handleCall()">
               <span v-if="type==='accept'">Confirmer</span>
               <span v-else>Refuser</span>
@@ -30,6 +34,8 @@ import { mapActions, mapGetters } from "vuex";
 
 import ControlResponseContent from "@/core/Components/ControlResponseContent";
 import LoadingDialog from "@/core/Components/LoadingDialog";
+
+import { getMessageByResponseType } from "../helpers";
 export default {
   name: "ApplicationActionsModal",
   components: {
@@ -44,12 +50,30 @@ export default {
       loading: "adminApplications/isLoading",
       responseType: "adminApplications/responseType",
     }),
+
+    successDialogMessage() {
+      console.log(
+        "success ==> ",
+        getMessageByResponseType(this.responseType, "SUCCESS")
+      );
+
+      return getMessageByResponseType(this.responseType, "SUCCESS");
+    },
+
+    failureDialogMessage() {
+      console.log(
+        "erro ==> ",
+        getMessageByResponseType(this.responseType, "FAILURE")
+      );
+      return getMessageByResponseType(this.responseType, "FAILURE");
+    },
   },
 
   methods: {
     ...mapActions({
       acceptApplication: "adminApplications/acceptApplication",
       refuseApplication: "adminApplications/refuseApplication",
+      resetResponse: "adminApplications/resetApplicationActionState",
     }),
     handleCall() {
       console.log("this ==> ", this.application);
@@ -57,6 +81,11 @@ export default {
       this.refuseApplication({ application: this.application });
 
       // this.close();
+    },
+
+    handleClose() {
+      this.resetResponse();
+      this.close();
     },
   },
 };

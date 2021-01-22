@@ -17,3 +17,5 @@ export const ACCEPT_APPLICATION_FAILURE = 'accept-application-failure'
 export const REFUSE_APPLICATION_REQUEST = 'refuse-application-request'
 export const REFUSE_APPLICATION_SUCCESS = 'refuse-application-success'
 export const REFUSE_APPLICATION_FAILURE = 'refuse-application-failure'
+
+export const RESET_APPLICATION_ACTION = 'reset-application-actions'

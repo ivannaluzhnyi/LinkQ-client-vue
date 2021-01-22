@@ -5,6 +5,7 @@ import {
     REFUSE_APPLICATION_FAILURE,
     REFUSE_APPLICATION_SUCCESS,
     REFUSE_APPLICATION_REQUEST,
+    RESET_APPLICATION_ACTION,
 } from "./mutation-actions";
 
 import applicationService from "../Services/application.service";
@@ -35,14 +36,18 @@ function refuseApplication({ commit }, { application }) {
         .changeStatusApplication(application.id, "REFUSED")
         .then((response) => {
             commit(REFUSE_APPLICATION_SUCCESS, response);
-
-            return response;
         })
         .catch((error) => {
             commit(REFUSE_APPLICATION_FAILURE, error);
-
-            return error;
         });
 }
 
-export const actions = { acceptApplication, refuseApplication };
+function resetApplicationActionState({ commit }) {
+    commit(RESET_APPLICATION_ACTION);
+}
+
+export const actions = {
+    acceptApplication,
+    refuseApplication,
+    resetApplicationActionState,
+};

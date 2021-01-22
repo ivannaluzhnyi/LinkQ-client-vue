@@ -5,6 +5,7 @@ import {
     REFUSE_APPLICATION_FAILURE,
     REFUSE_APPLICATION_SUCCESS,
     REFUSE_APPLICATION_REQUEST,
+    RESET_APPLICATION_ACTION,
 } from "./mutation-actions";
 
 export const mutations = {
@@ -31,5 +32,9 @@ export const mutations = {
     [REFUSE_APPLICATION_FAILURE](state) {
         state.actionLoading = false;
         state.responseType = "REFUSE_FAILURE";
+    },
+    [RESET_APPLICATION_ACTION](state) {
+        state.actionLoading = false;
+        state.responseType = "";
     },
 };

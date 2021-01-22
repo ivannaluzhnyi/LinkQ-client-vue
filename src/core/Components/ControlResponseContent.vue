@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div v-if="successCondition || errorCondition ">
+    <div v-if="successMessage !== undefined || failureMessage !== undefined">
       <v-card>
         <v-card-title>
           <span class="headline">Création d'une demande</span>
         </v-card-title>
         <v-card-text>
           <v-container>
-            <div v-if="responseType === 'SUCCESS' ">
+            <div v-if="successMessage">
               <v-alert outlined type="success" text>{{successMessage}}.</v-alert>
             </div>
             <v-alert v-else text prominent type="error" icon="mdi-cloud-alert">{{failureMessage}}</v-alert>
@@ -32,6 +32,7 @@ export default {
     "errorCondition",
     "successMessage",
     "failureMessage",
+    "handleClose",
   ],
 };
 </script>

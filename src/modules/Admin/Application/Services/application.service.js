@@ -25,10 +25,6 @@ function changeStatusApplication(applicationId, status) {
             console.log("dtaa ==> ", data);
 
             return data;
-        })
-        .catch(async (error) => {
-            console.error(error);
-            return error;
         });
 }
 export default {

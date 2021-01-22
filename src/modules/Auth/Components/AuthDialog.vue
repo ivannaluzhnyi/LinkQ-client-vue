@@ -12,22 +12,7 @@
             {{email}}
           </v-btn>
 
-          <v-menu bottom left transition="scale-transition">
-            <template v-slot:activator="{ on }">
-              <v-btn icon v-on="on" class="btn-menu">
-                <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
-            </template>
-
-            <v-list>
-              <v-list-item v-for="(item, i) in navigation" :key="i" @click="href(item)">
-                <v-list-item-title>
-                  <v-icon v-if="item.type === 'logout'">mdi-logout</v-icon>
-                  {{ item.title }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <Menu />
         </div>
         <v-btn
           v-show="!isAuth"
@@ -72,23 +57,18 @@
 <script>
 import SignUpForm from "@/modules/Auth/Components/Forms/SignUp";
 import SignInForm from "@/modules/Auth/Components/Forms/SignIn";
-import { mapActions, mapGetters } from "vuex";
+import Menu from "./Menu";
+import { mapGetters } from "vuex";
 
 export default {
   name: "AuthDialog",
-  components: { SignInForm, SignUpForm },
+  components: { SignInForm, SignUpForm, Menu },
   data: () => ({
     authDialog: false,
     tab: 0,
     tabs: [
       { name: "Login", icon: "mdi-account" },
       { name: "Register", icon: "mdi-account-outline" },
-    ],
-
-    navigation: [
-      { title: "Mes demandes", type: "application" },
-      { title: "Mes contrats", type: "contract" },
-      { title: "Se déconnecter", type: "logout" },
     ],
   }),
   computed: {
@@ -118,21 +98,6 @@ export default {
         this.$router.push("/profil");
       }
     },
-
-    ...mapActions({
-      logout: "auth/logout",
-    }),
-
-    href({ type }) {
-      switch (type) {
-        case "logout":
-          return this.logout();
-
-        default:
-          break;
-      }
-      return undefined;
-    },
   },
 };
 </script>
@@ -140,10 +105,5 @@ export default {
 <style scoped>
 #auth-dialog-activator-button {
   margin-top: 27.5px;
-}
-
-.btn-menu {
-  width: 35px !important;
-  height: 35px !important;
 }
 </style>

@@ -8,6 +8,7 @@ import { adminProperties } from "@/modules/Admin/Properties/Store";
 import { adminUsers } from "@/modules/Admin/Users/Store";
 
 import { adminSettings } from "@/modules/Admin/Store";
+import { adminApplications } from "@/modules/Admin/Application/Store";
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
         adminSettings,
         adminProperties,
         adminUsers,
-        Properties
+        Properties,
+        adminApplications,
     },
 });

@@ -3,14 +3,13 @@ import Router from "vue-router";
 import homeRoutes from "@/modules/Home/Routes/routes";
 import propertyRoutes from "@/modules/Property/Routes/routes";
 
+import adminRoutes from "@/modules/Admin/routes";
+
 import authService from "@/modules/Auth/Services/auth.service";
 
 import Layout from "@/core/layouts/Layout";
 import Admin from "@/core/layouts/Admin";
 
-import adminPropertyRoutes from "@/modules/Admin/Properties/Routes/routes";
-import adminUserRoutes from "@/modules/Admin/Users/Routes/routes";
-import dashboard from "@/modules/Admin/Dashboard/Routes/routes";
 Vue.use(Router);
 
 const router = new Router({
@@ -33,7 +32,7 @@ const router = new Router({
             path: "/admin",
             name: "admin",
             component: Admin,
-            children: [...dashboard,...adminPropertyRoutes,...adminUserRoutes],
+            children: [...adminRoutes],
         },
         { path: "*", redirect: "/" },
     ],

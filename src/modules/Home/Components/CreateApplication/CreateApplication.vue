@@ -32,10 +32,10 @@
 
 <script>
 import { mapGetters } from "vuex";
+import LoadingDialog from "@/core/Components/LoadingDialog";
 
 import NoAuth from "./NoAuth";
 import Property from "../Property";
-import LoadingDialog from "./LoadingDialog";
 import ControlResponseContent from "./ControlResponseContent";
 
 import applicationService from "../../Services/application-front.service";

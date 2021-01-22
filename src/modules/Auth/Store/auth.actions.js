@@ -20,7 +20,7 @@ function login({ commit }, { email, password }) {
         .login(email, password)
         .then((response) => {
             commit(AUTH_LOGIN_API_PLAT_SUCCESS, response);
-            router.push("/admin");
+            router.push("/admin/dashboard");
         })
         .catch((error) => {
             commit(AUTH_LOGIN_API_PLAT_FAILURE, error);

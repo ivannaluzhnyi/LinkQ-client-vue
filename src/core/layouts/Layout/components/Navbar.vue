@@ -44,7 +44,6 @@ export default {
       return this.$vuetify.breakpoint.xsOnly;
     },
   },
-  // :href="navlink.href"
 
   methods: {
     redirect(href) {

@@ -7,18 +7,17 @@
       <v-container>
         <Vuemik
             :initialValues="{
-            birthdate: user.birthdate,
-            email: user.email,
-            firstname: user.firstname,
-            guarantor: user.guarantor,
-            id: user.id,
-            is_active: user.is_active,
-            lastname: user.lastname,
-            property: user.property,
-            salary: user.salary,
+            birthdate: UserData.birthdate,
+            email: UserData.email,
+            firstname: UserData.firstname,
+            guarantor: UserData.guarantor,
+            id: UserData.id,
+            is_active: UserData.is_active,
+            lastname: UserData.lastname,
+            property: UserData.property,
+            salary: UserData.salary,
           }"
             :onSubmit="updateUser"
-            :validationSchema="UserSchema"
             v-slot="{ handleSubmit, errors }"
         >
           <v-row>
@@ -31,12 +30,13 @@
                     component="input"
                     name="email"
                     id="input__user_description"
+                    :value="UserData.email"
                 />
                 <p v-if="errors.email" class="alert-error">{{ errors.email[0] }}</p>
               </v-col>
               <v-col cols="12">
                 <label for="input__user_price" class="col-12">firstname</label>
-                <Field class="col" component="input" name="firstname" id="input__user_price" />
+                <Field class="col" component="input" name="firstname" id="input__user_price" :value="UserData.firstname"/>
                 <p v-if="errors.firstname" class="alert-error">{{ errors.firstname[0] }}</p>
               </v-col>
               <v-col class="d-flex" cols="12" sm="6" xsm="12"></v-col>
@@ -45,12 +45,12 @@
               <h4>Features</h4>
               <v-col cols="12">
                 <label for="input__feature_size" class="col-12">lastname</label>
-                <Field class="col" component="input" name="lastname" id="input__feature_size" />
+                <Field class="col" component="input" name="lastname" id="input__feature_size" :value="UserData.lastname" />
                 <p v-if="errors.lastname" class="alert-error">{{ errors.lastname[0] }}</p>
               </v-col>
               <v-col cols="12">
                 <label for="input__feature_size" class="col-12">Password Confirmation</label>
-                <Field class="col" component="input" name="plainPassword" id="input__plainPassword" />
+                <Field class="col" component="input" name="plainPassword" id="input__plainPassword" placeholder="For confirm you're change " />
                 <p v-if="errors.plainPassword" class="alert-error">{{ errors.plainPassword[0] }}</p>
               </v-col>
             </v-col>
@@ -67,7 +67,6 @@
 <script>
 import { http } from "@/core/http";
 import { Field, Vuemik } from "@/libs/vuemik";
-import * as Yup from "yup";
 import {mapGetters} from "vuex";
 
 export default {
@@ -77,12 +76,11 @@ export default {
     Vuemik,
   },
   beforeMount(){
-    console.log(this.user);
+    this.getActualUser(this.user.username);
   },
   props: ["swapComponent", "user"],
   computed: {
     proper() {
-      console.log("Profil Update | user props ==> ", this.user);
       return 0;
     },
       ...mapGetters({
@@ -90,20 +88,24 @@ export default {
       }),
   },
   data: () => ({
-    UserSchema: Yup.object().shape({
-      firstname: Yup.string().required("firstname is required"),
-      lastname: Yup.string().required("lastname is required"),
-      email: Yup.string().required("email is required"),
-      plainPassword: Yup.string().required("password is required")
-    }),
+    UserData: []
   }),
   methods: {
     updateUser(props) {
       this.putUser(props);
     },
+    getActualUser($email){
+      http.get(`users?email=${$email}`)
+          .then((response) => {
+            this.UserData = response.data[0];
+            console.log(response.data[0]);
+          }).catch((error) => {
+        console.log(error);
+      });
+    },
     putUser(props){
-      console.log('put users');
-      http.put(`users/${this.user.id}`, {
+      console.log(this.UserData.id)
+      http.put(`users/${this.UserData.id}`, {
         email: props.email,
         lastname: props.lastname,
         firstname: props.firstname,

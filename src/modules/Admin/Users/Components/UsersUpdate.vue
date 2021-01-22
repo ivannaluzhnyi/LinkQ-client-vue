@@ -49,6 +49,11 @@
                 <Field class="col" component="input" name="lastname" id="input__feature_size" />
                 <p v-if="errors.lastname" class="alert-error">{{ errors.lastname[0] }}</p>
               </v-col>
+              <v-col cols="12">
+                <label for="input__feature_size" class="col-12">plainPassword</label>
+                <Field class="col" component="input" name="plainPassword" id="input__plainPassword" />
+                <p v-if="errors.plainPassword" class="alert-error">{{ errors.plainPassword[0] }}</p>
+              </v-col>
             </v-col>
           </v-row>
           <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
@@ -83,6 +88,7 @@ export default {
       firstname: Yup.string().required("firstname is required"),
       lastname: Yup.string().required("lastname is required"),
       email: Yup.string().required("email is required"),
+      plainPassword: Yup.string().required("password is required")
     }),
   }),
   methods: {
@@ -91,10 +97,11 @@ export default {
     },
     putUser(props){
       console.log('put users');
-      http.patch(`users/${this.user.id}`, {
-        'email': props.email,
-        'lastname': props.lastname,
-        'firstname': props.firstname
+      http.put(`users/${this.user.id}`, {
+        email: props.email,
+        lastname: props.lastname,
+        firstname: props.firstname,
+        plainPassword: props.plainPassword
       })
           .then((response) => {
             console.log(response);

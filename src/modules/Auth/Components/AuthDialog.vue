@@ -9,7 +9,7 @@
           {{email}}
         </v-btn>
 
-          <v-btn  @click="redirect"  text small>
+          <v-btn  @click="redirectProfil"  text small>
             <v-icon>mdi-account</v-icon>
               Profil
             </v-btn>
@@ -63,7 +63,6 @@ export default {
       { name: "Register", icon: "mdi-account-outline" },
     ],
   }),
-
   computed: {
     ...mapGetters({
       isAuth: "auth/isAuthenticated",
@@ -75,6 +74,11 @@ export default {
     redirect() {
       if (this.isAuth) {
         this.$router.push("/admin");
+      }
+    },
+    redirectProfil() {
+      if (this.isAuth) {
+        this.$router.push("/profil");
       }
     },
   },

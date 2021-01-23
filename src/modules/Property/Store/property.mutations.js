@@ -4,5 +4,8 @@ export const mutations = {
     },
     ['setProperty'](state, property){
         state.property = property;
+    },
+    ['setPropertiesUser'](state, property){
+        state.propertiesUser = property;
     }
 };

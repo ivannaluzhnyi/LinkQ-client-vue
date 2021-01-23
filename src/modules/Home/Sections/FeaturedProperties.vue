@@ -12,7 +12,7 @@
     <div class="properies-list">
       <v-row>
         <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index">
-          <Property :property="{...property}" :createApplication="createApplication" />
+          <Property v-if="property.status === true" :property="{...property}" :createApplication="createApplication" />
         </v-col>
       </v-row>
     </div>

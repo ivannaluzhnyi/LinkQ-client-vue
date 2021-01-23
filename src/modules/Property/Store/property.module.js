@@ -4,7 +4,8 @@ import { getters } from "./property.getters";
 
 const initialState = {
     properties: {},
-    property: {}
+    property: {},
+    propertiesUser: {},
 
 };
 

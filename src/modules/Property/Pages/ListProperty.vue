@@ -6,7 +6,7 @@
     </h3>
     <div v-if="showProperties">
       <div v-for="property in properties" :key="property.id">
-        <Card v-bind:property="property" />
+        <Card v-if="property.status === true" v-bind:property="property" />
       </div>
       <Card />
     </div>

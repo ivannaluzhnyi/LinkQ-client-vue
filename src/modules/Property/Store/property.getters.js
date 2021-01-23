@@ -4,5 +4,8 @@ export const getters = {
     },
     property: (state) => {
         return state.property
+    },
+    propertiesUser: (state) => {
+        return state.propertiesUser
     }
 };

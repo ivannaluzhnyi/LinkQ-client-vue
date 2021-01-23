@@ -6,7 +6,7 @@
     </h2>
     <br/>
     <v-card class="elevation-1">
-      <v-simple-table>
+      <v-simple-table fixed-header height="500px">
         <template v-slot:default>
           <thead>
           <tr>

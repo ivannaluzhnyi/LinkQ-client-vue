@@ -40,6 +40,7 @@ export default {
       navigation: [
         { title: "Mes demandes", type: "application" },
         { title: "Mes contrats", type: "contract" },
+        { title: "Mes propriétées", type: "properties" },
         { title: "Se déconnecter", type: "logout" },
       ],
 
@@ -62,6 +63,10 @@ export default {
 
         case "application":
           this.$router.push("/application");
+          return;
+
+        case "properties":
+          this.$router.push("/properties");
           return;
 
         default:

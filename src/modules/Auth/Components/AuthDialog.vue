@@ -3,7 +3,7 @@
     <v-dialog v-model="authDialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <div v-show="isAuth" id="auth-dialog-activator-button">
-          <v-btn @click="redirectProfil" text small>
+          <v-btn v-show="!isAdmin" @click="redirectProfil" text small>
             <v-icon>mdi-account</v-icon>Profil
           </v-btn>
 
@@ -11,9 +11,8 @@
             <v-icon>mdi-account</v-icon>
             {{email}}
           </v-btn>
-          <v-btn v-show="!isAdmin" @click="logout()" text small>
-            <v-icon>mdi-logout</v-icon>Se déconnecter
-          </v-btn>
+
+          <Menu />
         </div>
         <v-btn
           v-show="!isAuth"
@@ -58,11 +57,12 @@
 <script>
 import SignUpForm from "@/modules/Auth/Components/Forms/SignUp";
 import SignInForm from "@/modules/Auth/Components/Forms/SignIn";
-import { mapActions, mapGetters } from "vuex";
+import Menu from "./Menu";
+import { mapGetters } from "vuex";
 
 export default {
   name: "AuthDialog",
-  components: { SignInForm, SignUpForm },
+  components: { SignInForm, SignUpForm, Menu },
   data: () => ({
     authDialog: false,
     tab: 0,
@@ -98,10 +98,6 @@ export default {
         this.$router.push("/profil");
       }
     },
-
-    ...mapActions({
-      logout: "auth/logout",
-    }),
   },
 };
 </script>

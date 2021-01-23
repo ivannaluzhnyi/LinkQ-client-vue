@@ -3,8 +3,11 @@ import VueApollo from "vue-apollo";
 
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
-import { ApolloLink } from "apollo-link";
+import { ApolloLink, split } from "apollo-link";
 import { InMemoryCache } from "apollo-cache-inmemory";
+
+import { WebSocketLink } from "apollo-link-ws";
+import { getMainDefinition } from "apollo-utilities";
 
 import config from "@/config/apollo-client";
 
@@ -12,17 +15,38 @@ const httpLink = createHttpLink({
     uri: config.serverUri,
 });
 
+const token = localStorage.getItem("apollo-token");
+const Authorization = token ? `Bearer ${token}` : null;
+
+const wsLink = new WebSocketLink({
+    uri: config.wsUsi,
+    options: {
+        reconnect: true,
+        connectionParams: {
+            Authorization,
+        },
+    },
+});
+
 const middlewareLink = new ApolloLink((operation, forward) => {
-    const token = localStorage.getItem("apollo-token");
     operation.setContext({
         headers: {
-            Authorization: token ? `Bearer ${token}` : null,
+            Authorization,
         },
     });
     return forward(operation);
 });
 
-const link = middlewareLink.concat(httpLink);
+const terminatingLink = split(
+    ({ query }) => {
+        const { kind, operation } = getMainDefinition(query);
+        return kind === "OperationDefinition" && operation === "subscription";
+    },
+    wsLink,
+    middlewareLink.concat(httpLink)
+);
+
+const link = ApolloLink.from([terminatingLink]);
 const cache = new InMemoryCache();
 
 export const apolloClient = new ApolloClient({

@@ -11,6 +11,7 @@
           <tr>
             <th class="text-left">Id</th>
             <th class="text-left">Title</th>
+            <th class="text-left">Show</th>
             <th class="text-left">Update</th>
             <th class="text-left">Deactivate / Activate</th>
           </tr>
@@ -19,6 +20,9 @@
           <tr v-for="property in propertiesUser.property" :key="property.id">
             <td>{{ property.id }}</td>
             <td>{{ property.title }}</td>
+            <td>
+              <v-btn v-if="property.status === true" color="primary" @click="swapComponent('propertiesShow', property)">Show</v-btn>
+            </td>
             <td>
               <v-btn v-if="property.status === true" color="primary" @click="swapComponent('propertiesUpdate', property)">Update</v-btn>
             </td>

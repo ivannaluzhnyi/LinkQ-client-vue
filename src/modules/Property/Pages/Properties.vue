@@ -6,13 +6,15 @@
 import PropertyAll from "@/modules/Property/Components/PropertiesAll";
 import PropertiesUpdate from "@/modules/Property/Components/PropertiesUpdate";
 import PropertiesCreate from "@/modules/Property/Components/PropertiesCreate";
+import PropertiesShow from "@/modules/Property/Components/PropertiesShow";
 
 export default {
   name: "Properties",
   components: {
     propertiesAll: PropertyAll,
     propertiesUpdate: PropertiesUpdate,
-    propertiesCreate: PropertiesCreate
+    propertiesCreate: PropertiesCreate,
+    propertiesShow: PropertiesShow
   },
   data() {
     return {

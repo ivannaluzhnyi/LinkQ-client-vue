@@ -8,7 +8,7 @@
 <script>
 import ReviewsCard from "@/modules/Home/Components/ReviewsCard";
 export default {
-  name: "Reviews",
+  name: "Timelines",
   components: { ReviewsCard },
   data: () => {
     return {

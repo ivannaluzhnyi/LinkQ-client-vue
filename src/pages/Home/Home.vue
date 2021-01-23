@@ -5,7 +5,11 @@
       <section id="search">
         <search />
       </section>
-
+    <div> 
+       <section id="reviews">
+    <Reviews />
+       </section>
+  </div>
       <section id="featured">
         <featured-properties />
       </section>
@@ -17,12 +21,13 @@ import { EventBus } from "@/core/utils/eventBus";
 import { navlinks } from "@/modules/Home/Utils/navlinks";
 import FeaturedProperties from "@/modules/Home/Sections/FeaturedProperties";
 import Search from "@/modules/Home/Sections/Search";
-
+import Reviews from "@/modules/Home/Sections/Reviews";
 export default {
   name: "Home",
   components: {
     Search,
     FeaturedProperties,
+    Reviews
   },
   data: () => {
     return {

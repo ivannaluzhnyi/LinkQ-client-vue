@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <v-app id="inspire"
-      >ss
+    <v-app id="inspire">
       <v-timeline>
         <v-timeline-item
           v-for="(year, i) in years"
@@ -45,25 +44,29 @@ export default {
         color: "green",
         year: "2006",
         title: "Véritable équipe",
-        description: "Lygeemo compte désormais une vingtaine de profesionnel dans 4 agences dans Paris et gère plus de 15 contract par semaine. ",
+        description:
+          "Lygeemo compte désormais une vingtaine de profesionnel dans 4 agences dans Paris et gère plus de 15 contract par semaine. ",
       },
       {
         color: "purple",
         year: "2009",
         title: "Implantation sur de nouvelles régions",
-        description: "A partir de 1996, LYGEEMO s’étend sur de nouveaux territoires de France. Elle ouvre ses premières agences à City 17,  Bourg Palette et en Terre du milieu",
+        description:
+          "A partir de 1996, LYGEEMO s’étend sur de nouveaux territoires de France. Elle ouvre ses premières agences à City 17,  Bourg Palette et en Terre du milieu",
       },
       {
         color: "pink",
         year: "2013",
         title: "30 Agences !",
-        description: "LYGEEMO compte à présent 100 agences en activité et cela n'est pas prêt de s'arrêter... Les denières en dates se trouvent à Stormwind, à Hyrule et Tristram", 
+        description:
+          "LYGEEMO compte à présent 100 agences en activité et cela n'est pas prêt de s'arrêter... Les denières en dates se trouvent à Stormwind, à Hyrule et Tristram",
       },
       {
         color: "amber",
         year: "2016",
         title: "Inauguration du siège social à Sims City",
-        description: "L'assencion fulgurentes de LYGEEMO permet la construction d'un siège social à Sims City.",
+        description:
+          "L'assencion fulgurentes de LYGEEMO permet la construction d'un siège social à Sims City.",
       },
       {
         color: "orange",

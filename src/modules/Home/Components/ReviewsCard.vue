@@ -12,9 +12,7 @@
         <v-card-title></v-card-title>
         <v-row class="mx-0 justify-center">
           <v-avatar size="150">
-            <img 
-            v-bind:src="item.avatar"
-           alt="John" />
+            <img v-bind:src="item.avatar" alt="John" />
           </v-avatar>
         </v-row>
         <v-card-title class="justify-center">{{ item.name }}</v-card-title>
@@ -36,10 +34,8 @@
           </v-row>
           <v-divider class="mx-4"></v-divider>
           <div>
-            {{ item.desc }}<br>
-            <a 
-             v-bind:href="item.link"
-            >Voir l'avis complèt</a>
+            {{ item.desc }}<br />
+            <a v-bind:href="item.link">Voir l'avis complèt</a>
           </div>
         </v-card-text>
       </v-card>

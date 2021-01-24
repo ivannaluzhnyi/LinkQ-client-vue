@@ -17,9 +17,12 @@
             class="mx-4 white--text"
             icon
         >
-          <v-icon size="24px">
+          <a href="https://www.instagram.com/aloismarcellin/" style="text-decoration: none;" target="_blank">
+          <v-icon size="24px" >
+
             {{ icon }}
           </v-icon>
+          </a>
         </v-btn>
       </v-card-text>
 

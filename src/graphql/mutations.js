@@ -24,12 +24,18 @@ export const REGISTER_USER = gql`
         $isActive: Boolean!
         $password: String!
         $roles: Json!
+        $firstname: String
+        $lastname: String
+        $salary: Float
     ) {
         signup(
             email: $email
             isActive: $isActive
             password: $password
             roles: $roles
+            firstname: $firstname
+            lastname: $lastname
+            salary: $salary
         ) {
             token
             user {

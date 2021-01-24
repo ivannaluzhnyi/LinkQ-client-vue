@@ -3,6 +3,7 @@ import Router from "vue-router";
 import homeRoutes from "@/modules/Home/Routes/routes";
 import propertyRoutes from "@/modules/Property/Routes/routes";
 import applicationRoutes from "@/modules/Application/Routes/routes";
+import contractRoutes from "@/modules/Contract/Routes/routes";
 
 import adminRoutes from "@/modules/Admin/routes";
 import authService from "@/modules/Auth/Services/auth.service";
@@ -25,7 +26,12 @@ const router = new Router({
         {
             path: "/",
             component: Layout,
-            children: [...homeRoutes, ...propertyRoutes, ...applicationRoutes],
+            children: [
+                ...homeRoutes,
+                ...propertyRoutes,
+                ...applicationRoutes,
+                ...contractRoutes,
+            ],
         },
 
         {

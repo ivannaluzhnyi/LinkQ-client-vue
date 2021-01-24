@@ -52,7 +52,7 @@ export default {
 
 #search {
   position: absolute;
-  top: 8%;
+  top: 15em;
   left: 50%;
   transform: translate(-50%, -35%);
 }

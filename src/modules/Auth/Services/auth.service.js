@@ -64,13 +64,20 @@ function loginApollo(email, password) {
 }
 
 function signUp(props) {
-    return http.post("users", props).then((response) => {
-        const { data } = response;
-        if (data) {
-            return data;
-        }
-        throw new Error("Error connexion");
-    });
+    return http
+        .post("users", props)
+        .then((response) => {
+            const { data } = response;
+
+            console.log("response => ", response);
+            if (data) {
+                return data;
+            }
+            throw new Error("Error connexion");
+        })
+        .catch((error) => {
+            console.log("error ==> ", error);
+        });
 }
 
 function signUpApollo(props) {
@@ -79,7 +86,10 @@ function signUpApollo(props) {
     return apolloClient
         .mutate({
             mutation: REGISTER_USER,
-            variables: props,
+            variables: {
+                ...props,
+                roles: props.roles || ["ROLE_USER"],
+            },
         })
         .then((response) => {
             const { data } = response;
@@ -87,10 +97,6 @@ function signUpApollo(props) {
                 return data;
             }
             throw new Error("Error connexion");
-        })
-        .catch(async (error) => {
-            console.error(error);
-            return error;
         });
 }
 

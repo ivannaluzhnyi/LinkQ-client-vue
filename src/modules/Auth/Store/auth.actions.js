@@ -40,35 +40,45 @@ function login({ commit }, { email, password }) {
 }
 
 function signUp({ commit }, props) {
-
     authService
         .getuserByEmail(props.email)
         .then((response) => {
             if (response.length == 1) {
-                commit(AUTH_REGISTER_API_PLAT_FAILURE, { message: `Le compte ${props.email} existe déjà.` });
-                return
+                commit(AUTH_REGISTER_API_PLAT_FAILURE, {
+                    message: `Le compte ${props.email} existe déjà.`,
+                });
+                return;
             }
             authService
                 .signUp(props)
                 .then((response) => {
-                    commit(AUTH_REGISTER_API_PLAT_SUCCESS, { message: "Votre compte à bien été créer, vous pouvez maintenant vous connectez !" });
-                    return response
+                    commit(AUTH_REGISTER_API_PLAT_SUCCESS, {
+                        message:
+                            "Votre compte à bien été créer, vous pouvez maintenant vous connectez !",
+                    });
+                    return response;
                 })
                 .catch((error) => {
-                    console.log('error :>> ', error);
-                    commit(AUTH_REGISTER_API_PLAT_FAILURE, { message: "Une erreur c'est produite." });
+                    console.log("error :>> ", error);
+                    commit(AUTH_REGISTER_API_PLAT_FAILURE, {
+                        message: "Une erreur c'est produite.",
+                    });
                 });
             authService
                 .signUpApollo(props)
                 .then((response) => {
                     commit(AUTH_REGISTER_API_PLAT_SUCCESS, response);
-                    return response
+                    return response;
                 })
                 .catch((error) => {
                     commit(AUTH_REGISTER_API_PLAT_FAILURE, error);
                 });
         })
-
+        .catch(() => {
+            commit(AUTH_REGISTER_API_PLAT_FAILURE, {
+                message: `Le compte ${props.email} existe déjà.`,
+            });
+        });
 }
 
 function logout({ commit }) {
@@ -80,4 +90,4 @@ function logout({ commit }) {
     }
 }
 
-export const actions = { login, logout, signUp};
+export const actions = { login, logout, signUp };

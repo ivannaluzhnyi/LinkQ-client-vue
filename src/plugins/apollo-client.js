@@ -15,23 +15,25 @@ const httpLink = createHttpLink({
     uri: config.serverUri,
 });
 
-const token = localStorage.getItem("apollo-token");
-const Authorization = token ? `Bearer ${token}` : null;
-
 const wsLink = new WebSocketLink({
     uri: config.wsUsi,
     options: {
         reconnect: true,
         connectionParams: {
-            Authorization,
+            Authorization: (() => {
+                const token = localStorage.getItem("apollo-token");
+                return token ? `Bearer ${token}` : null;
+            })(),
         },
     },
 });
 
 const middlewareLink = new ApolloLink((operation, forward) => {
+    const token = localStorage.getItem("apollo-token");
+    const nextToken = token ? `Bearer ${token}` : null;
     operation.setContext({
         headers: {
-            Authorization,
+            Authorization: nextToken,
         },
     });
     return forward(operation);

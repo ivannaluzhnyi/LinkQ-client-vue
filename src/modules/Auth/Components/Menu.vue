@@ -39,16 +39,13 @@ export default {
     return {
       navigation: [
         { title: "Mes demandes", type: "application" },
-        { title: "Mes contrats", type: "contract" },
+        { title: "Mes contrats", type: "contracts" },
         { title: "Mes propriétées", type: "properties" },
         { title: "Se déconnecter", type: "logout" },
       ],
 
       badgeMessage: 1,
     };
-  },
-  created() {
-    console.log("this==> ", this);
   },
 
   methods: {
@@ -69,6 +66,9 @@ export default {
           this.$router.push("/properties");
           return;
 
+        case "contracts":
+          this.$router.push("/contracts");
+          return;
         default:
           break;
       }

@@ -20,7 +20,7 @@ export default {
         loadProperties({commit})
         {
             return http
-                .get(`properties?groups%5B%5D=property_get_full`)
+                .get(`properties/featured`)
                 .then((response) => {
                     commit('setProperties', response.data);
                 }).catch((error) => {

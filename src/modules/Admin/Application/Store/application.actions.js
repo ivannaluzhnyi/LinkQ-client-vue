@@ -9,6 +9,7 @@ import {
 } from "./mutation-actions";
 
 import applicationService from "../Services/application.service";
+import contractService from "../Services/contract.service";
 
 function acceptApplication({ commit }, { application }) {
     commit(ACCEPT_APPLICATION_REQUEST, { application });
@@ -16,7 +17,16 @@ function acceptApplication({ commit }, { application }) {
     applicationService
         .changeStatusApplication(application.id, "ACCEPTED")
         .then((response) => {
-            commit(ACCEPT_APPLICATION_SUCCESS, response);
+            contractService
+                .createContract(application.offer, application.id)
+                .then(() => {
+                    commit(ACCEPT_APPLICATION_SUCCESS, response);
+                })
+                .catch((error) => {
+                    commit(ACCEPT_APPLICATION_FAILURE, error);
+
+                    return error;
+                });
 
             return response;
         })

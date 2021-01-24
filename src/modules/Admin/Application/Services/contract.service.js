@@ -13,14 +13,12 @@ function createContract(price, application_id) {
         .mutate({
             mutation: CREATE_CONTRACT,
             variables: {
-                data: {
-                    price,
-                    application_id,
-                },
+                price,
+                application_id,
             },
         })
         .then(async ({ data }) => {
-            return data.updateApplication;
+            return data.createContract;
         });
 }
 export default {

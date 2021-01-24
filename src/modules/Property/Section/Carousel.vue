@@ -3,7 +3,7 @@
     <v-carousel-item
         v-for="(item,i) in property.medium"
         :key="i"
-        :src="'http://localhost:8080' + item.uri"
+        :src="url + item.uri"
         reverse-transition="fade-transition"
         transition="fade-transition"
     ></v-carousel-item>
@@ -11,9 +11,13 @@
 </template>
 
 <script>
+import config from "@/config/http-client";
 export default {
   name: "Carousel",
   props: ['property'],
+  data: () => ({
+    url: config.baseURL
+  }),
 }
 </script>
 

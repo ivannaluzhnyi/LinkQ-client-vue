@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h2>
-      Update
+      Property Update
       <v-btn color="primary" @click="swapComponent('propertiesAll')" type="submit">Return</v-btn>
     </h2>
     <v-card class="elevation-2">

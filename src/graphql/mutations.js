@@ -82,3 +82,19 @@ export const UPDATE_APPLICATION = gql`
         }
     }
 `;
+
+export const CREATE_CONTRACT = gql`
+    mutation createContract($price: Float!, $application_id: Int!) {
+        createContract(
+            data: {
+                price: $price
+                application: { connect: { id: $application_id } }
+            }
+        ) {
+            id
+            price
+            created
+            updated
+        }
+    }
+`;

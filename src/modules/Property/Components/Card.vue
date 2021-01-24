@@ -38,7 +38,7 @@
           <v-container>
         <v-img 
           height="300"
-          :src="'http://localhost:8080' + property.property.medium[0].uri"
+          :src="config.baseURL + property.property.medium[0].uri"
         ></v-img>
           </v-container>
       </v-col>
@@ -47,9 +47,17 @@
 </template>
 
 <script>
+
+import config from "@/config/http-client";
+
 export default {
   name: "Card",
   props:['property'],
+  data: function(){
+    return {
+      config: config
+    }
+  }
 };
 </script>
 

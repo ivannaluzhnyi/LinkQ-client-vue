@@ -4,9 +4,9 @@
       Listes des propriétés disponible ({{ properties.length }})
       <div v-if="isSearch">avec votre recherche.</div>
     </h3>
-    <div v-if="showProperties">
-      <div v-for="property in properties" :key="property.id">
-        <Card v-if="property.status === true" v-bind:property="property" />
+    <div >
+      <div v-for="feature in properties" :key="feature.property.id">
+        <Card v-if="feature.property.status === true" v-bind:property="feature" />
       </div>
       <Card />
     </div>

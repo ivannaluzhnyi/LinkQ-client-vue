@@ -3,7 +3,7 @@
     <h1 class="font-weight-bold text-center display-3 basil--text py-10">
       Avis
     </h1>
-    <reviews-card :data="{ ...reviewsData }" />
+    <reviews-card :reviewsData="{ ...reviewsData }" />
   </div>
 </template>
 

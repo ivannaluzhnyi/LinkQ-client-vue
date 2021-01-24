@@ -126,8 +126,8 @@ export default {
       lastname: Yup.string().required(),
       firstname: Yup.string().required(),
       email: Yup.string().required().email(),
-      salary: Yup.number().integer().required().min(30000, "T'es pauvre lol"),
-      password: Yup.string().required().min(8),
+      salary: Yup.number().integer().required(),
+      password: Yup.string().required().min(6),
       plainPassword: Yup.string()
         .oneOf([Yup.ref("password"), null])
         .required("Password confirm is required"),

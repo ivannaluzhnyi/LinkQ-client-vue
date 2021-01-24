@@ -1,7 +1,7 @@
 <template>
   <div id="search-container">
     <v-card class="d-flex justify-space-around mb-6" flat tile>
-      <v-card v-for="item in data" :key="item" class="pa-2" outlined tile>
+      <v-card v-for="(item, index) in reviewsData" :key="index" class="pa-2" outlined tile>
         <template slot="progress">
           <v-progress-linear
             color="deep-purple"
@@ -48,7 +48,7 @@
 <script>
 export default {
   name: "ReviewsCard",
-  props: ["data"],
+  props: ["reviewsData"],
 };
 </script>
 

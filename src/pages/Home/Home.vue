@@ -5,7 +5,12 @@
       <section id="search">
         <search />
       </section>
-
+    <AboutUs />
+    <div> 
+       <section id="reviews">
+    <Reviews />
+       </section>
+  </div>
       <section id="featured">
         <featured-properties />
       </section>
@@ -17,12 +22,15 @@ import { EventBus } from "@/core/utils/eventBus";
 import { navlinks } from "@/modules/Home/Utils/navlinks";
 import FeaturedProperties from "@/modules/Home/Sections/FeaturedProperties";
 import Search from "@/modules/Home/Sections/Search";
-
+import Reviews from "@/modules/Home/Sections/Reviews";
+import AboutUs from "@/modules/Home/Sections/AboutUs";
 export default {
   name: "Home",
   components: {
     Search,
     FeaturedProperties,
+    Reviews,
+    AboutUs
   },
   data: () => {
     return {
@@ -44,7 +52,7 @@ export default {
 
 #search {
   position: absolute;
-  top: 11%;
+  top: 8%;
   left: 50%;
   transform: translate(-50%, -35%);
 }
@@ -52,7 +60,6 @@ export default {
 #search > #search-container {
   background-color: ghostwhite !important;
   width: 65vw;
-  height: 200px;
   border-radius: 15px;
 }
 </style>

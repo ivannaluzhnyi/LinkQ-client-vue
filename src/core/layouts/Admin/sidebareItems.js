@@ -19,4 +19,10 @@ export default [
         icon: "mdi mdi-application",
         to: "/admin/applications",
     },
+
+    {
+        title: "Contrats",
+        icon: "mdi mdi-clipboard-list-outline",
+        to: "/admin/contracts",
+    },
 ];

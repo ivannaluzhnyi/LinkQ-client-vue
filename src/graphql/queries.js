@@ -80,3 +80,27 @@ export const GET_PENDING_APPLICATIONS = gql`
         }
     }
 `;
+
+export const GET_CONTRACTS = gql`
+    query {
+        contracts(skip: 0) {
+            id
+            price
+            application {
+                offer
+                id
+                property_id
+                status
+                buyer {
+                    id
+                    email
+                    firstname
+                    lastname
+                    created
+                    salary
+                    roles
+                }
+            }
+        }
+    }
+`;

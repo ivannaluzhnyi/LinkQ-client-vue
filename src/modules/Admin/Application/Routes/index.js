@@ -1,7 +1,7 @@
 export default [
     {
         path: "/admin/applications",
-        name: "Home",
+        name: "Applications",
         component: () => import("@/pages/Admin/Application"),
     },
 ];

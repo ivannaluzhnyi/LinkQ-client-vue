@@ -1,6 +1,6 @@
 const config = {
-    serverUri: "http://localhost:4000/",
-    wsUsi: "ws://localhost:4000",
+    serverUri: process.env.APP_VUE_GQL || "http://localhost:4000/",
+    wsUsi: process.env.APP_VUE_GQLWS || "ws://localhost:4000",
 };
 
 export default config;

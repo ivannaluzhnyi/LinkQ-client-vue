@@ -81,13 +81,12 @@ function signUp(props) {
 }
 
 function signUpApollo(props) {
-    props.isActive = true;
-    props.roles = {};
     return apolloClient
         .mutate({
             mutation: REGISTER_USER,
             variables: {
                 ...props,
+                isActive: true,
                 roles: props.roles || ["ROLE_USER"],
             },
         })

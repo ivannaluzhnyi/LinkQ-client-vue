@@ -6,8 +6,18 @@ export const APPLICATION_SUBSCRIPTION = gql`
             actionType
             application {
                 id
-                offer
                 status
+                updated
+                property_id
+                offer
+                created
+                buyer {
+                    id
+                    email
+                    firstname
+                    lastname
+                    roles
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 import propertyService from "../Services/property.service";
 import {http} from "@/core/http";
+import commentService from "../Services/comment.service";
 
 function getProperty({ commit }, searchInformation) {
     propertyService
@@ -31,5 +32,19 @@ function getActualUser({ commit }, emailUser){
         });
 }
 
+function getComments({ commit }) {
+    commentService.getComments(commit)
+        .then((r) =>
+            console.log(r)
+        );
+}
 
-export const actions = { getProperty, loadProperty, getActualUser };
+function sendComment({ commit }) {
+    commentService.sendComment(commit)
+        .then((r) =>
+            console.log(r)
+        );
+}
+
+
+export const actions = { getProperty, loadProperty, getActualUser, getComments, sendComment };

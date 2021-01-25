@@ -55,7 +55,7 @@ export default {
   top: 78%;
   right: 25%;
   left: 25%;
-  position: absolute;
+  position: static;
 }
 .align-items-center {
   -webkit-box-align: center!important;

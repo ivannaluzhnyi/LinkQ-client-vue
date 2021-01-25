@@ -19,8 +19,8 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>Dohn Deo</v-list-item-title>
-          <v-list-item-subtitle class="caption">Webdesigner</v-list-item-subtitle>
+          <v-list-item-title>{{ `${user.firstname || ''} ${user.lastname || ''}` }}</v-list-item-title>
+          <v-list-item-subtitle class="caption">{{user.email}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <!---USer Area -->
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 import sidebareItems from "./sidebareItems";
 
@@ -74,6 +74,10 @@ export default {
         this.$store.commit("adminSettings/SET_SIDEBAR_DRAWER", val);
       },
     },
+
+    ...mapGetters({
+      user: "auth/apollo_getUser",
+    }),
   },
   watch: {
     "$vuetify.breakpoint.smAndDown"(val) {

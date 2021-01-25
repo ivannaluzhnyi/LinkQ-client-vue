@@ -29,7 +29,6 @@
           <h2 class="mb-2">Make an offer!</h2>
           <p class="lead">Mauris dolor orci, sagittis ut varius in, interdum nec sapien.</p>
           <!-- Form contact -->
-          <OfferForm />
         </div>
       </div>
     </div>
@@ -37,10 +36,8 @@
 </template>
 
 <script>
-import OfferForm from "@/modules/Property/Components/OfferForm";
 export default {
   name: "Offer",
-  components: {OfferForm},
   props: ['property'],
 }
 </script>

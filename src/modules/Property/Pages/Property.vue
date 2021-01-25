@@ -21,6 +21,9 @@
       <section id="make-offer">
         <Offer v-bind:property="property"/>
       </section>
+      <section id="comments">
+        <Comment v-bind:property="property"/>
+      </section>
     </div>
   </div>
 </template>
@@ -33,6 +36,7 @@ import Details from "@/modules/Property/Section/Details";
 import Features from "@/modules/Property/Section/Features";
 import Offer from "@/modules/Property/Section/Offer";
 import Carousel from "@/modules/Property/Section/Carousel";
+import Comment from "@/modules/Property/Section/Comment";
 import { mapActions } from "vuex";
 
 export default {
@@ -42,7 +46,8 @@ export default {
     Information,
     Features,
     Offer,
-    Carousel
+    Carousel,
+    Comment
   },
   data: function () {
     return {

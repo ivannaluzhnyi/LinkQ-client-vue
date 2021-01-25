@@ -22,5 +22,9 @@ export const navlinks = [
     {
         text: "Make Offer",
         href: "#make-offer"
+    },
+    {
+        text: "Comments",
+        href: "#comments"
     }
 ]

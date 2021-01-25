@@ -1,5 +1,11 @@
 <template>
   <div>
+    <CreateApplication
+      :dialog="dialog"
+      :property="{...property}"
+      :handleClose="handleClose"
+    />
+    
     <div id="background"></div>
     <div fluid>
       <section id="information">
@@ -19,7 +25,7 @@
       </section>
 
       <section id="make-offer">
-        <Offer v-bind:property="property"/>
+        <Offer v-bind:property="property" :createApplication="createApplication"/>
       </section>
     </div>
   </div>
@@ -33,6 +39,7 @@ import Details from "@/modules/Property/Section/Details";
 import Features from "@/modules/Property/Section/Features";
 import Offer from "@/modules/Property/Section/Offer";
 import Carousel from "@/modules/Property/Section/Carousel";
+import CreateApplication from "../../Home/Components/CreateApplication";
 import { mapActions } from "vuex";
 
 export default {
@@ -42,18 +49,23 @@ export default {
     Information,
     Features,
     Offer,
-    Carousel
+    Carousel,
+    CreateApplication,
   },
   data: function () {
     return {
       navlinks: navlinks,
       id: this.$route.params.idProperty,
+      dialog: false,
     }
   },
   computed: {
     property () {
       return this.$store.state.property.property;
-    }
+    },
+    selectedProperty() {
+      return this.$data.property;
+    },
   },
   created() {
     EventBus.$emit('page-change-navlinks', this.navlinks)
@@ -64,6 +76,13 @@ export default {
 
     load(props) {
       this.loadProperty(props)
+    },
+    createApplication(property) {
+      this.$data.property = property;
+      this.$data.dialog = true;
+    },
+    handleClose() {
+      this.$data.dialog = false;
     },
   },
 }

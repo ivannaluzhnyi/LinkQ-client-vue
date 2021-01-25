@@ -27,6 +27,8 @@
         </div>
         <div class="col-lg-4 push-lg-2 pl-lg-5 pt-5 pt-lg-0 dark" style="color: white;">
           <h2 class="mb-2">Make an offer!</h2>
+           <v-btn color="primary" x-large
+        @click="createApplication(property)" outlined rounded text>Faire une demande</v-btn>
           <p class="lead">Mauris dolor orci, sagittis ut varius in, interdum nec sapien.</p>
           <!-- Form contact -->
           <OfferForm />
@@ -41,7 +43,7 @@ import OfferForm from "@/modules/Property/Components/OfferForm";
 export default {
   name: "Offer",
   components: {OfferForm},
-  props: ['property'],
+  props: ['property', 'createApplication'],
 }
 </script>
 

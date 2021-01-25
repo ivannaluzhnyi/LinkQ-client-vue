@@ -33,8 +33,10 @@
 
 <script>
 import { GET_CONTRACTS } from "@/graphql/queries";
-
+import { EventBus } from "@/core/utils/eventBus";
+import { navlinks } from "@/modules/Contract/Utils/navlinks";
 import { displayDate } from "@/core/utils/date";
+import { mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -45,6 +47,14 @@ export default {
       { text: "Proposition", value: "property" },
     ],
   }),
+
+  created() {
+    EventBus.$emit("page-change-navlinks", navlinks);
+
+    if (!this.isAuth) {
+      this.$router.push("/");
+    }
+  },
 
   apollo: {
     contracts() {
@@ -60,6 +70,12 @@ export default {
     displayPrice(offer) {
       return `${offer}€`;
     },
+  },
+
+  computed: {
+    ...mapGetters({
+      isAuth: "auth/isAuthenticated",
+    }),
   },
 };
 </script>

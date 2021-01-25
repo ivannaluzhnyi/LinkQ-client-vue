@@ -2,9 +2,7 @@
   <v-menu bottom left transition="scale-transition">
     <template v-slot:activator="{ on }">
       <v-btn icon v-on="on" class="btn-menu">
-        <v-badge left :content="badgeMessage" :value="badgeMessage" color="green" overlap>
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-badge>
+        <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </template>
 
@@ -22,18 +20,6 @@
 <script>
 import { mapActions } from "vuex";
 
-// const test = {
-//   actionType: "UPDATE",
-//   application: {
-//     id: 5,
-//     offer: 1151486,
-//     status: "ACCEPTED",
-//     __typename: "Application",
-//   },
-//   __typename: "ApplicationSubscription",
-// };
-
-import { APPLICATION_SUBSCRIPTION } from "@/graphql/subscriptions";
 export default {
   data() {
     return {
@@ -73,24 +59,6 @@ export default {
           break;
       }
       return undefined;
-    },
-  },
-
-  apollo: {
-    // Subscriptions
-    $subscribe: {
-      // When a tag is added
-      application: {
-        query: APPLICATION_SUBSCRIPTION,
-        // Reactive variables
-        variables: {},
-
-        // Result hook
-        // Don't forget to destructure `data`
-        async result({ data }) {
-          console.log("subscription  application==> ", data);
-        },
-      },
     },
   },
 };

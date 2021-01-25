@@ -66,12 +66,18 @@ export default {
       },
     ],
     CommentSchema: Yup.object().shape({
-      message: Yup.string().required("Message is required"),
+      message: Yup.string(),
     }),
     initialData: {
       comment: '',
     },
   }),
+  methods: {
+    sendComment(props) {
+      console.log(props);
+      return 0;
+    }
+  },
 }
 //Faire connection apollo prisma
 </script>

@@ -18,6 +18,7 @@ export const getters = {
 
     apollo_getUserId: (state) =>
         state.apollo.user ? state.apollo.user.id : undefined,
+    apollo_getUser: (state) => state.apollo.user,
 
     isAdmin: (state) =>
         state.user ? state.user.roles.includes(USER_ROLES.ROLE_ADMIN) : false,

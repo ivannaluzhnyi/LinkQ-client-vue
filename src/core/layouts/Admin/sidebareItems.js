@@ -15,7 +15,7 @@ export default [
         to: "/admin/properties",
     },
     {
-        title: "Proposition",
+        title: "Demandes",
         icon: "mdi mdi-application",
         to: "/admin/applications",
     },

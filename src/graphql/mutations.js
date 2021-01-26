@@ -68,9 +68,18 @@ export const CREATE_APPLICATION = gql`
             }
         ) {
             id
-            created
             status
+            updated
             property_id
+            offer
+            created
+            buyer {
+                id
+                email
+                firstname
+                lastname
+                roles
+            }
         }
     }
 `;

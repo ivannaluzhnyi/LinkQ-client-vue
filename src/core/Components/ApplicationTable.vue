@@ -76,5 +76,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.buyer p {
+  margin: 0;
+}
 </style>

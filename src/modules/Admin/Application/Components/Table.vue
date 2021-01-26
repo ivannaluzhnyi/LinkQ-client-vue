@@ -26,6 +26,8 @@ import ApplicationActionsModal from "./ApplicationActionsModal";
 import ApplicationTable from "@/core/Components/ApplicationTable";
 
 import { GET_APPLICATIONS, GET_PENDING_APPLICATIONS } from "@/graphql/queries";
+import { APPLICATION_SUBSCRIPTION } from "@/graphql/subscriptions";
+
 import { TableType } from "../helpers";
 
 export default {
@@ -49,6 +51,8 @@ export default {
         open: false,
         currentApplication: undefined,
       },
+
+      applications: [],
     };
   },
 
@@ -90,7 +94,37 @@ export default {
 
   apollo: {
     applications() {
-      return this.getApolloRequest();
+      return {
+        ...this.getApolloRequest(),
+
+        update: ({ applications }) => {
+          if (this.type === TableType.APPLICATIONS_TO_VALIDATE) {
+            return applications.filter((app) => app.status === "PENDING");
+          }
+          return applications;
+        },
+        subscribeToMore: {
+          document: APPLICATION_SUBSCRIPTION,
+          updateQuery: async (previousResult, { subscriptionData }) => {
+            const {
+              data: {
+                application: { application, actionType },
+              },
+            } = subscriptionData;
+
+            if (actionType === "CREATE") {
+              this.applications = [...this.applications, application];
+              return;
+            }
+
+            this.applications = [
+              ...this.applications.filter((app) => app.id !== application.id),
+            ];
+
+            return;
+          },
+        },
+      };
     },
   },
 };

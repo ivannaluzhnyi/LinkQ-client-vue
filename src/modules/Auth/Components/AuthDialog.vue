@@ -8,8 +8,10 @@
           </v-btn>
 
           <v-btn v-show="isAdmin" @click="redirect" text small>
-            <v-icon>mdi-account</v-icon>
-            {{email}}
+            <v-badge :content="commingData" :value="commingData" color="green" overlap>
+              <v-icon>mdi-account</v-icon>
+              {{email}}
+            </v-badge>
           </v-btn>
 
           <Menu />
@@ -57,6 +59,9 @@
 <script>
 import SignUpForm from "@/modules/Auth/Components/Forms/SignUp";
 import SignInForm from "@/modules/Auth/Components/Forms/SignIn";
+
+import { APPLICATION_SUBSCRIPTION } from "@/graphql/subscriptions";
+
 import Menu from "./Menu";
 import { mapGetters } from "vuex";
 
@@ -70,6 +75,8 @@ export default {
       { name: "Login", icon: "mdi-account" },
       { name: "Register", icon: "mdi-account-outline" },
     ],
+
+    commingData: 0,
   }),
   computed: {
     ...mapGetters({
@@ -97,6 +104,17 @@ export default {
       if (this.isAuth) {
         this.$router.push("/profil");
       }
+    },
+  },
+
+  apollo: {
+    $subscribe: {
+      application: {
+        query: APPLICATION_SUBSCRIPTION,
+        result() {
+          this.$data.commingData = this.$data.commingData + 1;
+        },
+      },
     },
   },
 };

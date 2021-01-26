@@ -2,8 +2,20 @@
   <v-row justify="center">
     <LoadingDialog v-if="loading" :dialog="dialog" />
 
-    <v-dialog v-else v-model="dialog" persistent max-width="600px">
+    <v-dialog v-else v-model="dialog" persistent max-width="610px">
+      <v-card v-if="existApplication !== undefined">
+        <v-card-title>
+          <span class="headline">{{existApplication}}</span>
+        </v-card-title>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="handleCloseOverride()">Fermer</v-btn>
+        </v-card-actions>
+      </v-card>
+
       <ControlResponseContent
+        v-else
         :responseType="responseType"
         :handleClose="handleCloseOverride"
         :property="property"
@@ -43,7 +55,7 @@ import applicationService from "../../Services/application-front.service";
 export default {
   name: "CreateApplication",
 
-  props: ["property", "dialog", "handleClose"],
+  props: ["property", "dialog", "handleClose", "existApplication"],
   components: { NoAuth, Property, LoadingDialog, ControlResponseContent },
 
   data() {

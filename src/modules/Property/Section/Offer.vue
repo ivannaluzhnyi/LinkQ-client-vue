@@ -2,31 +2,29 @@
   <div>
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-4 push-lg-2">
-          <!-- Object - Vertical -->
-          <div class="object-box">
-            <div class="object-content">
-              <h5 class="object-title">{{property.title}}</h5>
-              <ul class="object-details list-unstyled">
-                <li><span class="text-muted">Total area:</span> {{property.features.size}}m<sup>2</sup></li>
-                <li><span class="text-muted">Bedrooms:</span> {{property.features.bedrooms}}</li>
-                <li><span class="text-muted">Rooms:</span> {{property.features.rooms}}</li>
-              </ul>
-              <div class="row">
-                <div class="col-6">
-                  <strong class="text-muted">Price:</strong>
-                  <span class="object-price text-primary text-lg">${{property.price}}</span>
-                </div>
-              </div>
+        <div>
+          <v-card elevation="4">
+            <v-img
+                v-if="property.medium.length !== 0"
+                :src="url + property.medium[0].uri"
+                width="800px"
+                height="200px"
+            ></v-img>
+            <v-card-title>{{property.title}}</v-card-title>
+            <div>
+              <v-card-text><b>Total area:</b> {{property.features.size}}m<sup>2</sup></v-card-text>
+              <v-card-text><b>Number of rooms:</b> {{property.features.rooms}}</v-card-text>
+              <v-card-text><b>Address:</b> {{property.address.street}} {{property.address.city}}</v-card-text>
+              <v-card-text><b>Price:</b> ${{property.price}}</v-card-text>
             </div>
-          </div>
-        </div>
-        <div class="col-lg-4 push-lg-2 pl-lg-5 pt-5 pt-lg-0 dark" style="color: white;">
-          <h2 class="mb-2">Make an offer!</h2>
-          <v-btn color="primary" x-large
-                 @click="createApplication(property)" outlined rounded text>Faire une demande</v-btn>
-          <p class="lead">Mauris dolor orci, sagittis ut varius in, interdum nec sapien.</p>
-          <!-- Form contact -->
+            <div class="col-lg-4 push-lg-2 pl-lg-5 pt-5 pt-lg-0 dark" style="color: white;">
+              <h2 class="mb-2">Make an offer!</h2>
+              <v-btn color="btn primary" x-large
+                     @click="createApplication(property)" >Faire une demande</v-btn>
+              <p class="lead">Mauris dolor orci, sagittis ut varius in, interdum nec sapien.</p>
+              <!-- Form contact -->
+            </div>
+          </v-card>
         </div>
       </div>
     </div>
@@ -34,9 +32,14 @@
 </template>
 
 <script>
+import config from "@/config/http-client";
+
 export default {
   name: "Offer",
   props: ['property', 'createApplication'],
+  data: () => ({
+    url: config.baseURL
+  }),
 }
 </script>
 

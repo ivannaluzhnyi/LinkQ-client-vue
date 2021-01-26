@@ -5,14 +5,12 @@
 <script>
 import PropertyAll from "@/modules/Admin/Properties/Components/PropertiesAll";
 import PropertiesUpdate from "@/modules/Admin/Properties/Components/PropertiesUpdate";
-import PropertiesCreate from "@/modules/Admin/Properties/Components/PropertiesCreate";
 
 export default {
   name: "Properties",
   components: {
     propertiesAll: PropertyAll,
     propertiesUpdate: PropertiesUpdate,
-    propertiesCreate: PropertiesCreate
   },
   data() {
     return {

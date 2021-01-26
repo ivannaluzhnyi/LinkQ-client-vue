@@ -2,7 +2,6 @@
   <v-container>
     <h2>
       Properties
-      <v-btn color="primary" @click="swapComponent('propertiesCreate')" type="submit">Create</v-btn>
     </h2>
     <br/>
     <v-card class="elevation-1">

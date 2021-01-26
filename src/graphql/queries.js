@@ -104,3 +104,13 @@ export const GET_CONTRACTS = gql`
         }
     }
 `;
+
+export const GET_APPLICATION_BY_PROPERTY = gql`
+    query applications($user_id: Int!, $property_id: String) {
+        applications(
+            where: { property_id: $property_id, buyer: { id: $user_id } }
+        ) {
+            id
+        }
+    }
+`;

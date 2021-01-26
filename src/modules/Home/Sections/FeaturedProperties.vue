@@ -7,12 +7,17 @@
       :dialog="dialog"
       :property="{...selectedProperty}"
       :handleClose="handleClose"
+      :existApplication="existApplication"
     />
 
     <div class="properies-list">
       <v-row>
         <v-col cols="12" sm="3" md="4" v-for="(property, index) in properties" :key="index">
-          <Property v-if="property.status === true" :property="{...property}" :createApplication="createApplication" />
+          <Property
+            v-if="property.status === true"
+            :property="{...property}"
+            :createApplication="createApplication"
+          />
         </v-col>
       </v-row>
     </div>
@@ -20,10 +25,12 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 import Property from "../Components/Property";
 import CreateApplication from "../Components/CreateApplication";
+
+import applicationService from "../Services/application-front.service";
 
 export default {
   components: {
@@ -34,6 +41,7 @@ export default {
     return {
       property: undefined,
       dialog: false,
+      existApplication: undefined,
     };
   },
   computed: {
@@ -43,6 +51,10 @@ export default {
     selectedProperty() {
       return this.$data.property;
     },
+
+    ...mapGetters({
+      userId: "auth/apollo_getUserId",
+    }),
   },
   created() {
     this.load();
@@ -53,13 +65,23 @@ export default {
     load() {
       this.loadProperties();
     },
-    createApplication(property) {
+    async createApplication(property) {
+      const existApplication = await applicationService.checkIfExist(
+        this.userId,
+        property.id
+      );
+
+      if (existApplication) {
+        this.$data.existApplication =
+          "Vous avez déjà fait une demande pour ce bien";
+      }
       this.$data.property = property;
       this.$data.dialog = true;
     },
 
     handleClose() {
       this.$data.dialog = false;
+      this.$data.existApplication = undefined;
     },
   },
 };

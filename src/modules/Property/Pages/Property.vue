@@ -53,7 +53,9 @@ export default {
     Information,
     Features,
     Offer,
-    Carousel
+    Carousel,
+    Comment,
+    CreateApplication,
   },
   data: function () {
     return {

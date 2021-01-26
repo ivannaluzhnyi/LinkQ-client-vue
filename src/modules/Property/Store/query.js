@@ -6,6 +6,7 @@ export const GET_COMMENTS = gql`
             where: {
                 idProperty: $idProperty
             }
+            orderBy: created_DESC
         )
         {
             id

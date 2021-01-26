@@ -1,34 +1,34 @@
 import { apolloClient } from "@/plugins/apollo-client";
 
-import { CREATE_COMMENT } from "../Store/mutation";
+import { CREATE_COMMENT } from "@/graphql/mutations";
 import { GET_COMMENTS } from "../Store/query";
 
 function getComments(idProperty) {
-    return apolloClient
-        .query( {
-            query: GET_COMMENTS,
-            variables: {
-                where: {
-                    idProperty: idProperty,
-                },
-            },
-        })
-        .then(async ({ data }) => {
-            return data.comments;
-        });
+  return apolloClient
+    .query({
+      query: GET_COMMENTS,
+      variables: {
+        idProperty: parseInt(idProperty),
+      },
+    })
+    .then(async ({ data }) => {
+      return data.comments;
+    });
 }
 
 function sendComment(props) {
-    return apolloClient
-        .mutate({
-            mutation: CREATE_COMMENT,
-            variables: { ...props }
-        })
-        .then(async ({ data }) => {
-            return data.createComment;
-        });
+  console.log("props SERVICE =+> ", props);
+  return apolloClient
+    .mutate({
+      mutation: CREATE_COMMENT,
+      variables: { ...props },
+    })
+    .then(async ({ data }) => {
+      console.log("data ==> ", data);
+      return data.createComment;
+    });
 }
 export default {
-    getComments,
-    sendComment
+  getComments,
+  sendComment,
 };
